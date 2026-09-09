@@ -18,7 +18,7 @@ class GraphService:
         person_ids = {p["id"] for p in persons}
         for p in persons:
             self.G.add_node(p["id"], **{
-                "label": p.get("name", p["id"]),
+                "label": p.get("display_name") or p.get("name") or p.get("cbi_listed_name") or p["id"],
                 "type": "PERSON",
                 "cluster": p.get("cluster", "UNKNOWN"),
                 "cluster_name": p.get("cluster_name", ""),

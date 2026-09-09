@@ -6839,28 +6839,548 @@
   },
   {
     "id": "REL-0527",
-    "source": "P-001",
-    "target": "P-022",
-    "type": "CROSS_REGIONAL_TIE",
-    "weight": 7,
-    "confidence": 0.89,
-    "relationship_classification": "DERIVED RELATIONSHIP",
+    "source": "P-017",
+    "target": "P-001",
+    "type": "INTER_SYNDICATE_CONDUIT",
+    "weight": 14,
+    "confidence": 0.98,
+    "relationship_classification": "SOURCE RELATIONSHIP",
     "evidence": [
-      "Cross-state communications correlation flagged in investigation log"
+      "Direct operational liaison for Western distribution"
     ],
-    "provenance_badge": "AI-DERIVED"
+    "provenance_badge": "SOURCE-DERIVED"
   },
   {
     "id": "REL-0528",
-    "source": "P-003",
+    "source": "P-017",
+    "target": "P-002",
+    "type": "COVERT_COMMUNICATION",
+    "weight": 11,
+    "confidence": 0.94,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Encrypted cell communication with Manoj Tiwari"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0529",
+    "source": "P-017",
+    "target": "P-003",
+    "type": "INTER_SYNDICATE_CONDUIT",
+    "weight": 18,
+    "confidence": 0.99,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Executive syndicate liaison with Arjun Patel (Shadow Syndicate)"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0530",
+    "source": "P-017",
+    "target": "P-007",
+    "type": "TRANSNATIONAL_HAWALA_FLOW",
+    "weight": 15,
+    "confidence": 0.97,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Cross-border capital transfer to Prasad Rao offshore account"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0531",
+    "source": "P-017",
+    "target": "P-010",
+    "type": "COVERT_COMMUNICATION",
+    "weight": 12,
+    "confidence": 0.95,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Encrypted satellite communications link"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0532",
+    "source": "P-017",
+    "target": "P-012",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 10,
+    "confidence": 0.92,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Consignment escort liaison in Mumbai transit hub"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0533",
+    "source": "P-017",
+    "target": "P-020",
+    "type": "FINANCIAL_HAWALA_FLOW",
+    "weight": 16,
+    "confidence": 0.98,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Multi-crore financial laundering transfer via Rakesh Agarwal"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0534",
+    "source": "P-017",
+    "target": "P-022",
+    "type": "INTER_SYNDICATE_CONDUIT",
+    "weight": 19,
+    "confidence": 0.99,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Primary conduit link with Suresh Gupta (Golden Circuit)"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0535",
+    "source": "P-017",
+    "target": "P-025",
+    "type": "FINANCIAL_HAWALA_FLOW",
+    "weight": 15,
+    "confidence": 0.96,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Hawala layering route via Chandni Chowk"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0536",
+    "source": "P-017",
+    "target": "P-028",
+    "type": "COVERT_COMMUNICATION",
+    "weight": 12,
+    "confidence": 0.94,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Proxy communication routing link with Tarun Sethi"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0537",
+    "source": "P-017",
+    "target": "P-030",
+    "type": "FINANCIAL_HAWALA_FLOW",
+    "weight": 11,
+    "confidence": 0.93,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Escrow bank account A-009 routing"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0538",
+    "source": "P-017",
     "target": "P-035",
-    "type": "ARMS_LOGISTICS_LINK",
-    "weight": 8,
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 13,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Transit corridor coordination link with Sachin Gaikwad"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0539",
+    "source": "P-017",
+    "target": "P-038",
+    "type": "INTER_SYNDICATE_CONDUIT",
+    "weight": 18,
+    "confidence": 0.99,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Conduit link with Deepak Joshi (Silk Route Cartel)"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0540",
+    "source": "P-017",
+    "target": "P-040",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 14,
+    "confidence": 0.96,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Consignment dispatch coordination with Tushar Kamble"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0541",
+    "source": "P-017",
+    "target": "P-042",
+    "type": "COVERT_COMMUNICATION",
+    "weight": 12,
+    "confidence": 0.93,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Corridor surveillance wiretap intercept"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0542",
+    "source": "P-017",
+    "target": "P-044",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 10,
+    "confidence": 0.91,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Highway transit corridor link"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0543",
+    "source": "P-017",
+    "target": "P-045",
+    "type": "EXTRADITION_CONDUIT",
+    "weight": 14,
+    "confidence": 0.97,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Transnational relocation conduit via Dubai International Hub"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0544",
+    "source": "P-017",
+    "target": "P-046",
+    "type": "EXTRADITION_CONDUIT",
+    "weight": 13,
+    "confidence": 0.96,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Safe haven logistics conduit via Kathmandu route"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0545",
+    "source": "P-017",
+    "target": "P-123",
+    "type": "EXTRADITION_CONDUIT",
+    "weight": 12,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Interpol Red Notice fugitive escape channel (UAE)"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0546",
+    "source": "P-017",
+    "target": "P-213",
+    "type": "EXTRADITION_CONDUIT",
+    "weight": 12,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "UK offshore conduit channel (London hub)"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0547",
+    "source": "P-017",
+    "target": "P-305",
+    "type": "EXTRADITION_CONDUIT",
+    "weight": 11,
+    "confidence": 0.94,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Toronto cross-border asylum layering conduit"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0548",
+    "source": "P-017",
+    "target": "P-032",
+    "type": "INTER_SYNDICATE_CONDUIT",
+    "weight": 20,
+    "confidence": 0.99,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Core dual-bridge tandem operation between Vikram Reddy and Amit Verma"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0549",
+    "source": "P-032",
+    "target": "P-005",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 13,
+    "confidence": 0.96,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared logistics vehicle V-008 movement (Mumbai-Pune)"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0550",
+    "source": "P-032",
+    "target": "P-007",
+    "type": "FINANCIAL_HAWALA_FLOW",
+    "weight": 12,
+    "confidence": 0.94,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Hawala transfer settlement"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0551",
+    "source": "P-032",
+    "target": "P-020",
+    "type": "FINANCIAL_HAWALA_FLOW",
+    "weight": 15,
+    "confidence": 0.97,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Banking proxy account A-009 coordination (Delhi)"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0552",
+    "source": "P-032",
+    "target": "P-024",
+    "type": "FINANCIAL_HAWALA_FLOW",
+    "weight": 12,
+    "confidence": 0.94,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Escrow laundering transfer via Deepak Mehra"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0553",
+    "source": "P-032",
+    "target": "P-036",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 11,
+    "confidence": 0.93,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Highway transit corridor link with Mahesh Deshpande"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0554",
+    "source": "P-032",
+    "target": "P-040",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 12,
+    "confidence": 0.94,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Consignment logistics link"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0555",
+    "source": "P-022",
+    "target": "P-003",
+    "type": "FINANCIAL_HAWALA_FLOW",
+    "weight": 16,
+    "confidence": 0.98,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Direct Delhi-Mumbai inter-syndicate settlement transfer"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0556",
+    "source": "P-025",
+    "target": "P-038",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 14,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Contraband procurement financing between Delhi and Pune"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0557",
+    "source": "P-038",
+    "target": "P-001",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 15,
+    "confidence": 0.96,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Inter-state weapons and contraband shipment transit"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0558",
+    "source": "P-003",
+    "target": "P-042",
+    "type": "TRANSNATIONAL_HAWALA_FLOW",
+    "weight": 13,
+    "confidence": 0.94,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Offshore hawala commission payment via Singapore"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0559",
+    "source": "P-050",
+    "target": "P-003",
+    "type": "SHARED_JURISDICTION",
+    "weight": 9,
+    "confidence": 0.9,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional branch tie to Mumbai Shadow Syndicate"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0560",
+    "source": "P-075",
+    "target": "P-022",
+    "type": "SHARED_JURISDICTION",
+    "weight": 9,
+    "confidence": 0.9,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional branch tie to Delhi Golden Circuit"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0561",
+    "source": "P-100",
+    "target": "P-038",
+    "type": "SHARED_JURISDICTION",
+    "weight": 9,
+    "confidence": 0.9,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional branch tie to Pune Silk Route"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0562",
+    "source": "P-150",
+    "target": "P-017",
+    "type": "SHARED_JURISDICTION",
+    "weight": 10,
+    "confidence": 0.92,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Affiliated network tie to Inter-Syndicate Bridge Nexus"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0563",
+    "source": "P-200",
+    "target": "P-032",
+    "type": "SHARED_JURISDICTION",
+    "weight": 10,
+    "confidence": 0.92,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Affiliated financial tie to Secondary Bridge"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0564",
+    "source": "P-250",
+    "target": "P-007",
+    "type": "EXTRADITION_CONDUIT",
+    "weight": 9,
+    "confidence": 0.91,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Transnational fugitive coordination tie"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0565",
+    "source": "P-300",
+    "target": "P-025",
+    "type": "EXTRADITION_CONDUIT",
+    "weight": 9,
+    "confidence": 0.91,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "International legal assist conduit tie"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0566",
+    "source": "P-350",
+    "target": "P-017",
+    "type": "EXTRADITION_CONDUIT",
+    "weight": 10,
+    "confidence": 0.93,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "CBI Interpol Red Notice master coordination tie"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0567",
+    "source": "P-015",
+    "target": "P-020",
+    "type": "COVERT_COMMUNICATION",
+    "weight": 10,
     "confidence": 0.91,
     "relationship_classification": "DERIVED RELATIONSHIP",
     "evidence": [
-      "Arms trafficking transit corridor link"
+      "Cross-regional field intelligence exchange"
     ],
-    "provenance_badge": "AI-DERIVED"
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0568",
+    "source": "P-031",
+    "target": "P-035",
+    "type": "LOGISTICS_TRANSIT_CONDUIT",
+    "weight": 11,
+    "confidence": 0.92,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Punjab-Pune transit corridor coordination"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
   }
 ]
