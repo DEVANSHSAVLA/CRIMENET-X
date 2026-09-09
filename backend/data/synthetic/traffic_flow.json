@@ -1,0 +1,78 @@
+[
+  {
+    "id": "TF-01",
+    "corridor": "Mumbai Western Express Highway",
+    "density": "HIGH",
+    "points": [
+      [
+        72.8296,
+        19.1364
+      ],
+      [
+        72.8495,
+        19.0596
+      ],
+      [
+        72.8153,
+        19.0176
+      ]
+    ]
+  },
+  {
+    "id": "TF-02",
+    "corridor": "Delhi Inner Ring Road",
+    "density": "MEDIUM",
+    "points": [
+      [
+        77.2167,
+        28.6315
+      ],
+      [
+        77.2066,
+        28.5244
+      ],
+      [
+        77.046,
+        28.5921
+      ]
+    ]
+  },
+  {
+    "id": "TF-03",
+    "corridor": "NH-102 Imphal-Moreh Strategic Corridor",
+    "density": "HIGH",
+    "points": [
+      [
+        93.9368,
+        24.817
+      ],
+      [
+        93.9984,
+        24.6384
+      ],
+      [
+        94.3,
+        24.25
+      ]
+    ]
+  },
+  {
+    "id": "TF-04",
+    "corridor": "GT Road Amritsar-Jalandhar Section",
+    "density": "LOW",
+    "points": [
+      [
+        74.8723,
+        31.634
+      ],
+      [
+        75.5762,
+        31.326
+      ],
+      [
+        75.8573,
+        30.901
+      ]
+    ]
+  }
+]

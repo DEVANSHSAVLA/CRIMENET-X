@@ -1,0 +1,362 @@
+[
+  {
+    "id": "FIR-001",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-001"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-002",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-002"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-003",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-003"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-004",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-004"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-005",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-005"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-006",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-006"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-007",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-007"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-008",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-008"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-009",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-009"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-010",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-010"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-011",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-011"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-012",
+    "details": "Punishment of criminal conspiracy u/s 120B Indian Penal Code,",
+    "mentioned_entities": [
+      "P-012"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-013",
+    "details": "Punishment of criminal conspiracy u/s 120B Indian Penal Code,",
+    "mentioned_entities": [
+      "P-013"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-014",
+    "details": "Punishment of criminal conspiracy",
+    "mentioned_entities": [
+      "P-014"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-015",
+    "details": "(i) Prohibition of hunting a wild animal specified in Schedules-I,II,III & IV.",
+    "mentioned_entities": [
+      "P-015"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "MEDIUM"
+  },
+  {
+    "id": "FIR-016",
+    "details": "Forgery, Forgery of valuable security, will, etc., Forgery for purpose of cheating, Using as genuine a forged (document or electronic record), Theft in dwelling house, etc., Penalty for damage to computer, computer system, etc., Hacking with computer system.",
+    "mentioned_entities": [
+      "P-016"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "HIGH"
+  },
+  {
+    "id": "FIR-017",
+    "details": "Forgery, Forgery of valuable security, will, etc., Forgery for purpose of cheating, Using as genuine a forged (document or electronic record), Theft in dwelling house, etc., Penalty for damage to computer, computer system, etc., Hacking with computer system.",
+    "mentioned_entities": [
+      "P-017"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "HIGH"
+  },
+  {
+    "id": "FIR-018",
+    "details": "Forgery, Forgery of valuable security, will, etc., Forgery for purpose of cheating, Using as genuine a forged (document or electronic record), Theft in dwelling house, etc., Penalty for damage to computer, computer system, etc., Hacking with computer system.",
+    "mentioned_entities": [
+      "P-018"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "HIGH"
+  },
+  {
+    "id": "FIR-019",
+    "details": "Robbery or Dacoity, with attempt to cause death or grievous hurt, Assault or criminal force to deter public servant from discharge of his duty, Attempt to murder, Punishment for theft, Criminal conspiracy, Acts done by several persons in furtherance of common intention, Penalties for trespass or damange in Reserved Forest and acts prohibited in such Forest, Any person who causes any damage, either willfully or negligently in felling or cutting any trees or dragging any timber, Power to make rules to regulate the transit possession of timber and other Forest produce, Mischief causing damage to Public Property, Condition for import, export and movement of Sandal wood or Red sanders wood.",
+    "mentioned_entities": [
+      "P-019"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-020",
+    "details": "Punishment for murder, 2. Attempt to murder, 3. Waging, or attempting to wage war, or abetting waging of war, against Government of India, 4. Conspiracy to commit offences punishable by section 121 of Indian Penal Code i.e. waging, or attempting to wage war, or abetting waging of war, against Government of India, 5. Assaulting the President, Governor, etc. with the intent to compel or restrain the exercise of any lawful power, 6. Wantonly giving provocation with intent to cause riot, 7. Punishment for criminal conspiracy, 8. Punishment for certain offences regarding illegal arms and ammunition, 9. Punishment for conspiracy, etc. for terrorist act, 10. Punishment for being member of terrorist gang or organization, 11. Offence relating to membership of a terrorist organization,12. Punishment for causing explosion likely to endanger life or property, 13. Punishment for attempt to cause explosion, or for making or keeping explosive with intent to endanger life or property.",
+    "mentioned_entities": [
+      "P-020"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-021",
+    "details": "Criminal conspiracy, Criminal breach of trust, Cheating, Creating false documents for the purpose of Cheating, Using a forged document as genuine, Tampering with computer source documents, Computer related offences, Cheating by personation by using computer resource, Publication for fraudulent purpose.",
+    "mentioned_entities": [
+      "P-021"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-022",
+    "details": "Punishment for criminal breach of trust, Cheating and dishonestly inducing delivery of property, Criminal conspiracy to commit an offence, Common intention.",
+    "mentioned_entities": [
+      "P-022"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-023",
+    "details": "Criminal conspiracy, Cheating and dishonestly inducing delivery of property, Forgery of valuable security, Forgery for the purpose of cheating, Using forged documents as genuine, and Prevention of corruption.",
+    "mentioned_entities": [
+      "P-023"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-024",
+    "details": "Criminal conspiracy, Cheating and dishonestly inducing delivery of property, Forgery of valuable security, Forgery for the purpose of cheating, Using forged documents as genuine, and Prevention of corruption.",
+    "mentioned_entities": [
+      "P-024"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-025",
+    "details": "Criminal conspiracy, Cheating and dishonestly inducing delivery of property, Forgery of valuable security, Forgery for the purpose of cheating, Using forged documents as genuine, and Prevention of corruption.",
+    "mentioned_entities": [
+      "P-025"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-026",
+    "details": "CRIMINAL CONSPIRACY, CRIMINAL BREACH OF TRUST, USING FORGE DOCUMENTS AS GENUININE AND ABUSE OF OFFICIAL POSITION.",
+    "mentioned_entities": [
+      "P-026"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-027",
+    "details": "Punishment for murder, Punishment for kidnapping, Kidnapping in order to murder, Criminal Conspiracy, Abettor present when offence is committed.",
+    "mentioned_entities": [
+      "P-027"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-028",
+    "details": "Punishment for murder, Punishment for kidnapping, Kidnapping in order to murder, Criminal Conspiracy, Abettor present when offence is committed",
+    "mentioned_entities": [
+      "P-028"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-029",
+    "details": "Criminal conspiracy; Murder; Causing explosion likely to endanger life or property; Causing explosion, or for making or keeping explosive with intent to endanger life or property; Making or possessing explosives under suspicious Circumstances.",
+    "mentioned_entities": [
+      "P-029"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-030",
+    "details": "Punishment for murder;  Punishment of criminal conspiracy.",
+    "mentioned_entities": [
+      "P-030"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-031",
+    "details": "Punishment for certain offences— Whoever manufactures, sells, transfers, converts, repairs, tests or proves, or exposes or offers for sale or transfer, or has in his possession for sale, transfer, conversion, repair, test or proof, any arms; Punishment for raising funds for terrorist act; Punishment for conspiracy; Punishment for being member of terrorist gang or organisation.",
+    "mentioned_entities": [
+      "P-031"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-032",
+    "details": "Under Investigation",
+    "mentioned_entities": [
+      "P-032"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "MEDIUM"
+  },
+  {
+    "id": "FIR-033",
+    "details": "Punishment for raising funds for terrorist act; Punishment for conspiracy; Punishment for harboring; Punishment for being member of terrorist gang or organization; Arms act; Punishment for causing explosion likely to endanger life or property; Punishment for attempt to cause explosion, or for making or keeping explosive with intent to endanger life or property; Punishment for making or possessing explosives under suspicious circumstances; Foreigners Act.",
+    "mentioned_entities": [
+      "P-033"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-034",
+    "details": "Punishment for raising funds for terrorist act; Punishment for conspiracy; Punishment for harboring; Punishment for being member of terrorist gang or organization; Arms act; Punishment for causing explosion likely to endanger life or property; Punishment for attempt to cause explosion, or for making or keeping explosive with intent to endanger life or property; Punishment for making or possessing explosives under suspicious circumstances; Foreigners Act.",
+    "mentioned_entities": [
+      "P-034"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-035",
+    "details": "Punishment for raising funds for terrorist act; Punishment for conspiracy; Punishment for harboring; Punishment for being member of terrorist gang or organization; Arms act; Punishment for causing explosion likely to endanger life or property; Punishment for attempt to cause explosion, or for making or keeping explosive with intent to endanger life or property; Punishment for making or possessing explosives under suspicious circumstances; Foreigners Act.",
+    "mentioned_entities": [
+      "P-035"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-036",
+    "details": "Punishment for certain offences— Whoever manufactures, sells, transfers, converts, repairs, tests or proves, or exposes or offers for sale or transfer, or has in his possession for sale, transfer, conversion, repair, test or proof, any arms; Punishment for raising funds for terrorist act; Punishment for conspiracy; Punishment for being member of terrorist gang or organisation.",
+    "mentioned_entities": [
+      "P-036"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-037",
+    "details": "PUNISHMENT OF CRIMINAL CONSPIRACY, CRIMINAL BREACH OF TRUST BY PUBLIC SERVANT, OR BY BANKER MERCHANT OR AGENT, CHEATING AND DISHONESTLY INDUCING DELIVERY OF PROPERTY, PREVENTION OF CORRUPTION ACT.",
+    "mentioned_entities": [
+      "P-037"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-038",
+    "details": "Rape and Cheating",
+    "mentioned_entities": [
+      "P-038"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "HIGH"
+  },
+  {
+    "id": "FIR-039",
+    "details": "Cheating and dishonestly inducing delivery of property.; forgery of valuable security, will etc.; Forgery for the purpose of cheating; Using as genuine a forged document; Criminal conspiracy; Furnishing false return to evade tax; Produce false tax invoices, bill, vouchers; Keeping false accounts etc.",
+    "mentioned_entities": [
+      "P-039"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "FIR-040",
+    "details": "Money Laundering",
+    "mentioned_entities": [
+      "P-040"
+    ],
+    "status": "ACTIVE_WARRANT",
+    "severity": "MEDIUM"
+  }
+]

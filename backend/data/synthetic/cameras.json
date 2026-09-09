@@ -1,0 +1,176 @@
+[
+  {
+    "id": "CAM-001",
+    "name": "CCTV-MUM-CST-NORTH",
+    "type": "PUBLIC CAMERA",
+    "city": "Mumbai",
+    "lat": 18.94,
+    "lng": 72.8353,
+    "status": "ONLINE",
+    "stream_type": "SIMULATED",
+    "coverage_radius_m": 250,
+    "nearby_entities": [
+      "P-001",
+      "P-015"
+    ],
+    "nearby_signals": [
+      "SIG-MUM-01",
+      "SIG-MUM-02"
+    ],
+    "nearby_events": [
+      "EV-0015",
+      "EV-0042"
+    ]
+  },
+  {
+    "id": "CAM-002",
+    "name": "TRAFFIC-MUM-SEAFACE-04",
+    "type": "TRAFFIC CAMERA",
+    "city": "Mumbai",
+    "lat": 19.0176,
+    "lng": 72.8153,
+    "status": "ONLINE",
+    "stream_type": "SIMULATED",
+    "coverage_radius_m": 400,
+    "nearby_entities": [
+      "P-015",
+      "P-044"
+    ],
+    "nearby_signals": [
+      "SIG-MUM-03"
+    ],
+    "nearby_events": [
+      "EV-0088"
+    ]
+  },
+  {
+    "id": "CAM-003",
+    "name": "CCTV-MUM-ANDHERI-LINK",
+    "type": "CITY CAMERA",
+    "city": "Mumbai",
+    "lat": 19.1364,
+    "lng": 72.8296,
+    "status": "ONLINE",
+    "stream_type": "SIMULATED",
+    "coverage_radius_m": 300,
+    "nearby_entities": [
+      "P-001",
+      "P-007"
+    ],
+    "nearby_signals": [
+      "SIG-MUM-04"
+    ],
+    "nearby_events": [
+      "EV-0012"
+    ]
+  },
+  {
+    "id": "CAM-011",
+    "name": "CCTV-DEL-CP-BLOCK-A",
+    "type": "PUBLIC CAMERA",
+    "city": "Delhi",
+    "lat": 28.6315,
+    "lng": 77.2167,
+    "status": "ONLINE",
+    "stream_type": "SIMULATED",
+    "coverage_radius_m": 350,
+    "nearby_entities": [
+      "P-022",
+      "P-028"
+    ],
+    "nearby_signals": [
+      "SIG-DEL-01"
+    ],
+    "nearby_events": [
+      "EV-0034"
+    ]
+  },
+  {
+    "id": "CAM-012",
+    "name": "TRAFFIC-DEL-DWARKA-SEC12",
+    "type": "TRAFFIC CAMERA",
+    "city": "Delhi",
+    "lat": 28.5921,
+    "lng": 77.046,
+    "status": "ONLINE",
+    "stream_type": "SIMULATED",
+    "coverage_radius_m": 450,
+    "nearby_entities": [
+      "P-020",
+      "P-022"
+    ],
+    "nearby_signals": [
+      "SIG-DEL-02"
+    ],
+    "nearby_events": [
+      "EV-0091"
+    ]
+  },
+  {
+    "id": "CAM-021",
+    "name": "TRAFFIC-PUN-GT-ROAD-01",
+    "type": "TRAFFIC CAMERA",
+    "city": "Punjab",
+    "lat": 31.634,
+    "lng": 74.8723,
+    "status": "ONLINE",
+    "stream_type": "SIMULATED",
+    "coverage_radius_m": 500,
+    "nearby_entities": [
+      "P-034",
+      "P-042"
+    ],
+    "nearby_signals": [
+      "SIG-PUN-01"
+    ],
+    "nearby_events": [
+      "EV-0065"
+    ]
+  },
+  {
+    "id": "CAM-031",
+    "name": "CCTV-MNI-IMPHAL-KANGJEI",
+    "type": "CITY CAMERA",
+    "city": "Manipur",
+    "lat": 24.817,
+    "93.9368": 93.9368,
+    "lng": 93.9368,
+    "status": "ONLINE",
+    "stream_type": "SIMULATED",
+    "coverage_radius_m": 350,
+    "nearby_entities": [
+      "P-001",
+      "P-002",
+      "P-003"
+    ],
+    "nearby_signals": [
+      "SIG-MNI-01"
+    ],
+    "nearby_events": [
+      "EV-0001",
+      "EV-0002"
+    ]
+  },
+  {
+    "id": "CAM-032",
+    "name": "TRAFFIC-MNI-THOUBAL-HIGHWAY",
+    "type": "TRAFFIC CAMERA",
+    "city": "Manipur",
+    "lat": 24.6384,
+    "lng": 93.9984,
+    "status": "ONLINE",
+    "stream_type": "SIMULATED",
+    "coverage_radius_m": 400,
+    "nearby_entities": [
+      "P-004",
+      "P-005"
+    ],
+    "nearby_signals": [
+      "SIG-MNI-02"
+    ],
+    "nearby_events": [
+      "EV-0004",
+      "EV-0005"
+    ]
+  }
+]

@@ -1,0 +1,6866 @@
+[
+  {
+    "id": "REL-0001",
+    "source": "P-001",
+    "target": "P-002",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0002",
+    "source": "P-001",
+    "target": "P-003",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0003",
+    "source": "P-001",
+    "target": "P-004",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0004",
+    "source": "P-002",
+    "target": "P-003",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0005",
+    "source": "P-002",
+    "target": "P-004",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0006",
+    "source": "P-002",
+    "target": "P-005",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0007",
+    "source": "P-003",
+    "target": "P-004",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0008",
+    "source": "P-003",
+    "target": "P-005",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0009",
+    "source": "P-003",
+    "target": "P-006",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0010",
+    "source": "P-004",
+    "target": "P-005",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0011",
+    "source": "P-004",
+    "target": "P-006",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0012",
+    "source": "P-004",
+    "target": "P-007",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0013",
+    "source": "P-005",
+    "target": "P-006",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0014",
+    "source": "P-005",
+    "target": "P-007",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0015",
+    "source": "P-005",
+    "target": "P-008",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0016",
+    "source": "P-006",
+    "target": "P-007",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0017",
+    "source": "P-006",
+    "target": "P-008",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0018",
+    "source": "P-006",
+    "target": "P-009",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0019",
+    "source": "P-007",
+    "target": "P-008",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0020",
+    "source": "P-007",
+    "target": "P-009",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0021",
+    "source": "P-007",
+    "target": "P-010",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0022",
+    "source": "P-008",
+    "target": "P-009",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0023",
+    "source": "P-008",
+    "target": "P-010",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0024",
+    "source": "P-008",
+    "target": "P-011",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0025",
+    "source": "P-009",
+    "target": "P-010",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0026",
+    "source": "P-009",
+    "target": "P-011",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0027",
+    "source": "P-009",
+    "target": "P-014",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0028",
+    "source": "P-010",
+    "target": "P-011",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0029",
+    "source": "P-010",
+    "target": "P-014",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0030",
+    "source": "P-010",
+    "target": "P-138",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0031",
+    "source": "P-011",
+    "target": "P-014",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0032",
+    "source": "P-011",
+    "target": "P-138",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0033",
+    "source": "P-011",
+    "target": "P-140",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0034",
+    "source": "P-014",
+    "target": "P-138",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0035",
+    "source": "P-014",
+    "target": "P-140",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0036",
+    "source": "P-014",
+    "target": "P-141",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0037",
+    "source": "P-138",
+    "target": "P-140",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0038",
+    "source": "P-138",
+    "target": "P-141",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0039",
+    "source": "P-138",
+    "target": "P-144",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0040",
+    "source": "P-140",
+    "target": "P-141",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0041",
+    "source": "P-140",
+    "target": "P-144",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0042",
+    "source": "P-140",
+    "target": "P-145",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0043",
+    "source": "P-141",
+    "target": "P-144",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0044",
+    "source": "P-141",
+    "target": "P-145",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0045",
+    "source": "P-141",
+    "target": "P-147",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0046",
+    "source": "P-144",
+    "target": "P-145",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0047",
+    "source": "P-144",
+    "target": "P-147",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0048",
+    "source": "P-144",
+    "target": "P-267",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0049",
+    "source": "P-145",
+    "target": "P-147",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0050",
+    "source": "P-145",
+    "target": "P-267",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0051",
+    "source": "P-145",
+    "target": "P-268",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0052",
+    "source": "P-147",
+    "target": "P-267",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0053",
+    "source": "P-147",
+    "target": "P-268",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0054",
+    "source": "P-147",
+    "target": "P-275",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0055",
+    "source": "P-267",
+    "target": "P-268",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0056",
+    "source": "P-267",
+    "target": "P-275",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0057",
+    "source": "P-267",
+    "target": "P-291",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0058",
+    "source": "P-268",
+    "target": "P-275",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0059",
+    "source": "P-268",
+    "target": "P-291",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0060",
+    "source": "P-268",
+    "target": "P-359",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0061",
+    "source": "P-275",
+    "target": "P-291",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0062",
+    "source": "P-275",
+    "target": "P-359",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0063",
+    "source": "P-275",
+    "target": "P-364",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0064",
+    "source": "P-291",
+    "target": "P-359",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0065",
+    "source": "P-291",
+    "target": "P-364",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0066",
+    "source": "P-291",
+    "target": "P-365",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0067",
+    "source": "P-359",
+    "target": "P-364",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0068",
+    "source": "P-359",
+    "target": "P-365",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0069",
+    "source": "P-364",
+    "target": "P-365",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0070",
+    "source": "P-012",
+    "target": "P-013",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy U/S 12'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0071",
+    "source": "P-012",
+    "target": "P-172",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy U/S 12'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0072",
+    "source": "P-012",
+    "target": "P-260",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy U/S 12'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0073",
+    "source": "P-013",
+    "target": "P-172",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy U/S 12'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0074",
+    "source": "P-013",
+    "target": "P-260",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy U/S 12'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0075",
+    "source": "P-172",
+    "target": "P-260",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy U/S 12'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0076",
+    "source": "P-015",
+    "target": "P-360",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: '(I) Prohibition Of Hunting A Wild Animal'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0077",
+    "source": "P-016",
+    "target": "P-017",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0078",
+    "source": "P-016",
+    "target": "P-018",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0079",
+    "source": "P-016",
+    "target": "P-123",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0080",
+    "source": "P-017",
+    "target": "P-018",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0081",
+    "source": "P-017",
+    "target": "P-123",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0082",
+    "source": "P-017",
+    "target": "P-213",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0083",
+    "source": "P-018",
+    "target": "P-123",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0084",
+    "source": "P-018",
+    "target": "P-213",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0085",
+    "source": "P-018",
+    "target": "P-235",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0086",
+    "source": "P-123",
+    "target": "P-213",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0087",
+    "source": "P-123",
+    "target": "P-235",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0088",
+    "source": "P-123",
+    "target": "P-287",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0089",
+    "source": "P-213",
+    "target": "P-235",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0090",
+    "source": "P-213",
+    "target": "P-287",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0091",
+    "source": "P-235",
+    "target": "P-287",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Forgery, Forgery Of Valuable Security, W'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0092",
+    "source": "P-020",
+    "target": "P-165",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, 2. Attempt To Mur'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0093",
+    "source": "P-021",
+    "target": "P-026",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0094",
+    "source": "P-021",
+    "target": "P-156",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0095",
+    "source": "P-021",
+    "target": "P-265",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0096",
+    "source": "P-026",
+    "target": "P-156",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0097",
+    "source": "P-026",
+    "target": "P-265",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0098",
+    "source": "P-026",
+    "target": "P-356",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0099",
+    "source": "P-156",
+    "target": "P-265",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0100",
+    "source": "P-156",
+    "target": "P-356",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0101",
+    "source": "P-265",
+    "target": "P-356",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Criminal Breach Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0102",
+    "source": "P-022",
+    "target": "P-103",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Criminal Breach Of Trust,'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0103",
+    "source": "P-023",
+    "target": "P-024",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0104",
+    "source": "P-023",
+    "target": "P-025",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0105",
+    "source": "P-023",
+    "target": "P-118",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0106",
+    "source": "P-024",
+    "target": "P-025",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0107",
+    "source": "P-024",
+    "target": "P-118",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0108",
+    "source": "P-024",
+    "target": "P-183",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0109",
+    "source": "P-025",
+    "target": "P-118",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0110",
+    "source": "P-025",
+    "target": "P-183",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0111",
+    "source": "P-025",
+    "target": "P-202",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0112",
+    "source": "P-118",
+    "target": "P-183",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0113",
+    "source": "P-118",
+    "target": "P-202",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0114",
+    "source": "P-118",
+    "target": "P-342",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0115",
+    "source": "P-183",
+    "target": "P-202",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0116",
+    "source": "P-183",
+    "target": "P-342",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0117",
+    "source": "P-202",
+    "target": "P-342",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Cheating And Dishon'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0118",
+    "source": "P-027",
+    "target": "P-028",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Punishment For Ki'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0119",
+    "source": "P-027",
+    "target": "P-229",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Punishment For Ki'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0120",
+    "source": "P-027",
+    "target": "P-294",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Punishment For Ki'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0121",
+    "source": "P-028",
+    "target": "P-229",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Punishment For Ki'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0122",
+    "source": "P-028",
+    "target": "P-294",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Punishment For Ki'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0123",
+    "source": "P-229",
+    "target": "P-294",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Punishment For Ki'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0124",
+    "source": "P-029",
+    "target": "P-249",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy; Murder; Causing Exp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0125",
+    "source": "P-030",
+    "target": "P-295",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder;  Punishment Of Cr'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0126",
+    "source": "P-031",
+    "target": "P-036",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Certain Offences— Whoever'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0127",
+    "source": "P-031",
+    "target": "P-142",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Certain Offences— Whoever'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0128",
+    "source": "P-031",
+    "target": "P-321",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Certain Offences— Whoever'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0129",
+    "source": "P-036",
+    "target": "P-142",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Certain Offences— Whoever'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0130",
+    "source": "P-036",
+    "target": "P-321",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Certain Offences— Whoever'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0131",
+    "source": "P-142",
+    "target": "P-321",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Certain Offences— Whoever'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0132",
+    "source": "P-032",
+    "target": "P-090",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0133",
+    "source": "P-032",
+    "target": "P-114",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0134",
+    "source": "P-032",
+    "target": "P-129",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0135",
+    "source": "P-090",
+    "target": "P-114",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0136",
+    "source": "P-090",
+    "target": "P-129",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0137",
+    "source": "P-090",
+    "target": "P-135",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0138",
+    "source": "P-114",
+    "target": "P-129",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0139",
+    "source": "P-114",
+    "target": "P-135",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0140",
+    "source": "P-114",
+    "target": "P-152",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0141",
+    "source": "P-129",
+    "target": "P-135",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0142",
+    "source": "P-129",
+    "target": "P-152",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0143",
+    "source": "P-129",
+    "target": "P-153",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0144",
+    "source": "P-135",
+    "target": "P-152",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0145",
+    "source": "P-135",
+    "target": "P-153",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0146",
+    "source": "P-135",
+    "target": "P-158",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0147",
+    "source": "P-152",
+    "target": "P-153",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0148",
+    "source": "P-152",
+    "target": "P-158",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0149",
+    "source": "P-152",
+    "target": "P-171",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0150",
+    "source": "P-153",
+    "target": "P-158",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0151",
+    "source": "P-153",
+    "target": "P-171",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0152",
+    "source": "P-153",
+    "target": "P-177",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0153",
+    "source": "P-158",
+    "target": "P-171",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0154",
+    "source": "P-158",
+    "target": "P-177",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0155",
+    "source": "P-158",
+    "target": "P-180",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0156",
+    "source": "P-171",
+    "target": "P-177",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0157",
+    "source": "P-171",
+    "target": "P-180",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0158",
+    "source": "P-171",
+    "target": "P-194",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0159",
+    "source": "P-177",
+    "target": "P-180",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0160",
+    "source": "P-177",
+    "target": "P-194",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0161",
+    "source": "P-177",
+    "target": "P-208",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0162",
+    "source": "P-180",
+    "target": "P-194",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0163",
+    "source": "P-180",
+    "target": "P-208",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0164",
+    "source": "P-180",
+    "target": "P-216",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0165",
+    "source": "P-194",
+    "target": "P-208",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0166",
+    "source": "P-194",
+    "target": "P-216",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0167",
+    "source": "P-194",
+    "target": "P-219",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0168",
+    "source": "P-208",
+    "target": "P-216",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0169",
+    "source": "P-208",
+    "target": "P-219",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0170",
+    "source": "P-208",
+    "target": "P-220",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0171",
+    "source": "P-216",
+    "target": "P-219",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0172",
+    "source": "P-216",
+    "target": "P-220",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0173",
+    "source": "P-216",
+    "target": "P-221",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0174",
+    "source": "P-219",
+    "target": "P-220",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0175",
+    "source": "P-219",
+    "target": "P-221",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0176",
+    "source": "P-219",
+    "target": "P-225",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0177",
+    "source": "P-220",
+    "target": "P-221",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0178",
+    "source": "P-220",
+    "target": "P-225",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0179",
+    "source": "P-220",
+    "target": "P-228",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0180",
+    "source": "P-221",
+    "target": "P-225",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0181",
+    "source": "P-221",
+    "target": "P-228",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0182",
+    "source": "P-221",
+    "target": "P-242",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0183",
+    "source": "P-225",
+    "target": "P-228",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0184",
+    "source": "P-225",
+    "target": "P-242",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0185",
+    "source": "P-225",
+    "target": "P-243",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0186",
+    "source": "P-228",
+    "target": "P-242",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0187",
+    "source": "P-228",
+    "target": "P-243",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0188",
+    "source": "P-228",
+    "target": "P-245",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0189",
+    "source": "P-242",
+    "target": "P-243",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0190",
+    "source": "P-242",
+    "target": "P-245",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0191",
+    "source": "P-242",
+    "target": "P-250",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0192",
+    "source": "P-243",
+    "target": "P-245",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0193",
+    "source": "P-243",
+    "target": "P-250",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0194",
+    "source": "P-243",
+    "target": "P-252",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0195",
+    "source": "P-245",
+    "target": "P-250",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0196",
+    "source": "P-245",
+    "target": "P-252",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0197",
+    "source": "P-245",
+    "target": "P-262",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0198",
+    "source": "P-250",
+    "target": "P-252",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0199",
+    "source": "P-250",
+    "target": "P-262",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0200",
+    "source": "P-250",
+    "target": "P-264",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0201",
+    "source": "P-252",
+    "target": "P-262",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0202",
+    "source": "P-252",
+    "target": "P-264",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0203",
+    "source": "P-252",
+    "target": "P-280",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0204",
+    "source": "P-262",
+    "target": "P-264",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0205",
+    "source": "P-262",
+    "target": "P-280",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0206",
+    "source": "P-262",
+    "target": "P-284",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0207",
+    "source": "P-264",
+    "target": "P-280",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0208",
+    "source": "P-264",
+    "target": "P-284",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0209",
+    "source": "P-264",
+    "target": "P-290",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0210",
+    "source": "P-280",
+    "target": "P-284",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0211",
+    "source": "P-280",
+    "target": "P-290",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0212",
+    "source": "P-280",
+    "target": "P-297",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0213",
+    "source": "P-284",
+    "target": "P-290",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0214",
+    "source": "P-284",
+    "target": "P-297",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0215",
+    "source": "P-284",
+    "target": "P-300",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0216",
+    "source": "P-290",
+    "target": "P-297",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0217",
+    "source": "P-290",
+    "target": "P-300",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0218",
+    "source": "P-290",
+    "target": "P-304",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0219",
+    "source": "P-297",
+    "target": "P-300",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0220",
+    "source": "P-297",
+    "target": "P-304",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0221",
+    "source": "P-297",
+    "target": "P-317",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0222",
+    "source": "P-300",
+    "target": "P-304",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0223",
+    "source": "P-300",
+    "target": "P-317",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0224",
+    "source": "P-300",
+    "target": "P-318",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0225",
+    "source": "P-304",
+    "target": "P-317",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0226",
+    "source": "P-304",
+    "target": "P-318",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0227",
+    "source": "P-304",
+    "target": "P-319",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0228",
+    "source": "P-317",
+    "target": "P-318",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0229",
+    "source": "P-317",
+    "target": "P-319",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0230",
+    "source": "P-317",
+    "target": "P-326",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0231",
+    "source": "P-318",
+    "target": "P-319",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0232",
+    "source": "P-318",
+    "target": "P-326",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0233",
+    "source": "P-318",
+    "target": "P-351",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0234",
+    "source": "P-319",
+    "target": "P-326",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0235",
+    "source": "P-319",
+    "target": "P-351",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0236",
+    "source": "P-319",
+    "target": "P-363",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0237",
+    "source": "P-326",
+    "target": "P-351",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0238",
+    "source": "P-326",
+    "target": "P-363",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0239",
+    "source": "P-326",
+    "target": "P-370",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0240",
+    "source": "P-351",
+    "target": "P-363",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0241",
+    "source": "P-351",
+    "target": "P-370",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0242",
+    "source": "P-351",
+    "target": "P-373",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0243",
+    "source": "P-363",
+    "target": "P-370",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0244",
+    "source": "P-363",
+    "target": "P-373",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0245",
+    "source": "P-363",
+    "target": "P-376",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0246",
+    "source": "P-370",
+    "target": "P-373",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0247",
+    "source": "P-370",
+    "target": "P-376",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0248",
+    "source": "P-370",
+    "target": "P-377",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0249",
+    "source": "P-373",
+    "target": "P-376",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0250",
+    "source": "P-373",
+    "target": "P-377",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0251",
+    "source": "P-373",
+    "target": "P-378",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0252",
+    "source": "P-376",
+    "target": "P-377",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0253",
+    "source": "P-376",
+    "target": "P-378",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0254",
+    "source": "P-377",
+    "target": "P-378",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Investigation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0255",
+    "source": "P-033",
+    "target": "P-034",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0256",
+    "source": "P-033",
+    "target": "P-035",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0257",
+    "source": "P-033",
+    "target": "P-335",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0258",
+    "source": "P-034",
+    "target": "P-035",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0259",
+    "source": "P-034",
+    "target": "P-335",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0260",
+    "source": "P-034",
+    "target": "P-336",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0261",
+    "source": "P-035",
+    "target": "P-335",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0262",
+    "source": "P-035",
+    "target": "P-336",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0263",
+    "source": "P-035",
+    "target": "P-340",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0264",
+    "source": "P-335",
+    "target": "P-336",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0265",
+    "source": "P-335",
+    "target": "P-340",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0266",
+    "source": "P-336",
+    "target": "P-340",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Raising Funds For Terrori'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0267",
+    "source": "P-037",
+    "target": "P-274",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Criminal Conspiracy, Crimi'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0268",
+    "source": "P-038",
+    "target": "P-133",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Rape And Cheating'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0269",
+    "source": "P-039",
+    "target": "P-043",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0270",
+    "source": "P-039",
+    "target": "P-143",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0271",
+    "source": "P-039",
+    "target": "P-230",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0272",
+    "source": "P-043",
+    "target": "P-143",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0273",
+    "source": "P-043",
+    "target": "P-230",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0274",
+    "source": "P-043",
+    "target": "P-233",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0275",
+    "source": "P-143",
+    "target": "P-230",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0276",
+    "source": "P-143",
+    "target": "P-233",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0277",
+    "source": "P-143",
+    "target": "P-277",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0278",
+    "source": "P-230",
+    "target": "P-233",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0279",
+    "source": "P-230",
+    "target": "P-277",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0280",
+    "source": "P-233",
+    "target": "P-277",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating And Dishonestly Inducing Delive'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0281",
+    "source": "P-040",
+    "target": "P-269",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Money Laundering'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0282",
+    "source": "P-041",
+    "target": "P-192",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0283",
+    "source": "P-042",
+    "target": "P-155",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Acts Done By Seve'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0284",
+    "source": "P-044",
+    "target": "P-046",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Arms Act, Punishment For Raising Funds F'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0285",
+    "source": "P-044",
+    "target": "P-339",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Arms Act, Punishment For Raising Funds F'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0286",
+    "source": "P-044",
+    "target": "P-343",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Arms Act, Punishment For Raising Funds F'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0287",
+    "source": "P-046",
+    "target": "P-339",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Arms Act, Punishment For Raising Funds F'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0288",
+    "source": "P-046",
+    "target": "P-343",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Arms Act, Punishment For Raising Funds F'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0289",
+    "source": "P-339",
+    "target": "P-343",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Arms Act, Punishment For Raising Funds F'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0290",
+    "source": "P-045",
+    "target": "P-344",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Fir No. 75 Dated: 06.12.2017- Punishment'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0291",
+    "source": "P-047",
+    "target": "P-049",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0292",
+    "source": "P-047",
+    "target": "P-059",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0293",
+    "source": "P-047",
+    "target": "P-166",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0294",
+    "source": "P-049",
+    "target": "P-059",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0295",
+    "source": "P-049",
+    "target": "P-166",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0296",
+    "source": "P-049",
+    "target": "P-251",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0297",
+    "source": "P-059",
+    "target": "P-166",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0298",
+    "source": "P-059",
+    "target": "P-251",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0299",
+    "source": "P-166",
+    "target": "P-251",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder, Causing Hurt '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0300",
+    "source": "P-048",
+    "target": "P-157",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy; Murder; Attempt To '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0301",
+    "source": "P-050",
+    "target": "P-119",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War, War Aga'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0302",
+    "source": "P-050",
+    "target": "P-134",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War, War Aga'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0303",
+    "source": "P-119",
+    "target": "P-134",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War, War Aga'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0304",
+    "source": "P-051",
+    "target": "P-125",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Sections 302, 307, 325, 326, 364, '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0305",
+    "source": "P-052",
+    "target": "P-299",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Criminal Conspiracy, Destroying '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0306",
+    "source": "P-053",
+    "target": "P-163",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Criminal Conspiracy, Causing Dis'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0307",
+    "source": "P-054",
+    "target": "P-116",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Terrorist Activities'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0308",
+    "source": "P-055",
+    "target": "P-136",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0309",
+    "source": "P-055",
+    "target": "P-193",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0310",
+    "source": "P-055",
+    "target": "P-217",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0311",
+    "source": "P-136",
+    "target": "P-193",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0312",
+    "source": "P-136",
+    "target": "P-217",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0313",
+    "source": "P-136",
+    "target": "P-218",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0314",
+    "source": "P-193",
+    "target": "P-217",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0315",
+    "source": "P-193",
+    "target": "P-218",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0316",
+    "source": "P-193",
+    "target": "P-259",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0317",
+    "source": "P-217",
+    "target": "P-218",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0318",
+    "source": "P-217",
+    "target": "P-259",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0319",
+    "source": "P-217",
+    "target": "P-310",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0320",
+    "source": "P-218",
+    "target": "P-259",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0321",
+    "source": "P-218",
+    "target": "P-310",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0322",
+    "source": "P-218",
+    "target": "P-329",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0323",
+    "source": "P-259",
+    "target": "P-310",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0324",
+    "source": "P-259",
+    "target": "P-329",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0325",
+    "source": "P-259",
+    "target": "P-349",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0326",
+    "source": "P-310",
+    "target": "P-329",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0327",
+    "source": "P-310",
+    "target": "P-349",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0328",
+    "source": "P-329",
+    "target": "P-349",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Offences Relating T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0329",
+    "source": "P-056",
+    "target": "P-167",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: '20 Of Ndps Act- Punishment For Contraven'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0330",
+    "source": "P-057",
+    "target": "P-341",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment Of Murder'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0331",
+    "source": "P-058",
+    "target": "P-244",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Indian Penal Code, 1860:'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0332",
+    "source": "P-062",
+    "target": "P-374",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Criminal Conspiracy Done By Seve'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0333",
+    "source": "P-063",
+    "target": "P-375",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Rape And Criminal Intimidation'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0334",
+    "source": "P-064",
+    "target": "P-379",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Section- 21 Punishment For Contravention'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0335",
+    "source": "P-065",
+    "target": "P-306",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy.'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0336",
+    "source": "P-066",
+    "target": "P-108",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Criminal Conspiracy & Supply Of '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0337",
+    "source": "P-067",
+    "target": "P-107",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Attempt To Murder, Voluntarily Causing H'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0338",
+    "source": "P-068",
+    "target": "P-069",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0339",
+    "source": "P-068",
+    "target": "P-070",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0340",
+    "source": "P-068",
+    "target": "P-104",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0341",
+    "source": "P-069",
+    "target": "P-070",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0342",
+    "source": "P-069",
+    "target": "P-104",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0343",
+    "source": "P-069",
+    "target": "P-105",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0344",
+    "source": "P-070",
+    "target": "P-104",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0345",
+    "source": "P-070",
+    "target": "P-105",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0346",
+    "source": "P-070",
+    "target": "P-106",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0347",
+    "source": "P-104",
+    "target": "P-105",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0348",
+    "source": "P-104",
+    "target": "P-106",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0349",
+    "source": "P-105",
+    "target": "P-106",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Death, Attempt To Murder, Causing Disapp'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0350",
+    "source": "P-071",
+    "target": "P-102",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'House-Trespass In Order To Commit Offenc'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0351",
+    "source": "P-072",
+    "target": "P-278",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0352",
+    "source": "P-072",
+    "target": "P-281",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0353",
+    "source": "P-278",
+    "target": "P-281",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Attempt To Murder'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0354",
+    "source": "P-073",
+    "target": "P-101",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating, Forgery, Criminal Conspiracy, '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0355",
+    "source": "P-074",
+    "target": "P-100",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Murder, Offences Re'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0356",
+    "source": "P-075",
+    "target": "P-099",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Offense Related To Narcotic Drugs And Ps'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0357",
+    "source": "P-076",
+    "target": "P-098",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy,Attempt To Murder, A'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0358",
+    "source": "P-078",
+    "target": "P-097",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Criminal Conspiracy, Terr'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0359",
+    "source": "P-083",
+    "target": "P-089",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Section 148-Rioting,Armed With Dea'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0360",
+    "source": "P-083",
+    "target": "P-096",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Section 148-Rioting,Armed With Dea'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0361",
+    "source": "P-089",
+    "target": "P-096",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Section 148-Rioting,Armed With Dea'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0362",
+    "source": "P-086",
+    "target": "P-092",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Under Section 103-Punishment For Murder'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0363",
+    "source": "P-113",
+    "target": "P-122",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy Read With Terrorist '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0364",
+    "source": "P-113",
+    "target": "P-175",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy Read With Terrorist '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0365",
+    "source": "P-113",
+    "target": "P-328",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy Read With Terrorist '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0366",
+    "source": "P-122",
+    "target": "P-175",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy Read With Terrorist '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0367",
+    "source": "P-122",
+    "target": "P-328",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy Read With Terrorist '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0368",
+    "source": "P-175",
+    "target": "P-328",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy Read With Terrorist '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0369",
+    "source": "P-117",
+    "target": "P-173",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Murder, Attempted M'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0370",
+    "source": "P-117",
+    "target": "P-324",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Murder, Attempted M'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0371",
+    "source": "P-173",
+    "target": "P-324",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Murder, Attempted M'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0372",
+    "source": "P-120",
+    "target": "P-124",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0373",
+    "source": "P-120",
+    "target": "P-126",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0374",
+    "source": "P-120",
+    "target": "P-168",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0375",
+    "source": "P-124",
+    "target": "P-126",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0376",
+    "source": "P-124",
+    "target": "P-168",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0377",
+    "source": "P-124",
+    "target": "P-174",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0378",
+    "source": "P-126",
+    "target": "P-168",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0379",
+    "source": "P-126",
+    "target": "P-174",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0380",
+    "source": "P-126",
+    "target": "P-187",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0381",
+    "source": "P-168",
+    "target": "P-174",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0382",
+    "source": "P-168",
+    "target": "P-187",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0383",
+    "source": "P-168",
+    "target": "P-201",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0384",
+    "source": "P-174",
+    "target": "P-187",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0385",
+    "source": "P-174",
+    "target": "P-201",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0386",
+    "source": "P-174",
+    "target": "P-258",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0387",
+    "source": "P-187",
+    "target": "P-201",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0388",
+    "source": "P-187",
+    "target": "P-258",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0389",
+    "source": "P-187",
+    "target": "P-270",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0390",
+    "source": "P-201",
+    "target": "P-258",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0391",
+    "source": "P-201",
+    "target": "P-270",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0392",
+    "source": "P-201",
+    "target": "P-358",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0393",
+    "source": "P-258",
+    "target": "P-270",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0394",
+    "source": "P-258",
+    "target": "P-358",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0395",
+    "source": "P-270",
+    "target": "P-358",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging War Against '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0396",
+    "source": "P-127",
+    "target": "P-199",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Using As Genuine,Forged Or Counterfeit C'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0397",
+    "source": "P-131",
+    "target": "P-148",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Attempt To Murder'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0398",
+    "source": "P-131",
+    "target": "P-301",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Attempt To Murder'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0399",
+    "source": "P-148",
+    "target": "P-301",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Punishment For Murder, Attempt To Murder'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0400",
+    "source": "P-132",
+    "target": "P-209",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Member Of Terrorist Organization, Commis'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0401",
+    "source": "P-137",
+    "target": "P-352",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Murder, Illegal Pos'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0402",
+    "source": "P-146",
+    "target": "P-159",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Abetment, Conspiracy. Wage War, Conspira'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0403",
+    "source": "P-150",
+    "target": "P-285",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Punishment For Terr'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0404",
+    "source": "P-151",
+    "target": "P-305",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0405",
+    "source": "P-151",
+    "target": "P-312",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0406",
+    "source": "P-151",
+    "target": "P-325",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0407",
+    "source": "P-305",
+    "target": "P-312",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0408",
+    "source": "P-305",
+    "target": "P-325",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0409",
+    "source": "P-305",
+    "target": "P-362",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0410",
+    "source": "P-312",
+    "target": "P-325",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0411",
+    "source": "P-312",
+    "target": "P-362",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0412",
+    "source": "P-325",
+    "target": "P-362",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Trespassing, Theft In Dwellings, Causing'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0413",
+    "source": "P-162",
+    "target": "P-247",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Unlawful Activities, Raising Funds For T'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0414",
+    "source": "P-188",
+    "target": "P-189",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Lurking House - Trespass Or House Breaki'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0415",
+    "source": "P-197",
+    "target": "P-236",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Conspiracy, Abetment For Printing, Distr'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0416",
+    "source": "P-226",
+    "target": "P-314",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy, Waging Or Attemptin'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0417",
+    "source": "P-234",
+    "target": "P-254",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Attempt To Murder, Illegally Acquiring/P'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0418",
+    "source": "P-234",
+    "target": "P-255",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Attempt To Murder, Illegally Acquiring/P'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0419",
+    "source": "P-234",
+    "target": "P-256",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Attempt To Murder, Illegally Acquiring/P'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0420",
+    "source": "P-254",
+    "target": "P-255",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Attempt To Murder, Illegally Acquiring/P'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0421",
+    "source": "P-254",
+    "target": "P-256",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Attempt To Murder, Illegally Acquiring/P'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0422",
+    "source": "P-255",
+    "target": "P-256",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Attempt To Murder, Illegally Acquiring/P'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0423",
+    "source": "P-240",
+    "target": "P-337",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Cheating, Forgery, Using Forged Document'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0424",
+    "source": "P-292",
+    "target": "P-316",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Using As Genuine, Forged Or Counterfeit '"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0425",
+    "source": "P-293",
+    "target": "P-296",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Murder, Criminal Conspiracy, Criminal Ac'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0426",
+    "source": "P-303",
+    "target": "P-327",
+    "type": "CO_ACCUSED_WARRANT",
+    "weight": 8,
+    "confidence": 0.95,
+    "relationship_classification": "SOURCE RELATIONSHIP",
+    "evidence": [
+      "Shared official warrant charges: 'Criminal Conspiracy;  Terrorist Acts;  M'"
+    ],
+    "provenance_badge": "SOURCE-DERIVED"
+  },
+  {
+    "id": "REL-0427",
+    "source": "P-015",
+    "target": "P-019",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0428",
+    "source": "P-015",
+    "target": "P-021",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0429",
+    "source": "P-019",
+    "target": "P-021",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0430",
+    "source": "P-019",
+    "target": "P-026",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0431",
+    "source": "P-021",
+    "target": "P-027",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0432",
+    "source": "P-026",
+    "target": "P-027",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0433",
+    "source": "P-026",
+    "target": "P-029",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0434",
+    "source": "P-020",
+    "target": "P-047",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0435",
+    "source": "P-020",
+    "target": "P-048",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0436",
+    "source": "P-047",
+    "target": "P-048",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0437",
+    "source": "P-048",
+    "target": "P-049",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0438",
+    "source": "P-048",
+    "target": "P-050",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0439",
+    "source": "P-049",
+    "target": "P-050",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0440",
+    "source": "P-049",
+    "target": "P-051",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0441",
+    "source": "P-022",
+    "target": "P-023",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0442",
+    "source": "P-022",
+    "target": "P-072",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0443",
+    "source": "P-023",
+    "target": "P-072",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0444",
+    "source": "P-023",
+    "target": "P-084",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0445",
+    "source": "P-072",
+    "target": "P-084",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0446",
+    "source": "P-072",
+    "target": "P-103",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0447",
+    "source": "P-084",
+    "target": "P-103",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0448",
+    "source": "P-084",
+    "target": "P-182",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0449",
+    "source": "P-028",
+    "target": "P-039",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0450",
+    "source": "P-028",
+    "target": "P-052",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0451",
+    "source": "P-039",
+    "target": "P-052",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0452",
+    "source": "P-039",
+    "target": "P-073",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0453",
+    "source": "P-052",
+    "target": "P-073",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0454",
+    "source": "P-052",
+    "target": "P-080",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0455",
+    "source": "P-073",
+    "target": "P-080",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0456",
+    "source": "P-030",
+    "target": "P-068",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0457",
+    "source": "P-030",
+    "target": "P-070",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0458",
+    "source": "P-068",
+    "target": "P-076",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0459",
+    "source": "P-070",
+    "target": "P-076",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0460",
+    "source": "P-070",
+    "target": "P-081",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0461",
+    "source": "P-076",
+    "target": "P-081",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0462",
+    "source": "P-076",
+    "target": "P-083",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0463",
+    "source": "P-031",
+    "target": "P-033",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0464",
+    "source": "P-033",
+    "target": "P-321",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0465",
+    "source": "P-321",
+    "target": "P-335",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0466",
+    "source": "P-037",
+    "target": "P-041",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0467",
+    "source": "P-037",
+    "target": "P-053",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0468",
+    "source": "P-041",
+    "target": "P-053",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0469",
+    "source": "P-041",
+    "target": "P-154",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0470",
+    "source": "P-053",
+    "target": "P-154",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0471",
+    "source": "P-053",
+    "target": "P-160",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0472",
+    "source": "P-154",
+    "target": "P-160",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0473",
+    "source": "P-154",
+    "target": "P-163",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0474",
+    "source": "P-042",
+    "target": "P-045",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0475",
+    "source": "P-042",
+    "target": "P-057",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0476",
+    "source": "P-045",
+    "target": "P-057",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0477",
+    "source": "P-045",
+    "target": "P-058",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0478",
+    "source": "P-057",
+    "target": "P-058",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0479",
+    "source": "P-057",
+    "target": "P-064",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0480",
+    "source": "P-058",
+    "target": "P-064",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0481",
+    "source": "P-058",
+    "target": "P-065",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0482",
+    "source": "P-046",
+    "target": "P-227",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0483",
+    "source": "P-227",
+    "target": "P-343",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0484",
+    "source": "P-055",
+    "target": "P-162",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0485",
+    "source": "P-136",
+    "target": "P-162",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0486",
+    "source": "P-162",
+    "target": "P-193",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0487",
+    "source": "P-162",
+    "target": "P-217",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0488",
+    "source": "P-060",
+    "target": "P-062",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0489",
+    "source": "P-060",
+    "target": "P-139",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0490",
+    "source": "P-062",
+    "target": "P-139",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0491",
+    "source": "P-062",
+    "target": "P-203",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0492",
+    "source": "P-139",
+    "target": "P-203",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0493",
+    "source": "P-139",
+    "target": "P-206",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0494",
+    "source": "P-203",
+    "target": "P-206",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0495",
+    "source": "P-203",
+    "target": "P-232",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0496",
+    "source": "P-063",
+    "target": "P-113",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0497",
+    "source": "P-063",
+    "target": "P-168",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0498",
+    "source": "P-113",
+    "target": "P-168",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0499",
+    "source": "P-113",
+    "target": "P-186",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0500",
+    "source": "P-168",
+    "target": "P-186",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0501",
+    "source": "P-186",
+    "target": "P-187",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0502",
+    "source": "P-186",
+    "target": "P-257",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0503",
+    "source": "P-071",
+    "target": "P-357",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0504",
+    "source": "P-102",
+    "target": "P-357",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0505",
+    "source": "P-078",
+    "target": "P-087",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0506",
+    "source": "P-087",
+    "target": "P-097",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0507",
+    "source": "P-087",
+    "target": "P-132",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0508",
+    "source": "P-097",
+    "target": "P-132",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0509",
+    "source": "P-097",
+    "target": "P-150",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0510",
+    "source": "P-132",
+    "target": "P-150",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0511",
+    "source": "P-112",
+    "target": "P-151",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0512",
+    "source": "P-112",
+    "target": "P-179",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0513",
+    "source": "P-151",
+    "target": "P-179",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0514",
+    "source": "P-151",
+    "target": "P-188",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0515",
+    "source": "P-179",
+    "target": "P-188",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0516",
+    "source": "P-179",
+    "target": "P-189",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0517",
+    "source": "P-188",
+    "target": "P-215",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0518",
+    "source": "P-126",
+    "target": "P-175",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0519",
+    "source": "P-174",
+    "target": "P-175",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0520",
+    "source": "P-174",
+    "target": "P-195",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0521",
+    "source": "P-175",
+    "target": "P-195",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0522",
+    "source": "P-175",
+    "target": "P-316",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0523",
+    "source": "P-195",
+    "target": "P-316",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0524",
+    "source": "P-195",
+    "target": "P-330",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0525",
+    "source": "P-173",
+    "target": "P-255",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0526",
+    "source": "P-265",
+    "target": "P-273",
+    "type": "SHARED_JURISDICTION",
+    "weight": 5,
+    "confidence": 0.82,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Regional hub correlation derived from CBI records"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0527",
+    "source": "P-001",
+    "target": "P-022",
+    "type": "CROSS_REGIONAL_TIE",
+    "weight": 7,
+    "confidence": 0.89,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Cross-state communications correlation flagged in investigation log"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  },
+  {
+    "id": "REL-0528",
+    "source": "P-003",
+    "target": "P-035",
+    "type": "ARMS_LOGISTICS_LINK",
+    "weight": 8,
+    "confidence": 0.91,
+    "relationship_classification": "DERIVED RELATIONSHIP",
+    "evidence": [
+      "Arms trafficking transit corridor link"
+    ],
+    "provenance_badge": "AI-DERIVED"
+  }
+]

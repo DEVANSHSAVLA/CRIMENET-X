@@ -1,0 +1,157 @@
+[
+  {
+    "id": "SIG-MUM-01",
+    "intersection": "CST Terminal Junction",
+    "city": "Mumbai",
+    "lat": 18.9405,
+    "lng": 72.8358,
+    "status": "ACTIVE",
+    "phase": "GREEN",
+    "remaining_seconds": 32,
+    "traffic_density": "HIGH",
+    "nearby_cameras": [
+      "CAM-001"
+    ],
+    "nearby_entities": [
+      "P-001"
+    ]
+  },
+  {
+    "id": "SIG-MUM-02",
+    "intersection": "Marine Drive / Nariman Pt",
+    "city": "Mumbai",
+    "lat": 18.928,
+    "lng": 72.822,
+    "status": "ACTIVE",
+    "phase": "RED",
+    "remaining_seconds": 18,
+    "traffic_density": "MEDIUM",
+    "nearby_cameras": [
+      "CAM-001"
+    ],
+    "nearby_entities": [
+      "P-015"
+    ]
+  },
+  {
+    "id": "SIG-MUM-03",
+    "intersection": "Worli Naka Junction",
+    "city": "Mumbai",
+    "lat": 19.018,
+    "lng": 72.816,
+    "status": "ACTIVE",
+    "phase": "YELLOW",
+    "remaining_seconds": 4,
+    "traffic_density": "HIGH",
+    "nearby_cameras": [
+      "CAM-002"
+    ],
+    "nearby_entities": [
+      "P-015",
+      "P-044"
+    ]
+  },
+  {
+    "id": "SIG-MUM-04",
+    "intersection": "Andheri Link Road Cross",
+    "city": "Mumbai",
+    "lat": 19.137,
+    "lng": 72.83,
+    "status": "ACTIVE",
+    "phase": "GREEN",
+    "remaining_seconds": 45,
+    "traffic_density": "LOW",
+    "nearby_cameras": [
+      "CAM-003"
+    ],
+    "nearby_entities": [
+      "P-001"
+    ]
+  },
+  {
+    "id": "SIG-DEL-01",
+    "intersection": "Connaught Circus Outer Ring",
+    "city": "Delhi",
+    "lat": 28.632,
+    "lng": 77.217,
+    "status": "ACTIVE",
+    "phase": "RED",
+    "remaining_seconds": 24,
+    "traffic_density": "HIGH",
+    "nearby_cameras": [
+      "CAM-011"
+    ],
+    "nearby_entities": [
+      "P-022"
+    ]
+  },
+  {
+    "id": "SIG-DEL-02",
+    "intersection": "Dwarka Sector 12 Chowk",
+    "city": "Delhi",
+    "lat": 28.5925,
+    "lng": 77.0465,
+    "status": "ACTIVE",
+    "phase": "GREEN",
+    "remaining_seconds": 38,
+    "traffic_density": "MEDIUM",
+    "nearby_cameras": [
+      "CAM-012"
+    ],
+    "nearby_entities": [
+      "P-020"
+    ]
+  },
+  {
+    "id": "SIG-PUN-01",
+    "intersection": "Amritsar Bypass Toll",
+    "city": "Punjab",
+    "lat": 31.6345,
+    "lng": 74.873,
+    "status": "ACTIVE",
+    "phase": "GREEN",
+    "remaining_seconds": 50,
+    "traffic_density": "LOW",
+    "nearby_cameras": [
+      "CAM-021"
+    ],
+    "nearby_entities": [
+      "P-034"
+    ]
+  },
+  {
+    "id": "SIG-MNI-01",
+    "intersection": "Kangla Gate Junction",
+    "city": "Manipur",
+    "lat": 24.8175,
+    "lng": 93.9372,
+    "status": "ACTIVE",
+    "phase": "RED",
+    "remaining_seconds": 15,
+    "traffic_density": "HIGH",
+    "nearby_cameras": [
+      "CAM-031"
+    ],
+    "nearby_entities": [
+      "P-001",
+      "P-002"
+    ]
+  },
+  {
+    "id": "SIG-MNI-02",
+    "intersection": "Thoubal Bazar Crossing",
+    "city": "Manipur",
+    "lat": 24.639,
+    "lng": 93.999,
+    "status": "ACTIVE",
+    "phase": "GREEN",
+    "remaining_seconds": 28,
+    "traffic_density": "MEDIUM",
+    "nearby_cameras": [
+      "CAM-032"
+    ],
+    "nearby_entities": [
+      "P-004"
+    ]
+  }
+]

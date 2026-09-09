@@ -1,0 +1,25 @@
+{
+  "id": "CBI-INTERPOL-RED-379",
+  "name": "Global Fugitive Network Intelligence & Red Notice Analysis",
+  "team": "AETHERIUS",
+  "problem_statement": "SIH26189",
+  "theme": "Blockchain & Cybersecurity",
+  "status": "OPERATIONAL",
+  "risk_level": "CRITICAL",
+  "created_at": "2026-09-09T00:00:00Z",
+  "last_updated": "2026-09-09T17:20:00Z",
+  "description": "Cross-jurisdictional intelligence command center integrating 379 CBI-Interpol Red Notices with 3D geospatial infrastructure, dynamic urban sensors, temporal event logs, and graph centrality intelligence.",
+  "stats": {
+    "total_red_notices": 379,
+    "persons_tracked": 379,
+    "locations_indexed": 38,
+    "events_recorded": 379,
+    "relationships_mapped": 528,
+    "evidence_documents": 379,
+    "cameras_active": 8,
+    "traffic_signals_tracked": 9,
+    "traffic_corridors": 4,
+    "issuing_agencies": 1,
+    "nationalities_represented": 21
+  }
+}
