@@ -7,6 +7,7 @@ import {
   Users, MapPin, Video, Radio, Activity, Shield, AlertTriangle, 
   Layers, Clock, Filter, Eye, ChevronRight
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { useInvestigation } from '@/context/investigation-context';
 import type { CaseSummary, CentralityRanking, Camera, TrafficSignal, Location } from '@/lib/types';
@@ -39,8 +40,10 @@ export default function CommandCenter() {
     setTimeYear,
     riskFilter,
     setRiskFilter,
+    dispatchAction,
   } = useInvestigation();
 
+  const router = useRouter();
   const [caseData, setCaseData] = useState<CaseSummary | null>(null);
   const [rankings, setRankings] = useState<CentralityRanking[]>([]);
 
@@ -122,18 +125,21 @@ export default function CommandCenter() {
                   ONLINE
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-1 font-mono text-[10px]">
+              <div className="grid grid-cols-2 gap-1.5 font-mono text-[10px]">
                 {MUMBAI_STREET_CAMERAS.map((cam) => (
                   <button
                     key={cam.id}
                     onClick={() => selectCamera(cam)}
-                    className="p-1.5 rounded bg-white/5 hover:bg-crimenet-cyan/20 border border-white/10 hover:border-crimenet-cyan/40 text-left transition-colors flex items-center gap-1.5 group"
+                    className="btn-3d hologram-shimmer p-2 rounded-xl bg-white/5 hover:bg-crimenet-cyan/20 border border-white/10 hover:border-crimenet-cyan/50 text-left transition-all flex items-center gap-2 group"
                     title={`Open live feed for ${cam.street_name}`}
                   >
-                    <span className="text-xs">{cam.icon}</span>
+                    <span className="text-sm group-hover:scale-125 transition-transform">{cam.icon}</span>
                     <div className="truncate">
                       <div className="text-white font-bold group-hover:text-crimenet-cyan truncate">{cam.short_label}</div>
-                      <div className="text-[8px] text-crimenet-muted">{cam.id}</div>
+                      <div className="text-[8px] text-crimenet-muted flex items-center gap-1">
+                        <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping" />
+                        {cam.id}
+                      </div>
                     </div>
                   </button>
                 ))}
@@ -146,22 +152,22 @@ export default function CommandCenter() {
                 Cartographic Enhancements
               </div>
               <div className="space-y-1.5 text-xs">
-                <label className="flex items-center justify-between py-1 px-2 rounded hover:bg-white/5 cursor-pointer transition-colors">
+                <label className="btn-3d flex items-center justify-between py-1.5 px-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-all border border-transparent hover:border-white/10">
                   <span className="text-white/80">3D Building Footprints</span>
                   <input
                     type="checkbox"
                     checked={layers.buildings}
                     onChange={() => toggleLayer('buildings')}
-                    className="accent-crimenet-cyan rounded"
+                    className="accent-crimenet-cyan rounded cursor-pointer"
                   />
                 </label>
-                <label className="flex items-center justify-between py-1 px-2 rounded hover:bg-white/5 cursor-pointer transition-colors">
+                <label className="btn-3d flex items-center justify-between py-1.5 px-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-all border border-transparent hover:border-white/10">
                   <span className="text-white/80">Event Density Heatmap</span>
                   <input
                     type="checkbox"
                     checked={layers.heatmap}
                     onChange={() => toggleLayer('heatmap')}
-                    className="accent-crimenet-cyan rounded"
+                    className="accent-crimenet-cyan rounded cursor-pointer"
                   />
                 </label>
               </div>
@@ -203,10 +209,10 @@ export default function CommandCenter() {
                     <button
                       key={lvl}
                       onClick={() => setRiskFilter(lvl === 'ALL' ? null : lvl)}
-                      className={`flex-1 py-1 text-[10px] font-bold rounded tracking-wider transition-all ${
+                      className={`chip-3d flex-1 py-1 text-[10px] font-bold rounded-lg tracking-wider transition-all select-none ${
                         isSelected
-                          ? 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40'
-                          : 'bg-white/5 text-crimenet-muted hover:bg-white/10'
+                          ? 'bg-crimenet-cyan/25 text-crimenet-cyan border border-crimenet-cyan/50 shadow-md shadow-cyan-500/20 scale-[1.03]'
+                          : 'bg-white/5 text-crimenet-muted hover:bg-white/10 hover:text-white'
                       }`}
                     >
                       {lvl}
@@ -236,20 +242,41 @@ export default function CommandCenter() {
               </div>
             </div>
 
-            {/* Core Stats Grid */}
+            {/* Core Stats Grid - Interactive 3D Buttons */}
             <div className="grid grid-cols-3 gap-2">
-              <div className="p-2 rounded bg-black/40 border border-white/5 text-center">
-                <div className="text-[10px] text-crimenet-muted font-mono uppercase">Persons</div>
-                <div className="text-sm font-bold font-mono text-white mt-0.5">{stats?.persons || 379}</div>
-              </div>
-              <div className="p-2 rounded bg-black/40 border border-white/5 text-center">
-                <div className="text-[10px] text-crimenet-muted font-mono uppercase">Edges</div>
-                <div className="text-sm font-bold font-mono text-crimenet-cyan mt-0.5">{stats?.relationships || 528}</div>
-              </div>
-              <div className="p-2 rounded bg-black/40 border border-white/5 text-center">
-                <div className="text-[10px] text-crimenet-muted font-mono uppercase">Sensors</div>
-                <div className="text-sm font-bold font-mono text-crimenet-amber mt-0.5">17</div>
-              </div>
+              <button
+                onClick={() => {
+                  selectEntity('P-017');
+                  dispatchAction('FOCUS_MAP_LOCATION', { city: 'Mumbai', lat: 18.9438, lng: 72.8233, zoom: 13.5 });
+                }}
+                className="btn-3d p-2 rounded-xl bg-black/40 hover:bg-crimenet-cyan/15 border border-white/5 hover:border-crimenet-cyan/40 text-center cursor-pointer transition-all group"
+                title="Filter & focus primary syndicate broker (P-017)"
+              >
+                <div className="text-[10px] text-crimenet-muted font-mono uppercase group-hover:text-crimenet-cyan transition-colors">Persons</div>
+                <div className="text-sm font-bold font-mono text-white mt-0.5 group-hover:scale-110 transition-transform">{caseData?.stats?.persons || 379}</div>
+              </button>
+
+              <button
+                onClick={() => router.push('/network')}
+                className="btn-3d p-2 rounded-xl bg-black/40 hover:bg-crimenet-cyan/15 border border-white/5 hover:border-crimenet-cyan/40 text-center cursor-pointer transition-all group"
+                title="Inspect interactive 70% Cytoscape Topology Graph"
+              >
+                <div className="text-[10px] text-crimenet-muted font-mono uppercase group-hover:text-crimenet-cyan transition-colors">Edges</div>
+                <div className="text-sm font-bold font-mono text-crimenet-cyan mt-0.5 group-hover:scale-110 transition-transform">528</div>
+              </button>
+
+              <button
+                onClick={() => {
+                  dispatchAction('SET_LAYER', { layer: 'cameras', value: true });
+                  dispatchAction('SET_LAYER', { layer: 'signals', value: true });
+                  dispatchAction('FOCUS_MAP_LOCATION', { city: 'Mumbai', lat: 18.9438, lng: 72.8233, zoom: 14.2 });
+                }}
+                className="btn-3d-amber p-2 rounded-xl bg-black/40 hover:bg-amber-500/15 border border-white/5 hover:border-amber-500/40 text-center cursor-pointer transition-all group"
+                title="Activate and zoom into live urban surveillance & signal sensors"
+              >
+                <div className="text-[10px] text-crimenet-muted font-mono uppercase group-hover:text-crimenet-amber transition-colors">Sensors</div>
+                <div className="text-sm font-bold font-mono text-crimenet-amber mt-0.5 group-hover:scale-110 transition-transform">17</div>
+              </button>
             </div>
 
             {/* Top Centrality Ranking */}
@@ -263,17 +290,17 @@ export default function CommandCenter() {
                   <button
                     key={r.entity_id}
                     onClick={() => selectEntity(r.entity_id)}
-                    className={`w-full p-1.5 rounded flex items-center justify-between text-xs transition-colors ${
+                    className={`btn-3d w-full p-2 rounded-xl flex items-center justify-between text-xs transition-all ${
                       selectedEntityId === r.entity_id 
-                        ? 'bg-crimenet-cyan/20 border border-crimenet-cyan/40 text-white' 
-                        : 'bg-white/5 hover:bg-white/10 text-white/80'
+                        ? 'bg-crimenet-cyan/25 border border-crimenet-cyan/50 text-white shadow-md shadow-cyan-500/20' 
+                        : 'bg-white/5 hover:bg-white/10 text-white/80 border border-white/5 hover:border-white/20'
                     }`}
                   >
                     <div className="flex items-center gap-2 truncate">
                       <span className="text-[10px] font-mono text-crimenet-muted w-3">{idx + 1}.</span>
                       <span className="font-medium truncate">{r.name}</span>
                     </div>
-                    <span className="text-[10px] font-mono text-crimenet-cyan shrink-0 ml-2">
+                    <span className="text-[10px] font-mono text-crimenet-cyan shrink-0 ml-2 font-bold">
                       {Math.round(r.betweenness * 1000) / 10}
                     </span>
                   </button>
@@ -281,14 +308,20 @@ export default function CommandCenter() {
               </div>
             </div>
 
-            {/* Provenance Badge */}
-            <div className="p-2 rounded bg-emerald-950/20 border border-emerald-500/20 flex items-center justify-between text-[10px] font-mono text-emerald-400">
+            {/* Provenance Badge - Interactive 3D Button */}
+            <button
+              onClick={() => router.push('/evidence')}
+              className="btn-3d hologram-shimmer w-full p-2 rounded-xl bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-500/30 hover:border-emerald-400/60 flex items-center justify-between text-[10px] font-mono text-emerald-400 transition-all cursor-pointer group"
+              title="Open verified SHA-256 cryptographically audited Evidence Vault"
+            >
               <div className="flex items-center gap-1.5">
-                <Shield className="w-3.5 h-3.5" />
-                <span>379 VERIFIED RED NOTICES</span>
+                <Shield className="w-3.5 h-3.5 group-hover:scale-125 transition-transform" />
+                <span className="font-bold">379 VERIFIED RED NOTICES</span>
               </div>
-              <span className="text-[9px] text-emerald-500/80 font-bold">SHA-256</span>
-            </div>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+                SHA-256 VAULT →
+              </span>
+            </button>
 
           </div>
         </GlassPanel>

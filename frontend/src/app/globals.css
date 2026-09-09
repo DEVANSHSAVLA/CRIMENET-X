@@ -69,6 +69,125 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
   }
+
+  /* 3D Transform and Interactive Aesthetics */
+  .perspective-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+
+  .btn-3d {
+    position: relative;
+    transform: perspective(600px) translateZ(0);
+    transform-style: preserve-3d;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+  }
+  .btn-3d:hover {
+    transform: perspective(600px) translateY(-2px) translateZ(8px) scale(1.02);
+    box-shadow: 0 8px 20px -4px rgba(0, 212, 255, 0.35), 0 0 12px rgba(0, 212, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .btn-3d:active {
+    transform: perspective(600px) translateY(1px) translateZ(0) scale(0.98);
+    box-shadow: 0 2px 8px -2px rgba(0, 212, 255, 0.4), inset 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-3d-amber {
+    position: relative;
+    transform: perspective(600px) translateZ(0);
+    transform-style: preserve-3d;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+  }
+  .btn-3d-amber:hover {
+    transform: perspective(600px) translateY(-2px) translateZ(8px) scale(1.02);
+    box-shadow: 0 8px 20px -4px rgba(255, 179, 0, 0.35), 0 0 12px rgba(255, 179, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .btn-3d-amber:active {
+    transform: perspective(600px) translateY(1px) translateZ(0) scale(0.98);
+  }
+
+  .btn-3d-crimson {
+    position: relative;
+    transform: perspective(600px) translateZ(0);
+    transform-style: preserve-3d;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+  }
+  .btn-3d-crimson:hover {
+    transform: perspective(600px) translateY(-2px) translateZ(8px) scale(1.02);
+    box-shadow: 0 8px 20px -4px rgba(255, 23, 68, 0.35), 0 0 12px rgba(255, 23, 68, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .btn-3d-crimson:active {
+    transform: perspective(600px) translateY(1px) translateZ(0) scale(0.98);
+  }
+
+  .card-3d {
+    position: relative;
+    transform: perspective(1000px) translateZ(0);
+    transform-style: preserve-3d;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow, border-color;
+  }
+  .card-3d:hover {
+    transform: perspective(1000px) translateY(-3px) translateZ(10px);
+    box-shadow: 0 14px 30px -8px rgba(0, 0, 0, 0.7), 0 0 20px -3px rgba(0, 212, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.4);
+  }
+
+  .chip-3d {
+    transform: perspective(500px) translateZ(0);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .chip-3d:hover {
+    transform: perspective(500px) translateY(-1.5px) translateZ(6px) scale(1.04);
+    box-shadow: 0 6px 16px -3px rgba(0, 212, 255, 0.3);
+  }
+  .chip-3d:active {
+    transform: perspective(500px) translateY(0.5px) scale(0.96);
+  }
+
+  .hover-lift-3d {
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hover-lift-3d:hover {
+    transform: translateY(-2px) scale(1.015);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 212, 255, 0.2);
+  }
+
+  .hologram-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .hologram-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      60deg,
+      transparent 20%,
+      rgba(0, 212, 255, 0.12) 40%,
+      rgba(255, 255, 255, 0.18) 50%,
+      rgba(0, 212, 255, 0.12) 60%,
+      transparent 80%
+    );
+    transform: rotate(25deg);
+    transition: opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .hologram-shimmer:hover::after {
+    opacity: 1;
+    animation: hologram-sweep 1.2s ease-in-out infinite;
+  }
+
+  @keyframes hologram-sweep {
+    0% { transform: translateX(-100%) rotate(25deg); }
+    100% { transform: translateX(100%) rotate(25deg); }
+  }
 }
 
 /* MapLibre overrides */

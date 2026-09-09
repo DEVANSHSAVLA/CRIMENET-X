@@ -100,7 +100,7 @@ export function TopBar() {
         </div>
 
         {/* Center: Investigation Mode Toggle */}
-        <div className="flex items-center p-1 bg-black/40 border border-white/10 rounded-lg">
+        <div className="flex items-center p-1 bg-black/50 border border-white/10 rounded-xl gap-1">
           {(['EXPLORE', 'INVESTIGATE', 'COMPARE'] as InvestigationMode[]).map((m) => (
             <button
               key={m}
@@ -108,10 +108,10 @@ export function TopBar() {
                 setMode(m);
                 if (m === 'COMPARE') setIsCompareOpen(true);
               }}
-              className={`px-3 py-1 text-[10px] font-bold rounded tracking-wider transition-all ${
+              className={`chip-3d px-3.5 py-1.5 text-[10px] font-bold rounded-lg tracking-wider transition-all select-none ${
                 mode === m
-                  ? 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40 shadow-sm'
-                  : 'text-crimenet-muted hover:text-white'
+                  ? 'bg-crimenet-cyan/25 text-crimenet-cyan border border-crimenet-cyan/50 shadow-md shadow-cyan-500/20 scale-[1.03]'
+                  : 'text-crimenet-muted hover:text-white hover:bg-white/5'
               }`}
             >
               {m}
@@ -126,7 +126,7 @@ export function TopBar() {
           <button
             onClick={handleGenerateReport}
             disabled={isGenerating}
-            className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+            className="btn-3d hologram-shimmer px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm"
           >
             <FileText className="w-3.5 h-3.5 text-emerald-400" />
             <span className="hidden md:inline">{isGenerating ? 'Generating...' : 'Report Dossier'}</span>
@@ -138,11 +138,15 @@ export function TopBar() {
             onAction={(action, payload) => dispatchAction(action, payload)}
           />
 
-          {/* Environment Status Badge */}
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] font-bold text-emerald-400 tracking-wider">DEMO ENVIRONMENT</span>
-          </div>
+          {/* Environment Status Badge - Interactive */}
+          <button
+            onClick={() => dispatchAction('OPEN_ADMIN', null)}
+            className="chip-3d flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all cursor-pointer group"
+            title="Click to inspect Live System Operations & Telemetry"
+          >
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse group-hover:scale-125 transition-transform" />
+            <span className="text-[10px] font-mono font-bold text-emerald-400 tracking-wider">SYSTEM TELEMETRY</span>
+          </button>
         </div>
       </div>
 

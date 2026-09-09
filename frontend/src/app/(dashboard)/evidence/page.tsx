@@ -77,15 +77,32 @@ export default function EvidencePage() {
     }
   };
 
+  const [activeCategory, setActiveCategory] = useState<'ALL' | 'RED_NOTICES' | 'SURVEILLANCE' | 'SIGHTINGS' | 'REVEALED'>('ALL');
+
   const filtered = evidenceList.filter((e) => {
     const q = search.toLowerCase();
     const hashToTest = revealedHashes[e.id] || e.sha256_hash || '';
-    return (
+    const matchesSearch = (
       e.title.toLowerCase().includes(q) ||
       e.id.toLowerCase().includes(q) ||
       hashToTest.toLowerCase().includes(q) ||
       e.source.toLowerCase().includes(q)
     );
+    if (!matchesSearch) return false;
+
+    if (activeCategory === 'RED_NOTICES') {
+      return e.title.toLowerCase().includes('notice') || e.source.toLowerCase().includes('interpol') || e.source.toLowerCase().includes('cbi');
+    }
+    if (activeCategory === 'SURVEILLANCE') {
+      return e.source.toLowerCase().includes('cctv') || e.source.toLowerCase().includes('surveillance') || e.title.toLowerCase().includes('camera');
+    }
+    if (activeCategory === 'SIGHTINGS') {
+      return e.source.toLowerCase().includes('sighting') || e.source.toLowerCase().includes('transit') || e.source.toLowerCase().includes('border');
+    }
+    if (activeCategory === 'REVEALED') {
+      return Boolean(revealedHashes[e.id]);
+    }
+    return true;
   });
 
   const handleCopyHash = (id: string, hash: string, ev: React.MouseEvent) => {
@@ -99,7 +116,7 @@ export default function EvidencePage() {
     <div className="h-full p-6 flex flex-col space-y-4 overflow-hidden relative">
       
       {/* Header Banner */}
-      <div className="glass-card p-4 rounded-xl flex items-center justify-between border-l-4 border-emerald-500">
+      <div className="glass-card p-4 rounded-xl flex items-center justify-between border-l-4 border-emerald-500 card-3d shadow-xl">
         <div>
           <h2 className="text-sm font-bold text-white tracking-widest uppercase flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400" /> EVIDENCE INTEGRITY REPOSITORY
@@ -111,7 +128,7 @@ export default function EvidencePage() {
         <div className="flex items-center gap-3">
           <button
             onClick={handleOpenAuditLogs}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 text-xs font-mono transition-colors"
+            className="btn-3d flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/90 hover:text-white border border-white/10 text-xs font-mono transition-all hover:border-crimenet-cyan/40"
           >
             <History className="w-3.5 h-3.5 text-crimenet-cyan" /> AUDIT TRAIL
           </button>
@@ -124,18 +141,44 @@ export default function EvidencePage() {
 
       {/* Main Table Panel */}
       <GlassPanel title="AUTHENTICATED DOSSIERS (CLICK ROW TO VIEW DRAWER)" className="flex-1 flex flex-col overflow-hidden">
-        {/* Search & Metadata Bar */}
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <div className="relative w-72">
-            <Search className="w-3.5 h-3.5 text-crimenet-muted absolute left-3 top-2.5" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search evidence ID, subject, agency..."
-              className="w-full bg-white/5 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-crimenet-muted focus:outline-none focus:border-crimenet-cyan font-sans"
-            />
+        {/* Search & Dynamic Filter Chips Bar */}
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative w-64">
+              <Search className="w-3.5 h-3.5 text-crimenet-muted absolute left-3 top-2.5" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search evidence ID, subject, agency..."
+                className="w-full bg-white/5 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-crimenet-muted focus:outline-none focus:border-crimenet-cyan font-sans transition-all focus:shadow-[0_0_12px_rgba(0,212,255,0.25)]"
+              />
+            </div>
+
+            {/* Dynamic Filter Chips */}
+            <div className="flex items-center gap-1.5 flex-wrap">
+              {[
+                { id: 'ALL', label: 'All Dossiers' },
+                { id: 'RED_NOTICES', label: 'Red Notices' },
+                { id: 'SURVEILLANCE', label: 'Surveillance' },
+                { id: 'SIGHTINGS', label: 'Sightings' },
+                { id: 'REVEALED', label: 'Unlocked Hashes' },
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id as any)}
+                  className={`chip-3d px-2.5 py-1 rounded text-[10px] font-mono font-bold transition-all ${
+                    activeCategory === cat.id
+                      ? 'bg-emerald-500/25 text-emerald-400 border border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.35)]'
+                      : 'bg-black/40 text-crimenet-muted hover:text-white hover:bg-white/5 border border-white/5'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
+
           <div className="flex items-center gap-2 text-[10px] font-mono text-crimenet-muted">
             <span className="inline-flex items-center gap-1 text-emerald-400">
               <Lock className="w-3 h-3" /> HASHES MASKED BY DEFAULT
@@ -198,7 +241,7 @@ export default function EvidencePage() {
                         ) : (
                           <button
                             onClick={(e) => handleOpenRevealModal(item, e)}
-                            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[9px] font-mono font-semibold transition-colors shrink-0"
+                            className="btn-3d-amber inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-500/20 hover:bg-amber-500/35 text-amber-400 border border-amber-500/40 text-[9px] font-mono font-bold transition-all shadow-[0_0_8px_rgba(255,179,0,0.25)] shrink-0"
                             title="Authenticate to reveal full cryptographic hash"
                           >
                             <Lock className="w-2.5 h-2.5" /> REVEAL
@@ -279,14 +322,14 @@ export default function EvidencePage() {
             <div className="flex items-center justify-end gap-2 pt-2 border-t border-white/10">
               <button
                 onClick={() => setRevealModalItem(null)}
-                className="px-3 py-1.5 rounded bg-white/5 hover:bg-white/10 text-crimenet-muted hover:text-white text-xs font-mono transition-colors"
+                className="btn-3d px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-crimenet-muted hover:text-white text-xs font-mono transition-all border border-white/10"
               >
                 CANCEL
               </button>
               <button
                 onClick={handleVerifyPassword}
                 disabled={isRevealing || !passwordInput.trim()}
-                className="px-4 py-1.5 rounded bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-black font-bold text-xs font-mono flex items-center gap-1.5 transition-colors"
+                className="btn-3d-amber px-4 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-black font-bold text-xs font-mono flex items-center gap-1.5 transition-all shadow-[0_0_15px_rgba(255,179,0,0.4)]"
               >
                 <Unlock className="w-3.5 h-3.5" />
                 {isRevealing ? 'VERIFYING...' : 'AUTHORIZE & REVEAL'}
@@ -351,7 +394,7 @@ export default function EvidencePage() {
             <div className="pt-2 border-t border-white/10 flex justify-end">
               <button
                 onClick={() => setIsAuditModalOpen(false)}
-                className="px-4 py-1.5 rounded bg-white/10 hover:bg-white/20 text-white text-xs font-mono transition-colors"
+                className="btn-3d px-4 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-mono transition-all border border-white/10"
               >
                 CLOSE
               </button>

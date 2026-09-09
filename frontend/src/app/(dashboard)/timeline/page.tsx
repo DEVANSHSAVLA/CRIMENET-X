@@ -142,15 +142,15 @@ export default function TimelinePage() {
     <div className="h-full p-6 flex flex-col space-y-4 overflow-hidden">
       
       {/* ── TOP PLAYBACK CONTROLLER BAR ── */}
-      <div className="glass-card p-4 rounded-xl flex flex-col md:flex-row items-center justify-between border-l-4 border-crimenet-cyan gap-4">
+      <div className="glass-card p-4 rounded-xl flex flex-col md:flex-row items-center justify-between border-l-4 border-crimenet-cyan gap-4 card-3d shadow-xl">
         <div className="flex items-center gap-3">
           {/* Play / Pause Toggle */}
           <button
             onClick={() => setIsTimelinePlaying(!isTimelinePlaying)}
-            className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${
+            className={`btn-3d w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
               isTimelinePlaying
-                ? 'bg-crimenet-amber text-black shadow-lg shadow-amber-500/40 animate-pulse'
-                : 'bg-crimenet-cyan hover:bg-cyan-400 text-black shadow-lg shadow-cyan-500/40'
+                ? 'bg-crimenet-amber text-black shadow-[0_0_18px_rgba(255,179,0,0.5)] animate-pulse'
+                : 'bg-crimenet-cyan hover:bg-cyan-400 text-black shadow-[0_0_18px_rgba(0,212,255,0.45)]'
             }`}
             title={isTimelinePlaying ? 'Pause Playback' : 'Start Chronological Playback'}
           >
@@ -161,7 +161,7 @@ export default function TimelinePage() {
           <button
             onClick={handleStepBackward}
             disabled={currentIndex === 0}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white disabled:opacity-30 transition-colors"
+            className="btn-3d p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white disabled:opacity-30 transition-all border border-white/10 hover:border-crimenet-cyan/40"
             title="Previous Event"
           >
             <SkipBack className="w-4 h-4" />
@@ -169,20 +169,39 @@ export default function TimelinePage() {
           <button
             onClick={handleStepForward}
             disabled={currentIndex >= events.length - 1}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white disabled:opacity-30 transition-colors"
+            className="btn-3d p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white disabled:opacity-30 transition-all border border-white/10 hover:border-crimenet-cyan/40"
             title="Next Event"
           >
             <SkipForward className="w-4 h-4" />
           </button>
 
+          {/* Reset Playback */}
+          <button
+            onClick={() => {
+              setIsTimelinePlaying(false);
+              setCurrentIndex(0);
+              if (events[0]) {
+                setTimelineCursor(events[0].timestamp);
+                selectEvent(events[0]);
+                if (events[0].entities?.length) selectEntity(events[0].entities[0]);
+              }
+            }}
+            className="btn-3d p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-crimenet-muted hover:text-white transition-all border border-white/10"
+            title="Reset Timeline to Origin"
+          >
+            <RotateCcw className="w-4 h-4" />
+          </button>
+
           {/* Playback Speed Multiplier */}
-          <div className="flex bg-black/60 rounded-lg p-0.5 border border-white/10 text-xs font-mono">
+          <div className="flex bg-black/60 rounded-lg p-1 border border-white/10 text-xs font-mono gap-1">
             {([1, 2, 5] as const).map((spd) => (
               <button
                 key={spd}
                 onClick={() => setPlaybackSpeed(spd)}
-                className={`px-2 py-1 rounded text-[10px] font-bold transition-colors ${
-                  playbackSpeed === spd ? 'bg-crimenet-cyan text-black' : 'text-crimenet-muted hover:text-white'
+                className={`chip-3d px-2.5 py-1 rounded text-[10px] font-bold transition-all ${
+                  playbackSpeed === spd
+                    ? 'bg-crimenet-cyan text-black shadow-[0_0_10px_rgba(0,212,255,0.4)]'
+                    : 'text-crimenet-muted hover:text-white hover:bg-white/5'
                 }`}
               >
                 {spd}X
@@ -200,7 +219,7 @@ export default function TimelinePage() {
           <div className="text-base font-bold text-white tracking-wider mt-0.5">
             {currentEvent ? currentEvent.timestamp.slice(0, 10) : '2026-02-15'}
           </div>
-          <div className="text-[10px] text-crimenet-cyan">
+          <div className="text-[10px] text-crimenet-cyan font-bold">
             EVENT {currentIndex + 1} OF {events.length}
           </div>
         </div>
@@ -215,10 +234,10 @@ export default function TimelinePage() {
           </span>
           <button
             onClick={() => setFilterType(null)}
-            className={`px-2.5 py-1 text-[10px] font-bold rounded-full transition-all ${
+            className={`chip-3d px-3 py-1 text-[10px] font-bold rounded-full transition-all font-mono ${
               !filterType
-                ? 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40'
-                : 'bg-white/5 text-white/50 hover:bg-white/10'
+                ? 'bg-crimenet-cyan/25 text-crimenet-cyan border border-crimenet-cyan/50 shadow-[0_0_10px_rgba(0,212,255,0.3)]'
+                : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
             }`}
           >
             All Events ({total})
@@ -227,10 +246,10 @@ export default function TimelinePage() {
             <button
               key={t}
               onClick={() => setFilterType(filterType === t ? null : t)}
-              className={`px-2.5 py-1 text-[10px] font-bold rounded-full transition-all ${
+              className={`chip-3d px-3 py-1 text-[10px] font-bold rounded-full transition-all font-mono ${
                 filterType === t
-                  ? 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40'
-                  : 'bg-white/5 text-white/50 hover:bg-white/10'
+                  ? 'bg-crimenet-cyan/25 text-crimenet-cyan border border-crimenet-cyan/50 shadow-[0_0_10px_rgba(0,212,255,0.3)]'
+                  : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
               }`}
             >
               {t.replace(/_/g, ' ')}
@@ -249,18 +268,18 @@ export default function TimelinePage() {
               <div
                 key={ev.id}
                 onClick={() => handleEventClick(ev, idx)}
-                className={`glass-card p-3.5 rounded-xl border transition-all flex items-start gap-3.5 cursor-pointer group ${
+                className={`card-3d glass-card p-3.5 rounded-xl border transition-all flex items-start gap-3.5 cursor-pointer group ${
                   isActive
-                    ? 'border-crimenet-cyan bg-crimenet-cyan/10 shadow-lg shadow-cyan-500/20 scale-[1.01]'
-                    : 'border-white/5 hover:border-white/20 hover:bg-white/5'
+                    ? 'border-crimenet-cyan bg-crimenet-cyan/15 shadow-[0_0_20px_rgba(0,212,255,0.25)] scale-[1.01]'
+                    : 'border-white/10 hover:border-crimenet-cyan/40 hover:bg-white/5'
                 }`}
               >
                 {/* Event Icon Glyph */}
                 <div
-                  className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border transition-transform ${
-                    isActive ? 'scale-110 shadow-md' : 'group-hover:scale-105'
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border transition-transform shadow-md ${
+                    isActive ? 'scale-110 shadow-cyan-500/30' : 'group-hover:scale-105'
                   }`}
-                  style={{ backgroundColor: `${color}15`, borderColor: `${color}40`, color }}
+                  style={{ backgroundColor: `${color}20`, borderColor: `${color}50`, color }}
                 >
                   <Icon className="w-4 h-4" />
                 </div>
@@ -273,8 +292,8 @@ export default function TimelinePage() {
                         {ev.id}
                       </span>
                       <span
-                        className="text-[9px] font-mono px-2 py-0.5 rounded font-semibold"
-                        style={{ backgroundColor: `${color}20`, color }}
+                        className="text-[9px] font-mono px-2 py-0.5 rounded font-semibold border"
+                        style={{ backgroundColor: `${color}20`, borderColor: `${color}40`, color }}
                       >
                         {ev.type.replace(/_/g, ' ')}
                       </span>
@@ -300,7 +319,7 @@ export default function TimelinePage() {
                               e.stopPropagation();
                               selectEntity(eid);
                             }}
-                            className="px-2 py-0.5 rounded bg-crimenet-cyan/15 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/30 text-[10px] font-mono transition-colors"
+                            className="chip-3d px-2 py-0.5 rounded-md bg-crimenet-cyan/15 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/35 text-[10px] font-mono font-bold transition-all shadow-[0_0_8px_rgba(0,212,255,0.2)]"
                           >
                             {eid}
                           </button>

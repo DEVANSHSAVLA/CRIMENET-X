@@ -153,19 +153,70 @@ export default function AnalyticsPage() {
         )}
       </div>
 
-      {/* Row 1: Stat Cards */}
+      {/* Row 1: Dynamic 3D Stat Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-3">
-        <GlassPanel className="p-3"><StatCard icon={<Users className="w-4 h-4" />} label="Persons / Fugitives" value={stats?.persons ?? '379'} /></GlassPanel>
-        <GlassPanel className="p-3"><StatCard icon={<MapPin className="w-4 h-4" />} label="Locations" value={stats?.locations ?? '38'} /></GlassPanel>
-        <GlassPanel className="p-3"><StatCard icon={<Activity className="w-4 h-4" />} label="Events" value={stats?.events ?? '379'} /></GlassPanel>
-        <GlassPanel className="p-3"><StatCard icon={<Network className="w-4 h-4" />} label="Relationships" value={stats?.relationships ?? '412'} /></GlassPanel>
-        <GlassPanel className="p-3"><StatCard icon={<AlertTriangle className="w-4 h-4" />} label="High Risk" value={stats?.high_risk_entities ?? '247'} /></GlassPanel>
-        <GlassPanel className="p-3"><StatCard icon={<Shield className="w-4 h-4" />} label="Network Risk" value={`${stats?.network_risk_pct ?? '78'}%`} /></GlassPanel>
+        <GlassPanel className="p-1 card-3d">
+          <StatCard 
+            icon={<Users className="w-4 h-4 text-crimenet-cyan" />} 
+            label="Persons / Fugitives" 
+            value={stats?.persons ?? '379'} 
+            change="Click to inspect Network"
+            onClick={() => router.push('/network')}
+          />
+        </GlassPanel>
+        <GlassPanel className="p-1 card-3d">
+          <StatCard 
+            icon={<MapPin className="w-4 h-4 text-emerald-400" />} 
+            label="Locations" 
+            value={stats?.locations ?? '38'} 
+            change="Click for 3D Geospatial"
+            onClick={() => router.push('/geo-intelligence')}
+          />
+        </GlassPanel>
+        <GlassPanel className="p-1 card-3d">
+          <StatCard 
+            icon={<Activity className="w-4 h-4 text-purple-400" />} 
+            label="Events" 
+            value={stats?.events ?? '379'} 
+            change="Click for Timeline"
+            onClick={() => router.push('/timeline')}
+          />
+        </GlassPanel>
+        <GlassPanel className="p-1 card-3d">
+          <StatCard 
+            icon={<Network className="w-4 h-4 text-crimenet-cyan" />} 
+            label="Relationships" 
+            value={stats?.relationships ?? '412'} 
+            change="Click for Co-Accused Links"
+            onClick={() => router.push('/network')}
+          />
+        </GlassPanel>
+        <GlassPanel className="p-1 card-3d">
+          <StatCard 
+            icon={<AlertTriangle className="w-4 h-4 text-crimenet-amber" />} 
+            label="High Risk" 
+            value={stats?.high_risk_entities ?? '247'} 
+            change="Click to Filter High Risk"
+            onClick={() => {
+              setFilter('riskLevel', 'HIGH');
+              router.push('/command-center');
+            }}
+          />
+        </GlassPanel>
+        <GlassPanel className="p-1 card-3d">
+          <StatCard 
+            icon={<Shield className="w-4 h-4 text-crimenet-crimson" />} 
+            label="Network Risk" 
+            value={`${stats?.network_risk_pct ?? '78'}%`} 
+            change="Click for Telemetry"
+            onClick={() => router.push('/admin')}
+          />
+        </GlassPanel>
       </div>
 
       {/* Row 2: Interactive Country Jurisdiction Distribution (Clickable Drilldown) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <GlassPanel title="INTERNATIONAL JURISDICTION DISTRIBUTION (CLICK BAR FOR COUNTRY INTELLIGENCE)" className="p-4">
+        <GlassPanel title="INTERNATIONAL JURISDICTION DISTRIBUTION (CLICK BAR FOR COUNTRY INTELLIGENCE)" className="p-4 card-3d border-white/10 hover:border-crimenet-cyan/40 transition-all">
           <div className="mb-2 text-[10px] text-crimenet-muted font-mono">
             Click any bar to drill down into warrants, subjects, and filter system-wide.
           </div>
@@ -187,7 +238,7 @@ export default function AnalyticsPage() {
           </ResponsiveContainer>
         </GlassPanel>
 
-        <GlassPanel title="OFFENSE CATEGORY DISTRIBUTION (CLICK SLICE FOR DETAILS)" className="p-4">
+        <GlassPanel title="OFFENSE CATEGORY DISTRIBUTION (CLICK SLICE FOR DETAILS)" className="p-4 card-3d border-white/10 hover:border-amber-400/40 transition-all">
           <div className="mb-2 text-[10px] text-crimenet-muted font-mono">
             Click to inspect specific legal statutory categories and events.
           </div>
@@ -216,13 +267,13 @@ export default function AnalyticsPage() {
 
       {/* Row 3: Centrality Ranking (Click to Select Entity) & Monthly Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <GlassPanel title="AI CENTRALITY RANKINGS (CLICK ENTITY TO OPEN DRAWER & FOCUS)" className="p-4">
+        <GlassPanel title="AI CENTRALITY RANKINGS (CLICK ENTITY TO OPEN DRAWER & FOCUS)" className="p-4 card-3d border-white/10 hover:border-crimenet-cyan/30 transition-all">
           <div className="space-y-1.5 max-h-72 overflow-y-auto scrollbar-dark">
             {rankings.slice(0, 10).map((r, i) => (
               <button
                 key={r.entity_id}
                 onClick={() => selectEntity(r.entity_id)}
-                className="w-full flex items-center gap-2 p-2 rounded-lg hover:bg-white/10 text-left transition-colors cursor-pointer group border border-transparent hover:border-crimenet-cyan/30"
+                className="chip-3d w-full flex items-center gap-2 p-2 rounded-lg bg-black/40 hover:bg-white/10 text-left transition-all cursor-pointer group border border-white/5 hover:border-crimenet-cyan/40"
               >
                 <span className="text-[10px] text-crimenet-muted font-mono w-5">{String(i + 1).padStart(2, '0')}</span>
                 <span className="text-xs text-white w-20 truncate font-mono group-hover:text-crimenet-cyan font-bold">{r.entity_id}</span>
@@ -236,7 +287,7 @@ export default function AnalyticsPage() {
           </div>
         </GlassPanel>
 
-        <GlassPanel title="TEMPORAL INVESTIGATION VELOCITY" className="p-4">
+        <GlassPanel title="TEMPORAL INVESTIGATION VELOCITY" className="p-4 card-3d border-white/10 hover:border-crimenet-cyan/30 transition-all">
           <ResponsiveContainer width="100%" height={230}>
             <AreaChart data={monthlyData}>
               <XAxis dataKey="month" tick={{ fill: '#94A3B8', fontSize: 10 }} axisLine={{ stroke: 'rgba(255,255,255,0.05)' }} />
@@ -250,13 +301,13 @@ export default function AnalyticsPage() {
 
       {/* Row 4: Communities + Anomalies */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <GlassPanel title="COMMUNITY DETECTION (LOUVAIN CLUSTERING)" className="p-4">
+        <GlassPanel title="COMMUNITY DETECTION (LOUVAIN CLUSTERING)" className="p-4 card-3d border-white/10 hover:border-emerald-500/30 transition-all">
           <div className="space-y-2">
             {communities.map((c) => (
               <div 
                 key={c.id} 
                 onClick={() => router.push('/network')}
-                className="flex items-center gap-3 p-2.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer border border-white/5 hover:border-crimenet-cyan/30"
+                className="card-3d flex items-center gap-3 p-2.5 rounded-lg bg-black/50 hover:bg-white/10 transition-all cursor-pointer border border-white/5 hover:border-crimenet-cyan/40"
               >
                 <div className="w-3.5 h-3.5 rounded-full shrink-0" style={{ backgroundColor: c.color }} />
                 <div className="flex-1">
@@ -278,7 +329,7 @@ export default function AnalyticsPage() {
           </div>
         </GlassPanel>
 
-        <GlassPanel title="ALGORITHMIC ANOMALY ALERTS (CLICK TO INVESTIGATE)" className="p-4">
+        <GlassPanel title="ALGORITHMIC ANOMALY ALERTS (CLICK TO INVESTIGATE)" className="p-4 card-3d border-white/10 hover:border-crimenet-crimson/30 transition-all">
           <div className="space-y-2">
             {anomalies.slice(0, 6).map((a) => (
               <div 
@@ -288,10 +339,10 @@ export default function AnalyticsPage() {
                     selectEntity(a.entities[0]);
                   }
                 }}
-                className={`p-3 rounded-xl border cursor-pointer hover:border-white/30 transition-all ${
-                  a.severity === 'CRITICAL' ? 'bg-crimenet-crimson/10 border-crimenet-crimson/30'
-                  : a.severity === 'HIGH' ? 'bg-crimenet-amber/10 border-crimenet-amber/20'
-                  : 'bg-white/5 border-white/10'
+                className={`card-3d p-3 rounded-xl border cursor-pointer hover:border-white/30 transition-all ${
+                  a.severity === 'CRITICAL' ? 'bg-crimenet-crimson/15 border-crimenet-crimson/40 shadow-[0_0_12px_rgba(255,23,68,0.2)]'
+                  : a.severity === 'HIGH' ? 'bg-crimenet-amber/15 border-crimenet-amber/30 shadow-[0_0_12px_rgba(255,179,0,0.2)]'
+                  : 'bg-black/50 border-white/10 hover:bg-white/5'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">

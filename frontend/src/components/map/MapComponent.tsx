@@ -141,7 +141,35 @@ export default function MapComponent({
 
     map.current.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
 
+    const handleFlyTo = (e: any) => {
+      if (!map.current || !e.detail) return;
+      const { center, zoom = 12, pitch = 55, bearing = 0 } = e.detail;
+      map.current.flyTo({
+        center,
+        zoom,
+        pitch,
+        bearing,
+        essential: true,
+        speed: 1.2,
+      });
+    };
+
+    const handleCameraAngle = (e: any) => {
+      if (!map.current || !e.detail) return;
+      const { pitch = 55, bearing = 0 } = e.detail;
+      map.current.easeTo({
+        pitch,
+        bearing,
+        duration: 1000,
+      });
+    };
+
+    window.addEventListener('map-fly-to', handleFlyTo);
+    window.addEventListener('map-set-camera-angle', handleCameraAngle);
+
     return () => {
+      window.removeEventListener('map-fly-to', handleFlyTo);
+      window.removeEventListener('map-set-camera-angle', handleCameraAngle);
       map.current?.remove();
       map.current = null;
     };

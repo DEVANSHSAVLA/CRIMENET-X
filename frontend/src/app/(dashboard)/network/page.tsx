@@ -22,6 +22,70 @@ export default function NetworkPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showTechnicalDetails, setShowTechnicalDetails] = useState(false);
   const [selectedEdge, setSelectedEdge] = useState<any | null>(null);
+  const [activeLayout, setActiveLayout] = useState<'cose' | 'concentric' | 'circle' | 'breadthfirst'>('cose');
+  const [graphRiskFilter, setGraphRiskFilter] = useState<'ALL' | 'CRITICAL' | 'HIGH'>('ALL');
+
+  const changeLayout = (layoutName: 'cose' | 'concentric' | 'circle' | 'breadthfirst') => {
+    setActiveLayout(layoutName);
+    const cy = cyRef.current;
+    if (!cy) return;
+    try {
+      if (layoutRef.current) {
+        try { layoutRef.current.stop(); } catch (e) {}
+      }
+      let options: any = { name: layoutName, animate: true, animationDuration: 600 };
+      if (layoutName === 'cose') {
+        options = {
+          name: 'cose',
+          animate: true,
+          animationDuration: 600,
+          fit: true,
+          padding: 40,
+          nodeRepulsion: 400000,
+          edgeElasticity: 100,
+        };
+      } else if (layoutName === 'concentric') {
+        options = {
+          name: 'concentric',
+          animate: true,
+          animationDuration: 600,
+          fit: true,
+          padding: 40,
+          concentric: (node: any) => node.data('centrality') || 0,
+          levelWidth: () => 20,
+        };
+      } else if (layoutName === 'circle') {
+        options = { name: 'circle', animate: true, animationDuration: 600, fit: true, padding: 40 };
+      } else if (layoutName === 'breadthfirst') {
+        options = { name: 'breadthfirst', directed: true, animate: true, animationDuration: 600, fit: true, padding: 40 };
+      }
+      layoutRef.current = cy.layout(options);
+      layoutRef.current.run();
+    } catch (e) {
+      console.warn('Layout switch error:', e);
+    }
+  };
+
+  const applyRiskFilter = (filter: 'ALL' | 'CRITICAL' | 'HIGH') => {
+    setGraphRiskFilter(filter);
+    const cy = cyRef.current;
+    if (!cy) return;
+    try {
+      if (filter === 'ALL') {
+        cy.elements().removeClass('filtered-out');
+      } else {
+        cy.nodes().forEach((n) => {
+          if (n.data('risk_level') === filter) {
+            n.removeClass('filtered-out');
+            n.connectedEdges().removeClass('filtered-out');
+          } else {
+            n.addClass('filtered-out');
+            n.connectedEdges().addClass('filtered-out');
+          }
+        });
+      }
+    } catch (e) {}
+  };
 
   // Load Network Data once
   useEffect(() => {
@@ -181,6 +245,12 @@ export default function NetworkPage() {
             selector: 'edge.dimmed',
             style: {
               opacity: 0.05,
+            },
+          },
+          {
+            selector: '.filtered-out',
+            style: {
+              opacity: 0.08,
             },
           },
         ],
@@ -344,7 +414,52 @@ export default function NetworkPage() {
       </div>
 
       {/* Top Bar Controls */}
-      <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+      <div className="absolute top-4 right-4 z-10 flex flex-wrap items-center gap-2">
+        {/* Dynamic Risk Filter */}
+        <div className="flex bg-black/85 border border-white/10 rounded-lg p-1 gap-1 backdrop-blur-md shadow-lg">
+          {(['ALL', 'CRITICAL', 'HIGH'] as const).map((r) => (
+            <button
+              key={r}
+              onClick={() => applyRiskFilter(r)}
+              className={`chip-3d px-2.5 py-1 rounded text-[10px] font-mono font-bold transition-all ${
+                graphRiskFilter === r
+                  ? r === 'CRITICAL'
+                    ? 'bg-crimenet-crimson text-white shadow-[0_0_12px_rgba(255,23,68,0.5)]'
+                    : r === 'HIGH'
+                    ? 'bg-crimenet-amber text-black shadow-[0_0_12px_rgba(255,179,0,0.5)]'
+                    : 'bg-crimenet-cyan text-black shadow-[0_0_12px_rgba(0,212,255,0.5)]'
+                  : 'text-crimenet-muted hover:text-white hover:bg-white/5'
+              }`}
+            >
+              {r}
+            </button>
+          ))}
+        </div>
+
+        {/* Dynamic Graph Layout Switcher */}
+        <div className="flex bg-black/85 border border-white/10 rounded-lg p-1 gap-1 backdrop-blur-md shadow-lg">
+          {(
+            [
+              { id: 'cose', label: 'Force' },
+              { id: 'concentric', label: 'Concentric' },
+              { id: 'circle', label: 'Circle' },
+              { id: 'breadthfirst', label: 'Hierarchy' },
+            ] as const
+          ).map((l) => (
+            <button
+              key={l.id}
+              onClick={() => changeLayout(l.id)}
+              className={`chip-3d px-2.5 py-1 rounded text-[10px] font-mono font-semibold transition-all ${
+                activeLayout === l.id
+                  ? 'bg-white/20 text-crimenet-cyan border border-crimenet-cyan/40 shadow-[0_0_10px_rgba(0,212,255,0.3)]'
+                  : 'text-crimenet-muted hover:text-white hover:bg-white/5'
+              }`}
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
+
         <form onSubmit={handleSearchSubmit} className="relative">
           <Search className="w-3.5 h-3.5 text-crimenet-muted absolute left-2.5 top-2.5" />
           <input
@@ -352,17 +467,17 @@ export default function NetworkPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Focus node ID (e.g. P-001)..."
-            className="w-56 bg-black/80 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-crimenet-muted focus:outline-none focus:border-crimenet-cyan font-mono"
+            className="w-52 bg-black/80 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-crimenet-muted focus:outline-none focus:border-crimenet-cyan font-mono transition-all focus:shadow-[0_0_12px_rgba(0,212,255,0.3)]"
           />
         </form>
 
-        <div className="flex bg-black/80 border border-white/10 rounded-lg p-1 gap-1">
+        <div className="flex bg-black/80 border border-white/10 rounded-lg p-1 gap-1 backdrop-blur-md shadow-lg">
           <button
             onClick={() => {
               const cy = cyRef.current;
               if (cy) cy.zoom(cy.zoom() * 1.2);
             }}
-            className="p-1 rounded hover:bg-white/10 text-white/80"
+            className="p-1 rounded hover:bg-white/10 text-white/80 hover:text-crimenet-cyan transition-all hover:scale-110 active:scale-95"
             title="Zoom In"
           >
             <ZoomIn className="w-4 h-4" />
@@ -372,7 +487,7 @@ export default function NetworkPage() {
               const cy = cyRef.current;
               if (cy) cy.zoom(cy.zoom() * 0.8);
             }}
-            className="p-1 rounded hover:bg-white/10 text-white/80"
+            className="p-1 rounded hover:bg-white/10 text-white/80 hover:text-crimenet-cyan transition-all hover:scale-110 active:scale-95"
             title="Zoom Out"
           >
             <ZoomOut className="w-4 h-4" />
@@ -382,7 +497,7 @@ export default function NetworkPage() {
               const cy = cyRef.current;
               if (cy) cy.fit(undefined, 40);
             }}
-            className="p-1 rounded hover:bg-white/10 text-white/80"
+            className="p-1 rounded hover:bg-white/10 text-white/80 hover:text-crimenet-cyan transition-all hover:scale-110 active:scale-95"
             title="Fit All"
           >
             <Maximize2 className="w-4 h-4" />
@@ -392,7 +507,11 @@ export default function NetworkPage() {
         {/* Technical Details Toggle for Expert Judges */}
         <button
           onClick={() => setShowTechnicalDetails(!showTechnicalDetails)}
-          className="px-2.5 py-1.5 rounded-lg bg-black/80 border border-white/10 text-xs font-mono text-crimenet-cyan hover:bg-white/5 flex items-center gap-1.5"
+          className={`chip-3d px-2.5 py-1.5 rounded-lg bg-black/80 border text-xs font-mono flex items-center gap-1.5 transition-all ${
+            showTechnicalDetails
+              ? 'border-crimenet-cyan text-crimenet-cyan shadow-[0_0_10px_rgba(0,212,255,0.4)]'
+              : 'border-white/10 text-crimenet-cyan hover:bg-white/5'
+          }`}
         >
           <Info className="w-3.5 h-3.5" /> Technical Metrics
         </button>
@@ -535,13 +654,13 @@ export default function NetworkPage() {
             <div className="grid grid-cols-2 gap-2 pt-1">
               <button
                 onClick={() => selectEntity(selectedEdge.source)}
-                className="py-1.5 px-2.5 rounded bg-crimenet-cyan/15 hover:bg-crimenet-cyan/25 text-crimenet-cyan border border-crimenet-cyan/30 text-xs font-semibold text-center transition-colors"
+                className="btn-3d py-1.5 px-2.5 rounded-lg bg-crimenet-cyan/20 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/40 text-xs font-mono font-bold text-center transition-all shadow-[0_0_12px_rgba(0,212,255,0.25)] hover:shadow-[0_0_18px_rgba(0,212,255,0.45)]"
               >
                 Focus Node A
               </button>
               <button
                 onClick={() => selectEntity(selectedEdge.target)}
-                className="py-1.5 px-2.5 rounded bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-semibold text-center transition-colors"
+                className="btn-3d py-1.5 px-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-mono font-bold text-center transition-all shadow-[0_0_10px_rgba(255,255,255,0.1)] hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
               >
                 Focus Node B
               </button>
