@@ -7,7 +7,8 @@ import { useInvestigation } from '@/context/investigation-context';
 import { 
   Compass, Video, Radio, Layers, MapPin, Activity, 
   Flame, Building2, Navigation, Target, Zap, Globe,
-  ShieldAlert, Plane, User, ArrowRight, ExternalLink, Filter, ChevronRight
+  ShieldAlert, Plane, User, ArrowRight, ExternalLink, Filter, ChevronRight,
+  Eye, Monitor, RotateCcw, Crosshair
 } from 'lucide-react';
 import { 
   GLOBAL_HOTSPOTS, 
@@ -18,6 +19,7 @@ import {
 import { api } from '@/lib/api';
 import type { Person } from '@/lib/types';
 import { SuspectPhoto } from '@/components/shared/suspect-photo';
+import { TiltCard3D } from '@/components/shared/tilt-card-3d';
 
 const Map = dynamic(() => import('@/components/map/MapComponent'), { ssr: false });
 
@@ -67,6 +69,7 @@ export default function GeoIntelligencePage() {
   const [activeCity, setActiveCity] = useState('Mumbai');
   const [activeAngle, setActiveAngle] = useState('Tactical 3D 60°');
   const [activeStreet, setActiveStreet] = useState<string | null>(null);
+  const [isAutoOrbit, setIsAutoOrbit] = useState(false);
 
   // Load all 379 real fugitives for global sanctuary drilldown
   useEffect(() => {
@@ -85,8 +88,6 @@ export default function GeoIntelligencePage() {
   const hotspotPersons = useMemo(() => {
     if (!selectedHotspot || allPersons.length === 0) return [];
     const ids = new Set(selectedHotspot.linkedFugitiveIds);
-    const countryName = selectedHotspot.country.toLowerCase();
-    const hubName = selectedHotspot.name.toLowerCase();
 
     return allPersons.filter(p => {
       if (ids.has(p.id)) return true;
@@ -109,6 +110,24 @@ export default function GeoIntelligencePage() {
     }).slice(0, 15);
   }, [selectedHotspot, allPersons]);
 
+  // 3D Auto-Orbit Loop
+  useEffect(() => {
+    if (!isAutoOrbit) return;
+    let bearing = -20;
+    const interval = setInterval(() => {
+      bearing = (bearing + 1.2) % 360;
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(
+          new CustomEvent('map-set-camera-angle', {
+            detail: { pitch: 62, bearing },
+          })
+        );
+      }
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [isAutoOrbit]);
+
   const handleSelectHotspot = (hotspot: GlobalHotspot) => {
     setSelectedHotspot(hotspot);
     selectHotspot(hotspot);
@@ -118,7 +137,7 @@ export default function GeoIntelligencePage() {
           detail: {
             center: [hotspot.lng, hotspot.lat],
             zoom: hotspot.countryCode === 'IN' ? 10.5 : 5.8,
-            pitch: 50,
+            pitch: 52,
             bearing: -10,
           },
         })
@@ -135,7 +154,7 @@ export default function GeoIntelligencePage() {
           detail: {
             center: [city.lng, city.lat],
             zoom: city.zoom,
-            pitch: 55,
+            pitch: 58,
             bearing: -15,
           },
         })
@@ -152,7 +171,7 @@ export default function GeoIntelligencePage() {
         new CustomEvent('map-fly-to', {
           detail: {
             center: [street.lng, street.lat],
-            zoom: 15.2,
+            zoom: 15.4,
             pitch: 65,
             bearing: -20,
           },
@@ -176,8 +195,8 @@ export default function GeoIntelligencePage() {
   };
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-[#030406]">
-      {/* Dynamic 3D Map Container with Global Spotted Capabilities */}
+    <div className="relative w-full h-full overflow-hidden bg-[#030406] select-none">
+      {/* Dynamic 3D Map Container */}
       <Map
         selectedEntityId={selectedEntityId}
         onSelectEntity={selectEntity}
@@ -191,46 +210,61 @@ export default function GeoIntelligencePage() {
         initialViewMode="GLOBAL"
       />
 
+      {/* Floating 3D Auto-Orbit HUD Switch */}
+      <div className="absolute top-4 left-4 z-20">
+        <button
+          onClick={() => setIsAutoOrbit(!isAutoOrbit)}
+          className={`btn-3d px-3 py-2 rounded-2xl border text-xs font-mono font-bold flex items-center gap-2 shadow-2xl backdrop-blur-md transition-all ${
+            isAutoOrbit
+              ? 'bg-cyan-400 text-black border-cyan-300 shadow-[0_0_20px_rgba(0,212,255,0.6)]'
+              : 'bg-black/85 text-white/90 border-white/15 hover:bg-white/10'
+          }`}
+        >
+          <Compass className={`w-4 h-4 ${isAutoOrbit ? 'animate-spin' : ''}`} />
+          <span>{isAutoOrbit ? '🛸 3D ORBIT ACTIVE' : '🛸 3D CINEMATIC ORBIT'}</span>
+        </button>
+      </div>
+
       {/* 3D Geospatial Command Deck (Right Docked Panel) */}
-      <div className="absolute right-4 top-4 bottom-4 w-[420px] flex flex-col gap-3 pointer-events-none z-10">
+      <div className="absolute right-4 top-4 bottom-4 w-[430px] flex flex-col gap-3 pointer-events-none z-10">
         <GlassPanel 
-          title="GLOBAL & URBAN COMMAND DECK" 
-          className="pointer-events-auto h-full flex flex-col overflow-hidden bg-[#060B14]/95 border-crimenet-cyan/30 shadow-2xl"
+          title="3D GEOSPATIAL COMMAND DECK" 
+          className="pointer-events-auto h-full flex flex-col overflow-hidden bg-[#060B14]/95 border-crimenet-cyan/30 depth-3d-box shadow-2xl"
         >
           {/* Top Sub-Nav Tabs */}
-          <div className="flex items-center gap-1 p-1 bg-black/60 rounded-xl border border-white/10 mb-3 shrink-0">
+          <div className="flex items-center gap-1.5 p-1.5 bg-black/60 rounded-2xl border border-white/10 mb-3 shrink-0">
             <button
               onClick={() => setActiveTab('SANCTUARIES')}
-              className={`flex-1 py-1.5 rounded-lg font-mono text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 ${
+              className={`flex-1 py-2 rounded-xl font-mono text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 btn-3d ${
                 activeTab === 'SANCTUARIES'
                   ? 'bg-crimenet-cyan text-black shadow-md'
                   : 'text-white/70 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Globe className="w-3 h-3" />
-              <span>SANCTUARY HUBS</span>
+              <Globe className="w-3.5 h-3.5" />
+              <span>SANCTUARIES</span>
             </button>
             <button
               onClick={() => setActiveTab('CORRIDORS')}
-              className={`flex-1 py-1.5 rounded-lg font-mono text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 ${
+              className={`flex-1 py-2 rounded-xl font-mono text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 btn-3d ${
                 activeTab === 'CORRIDORS'
                   ? 'bg-crimenet-amber text-black shadow-md'
                   : 'text-white/70 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Plane className="w-3 h-3" />
+              <Plane className="w-3.5 h-3.5" />
               <span>FLIGHT ARCS</span>
             </button>
             <button
               onClick={() => setActiveTab('SENSORS')}
-              className={`flex-1 py-1.5 rounded-lg font-mono text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 ${
+              className={`flex-1 py-2 rounded-xl font-mono text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 btn-3d ${
                 activeTab === 'SENSORS'
                   ? 'bg-emerald-400 text-black shadow-md'
                   : 'text-white/70 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Video className="w-3 h-3" />
-              <span>URBAN SENSORS</span>
+              <Video className="w-3.5 h-3.5" />
+              <span>3D SENSORS</span>
             </button>
           </div>
 
@@ -238,51 +272,55 @@ export default function GeoIntelligencePage() {
           {activeTab === 'SANCTUARIES' && (
             <div className="flex-1 overflow-y-auto scrollbar-dark space-y-3.5 pr-1 text-xs">
               
-              {/* Selected Hotspot Intelligence Brief */}
+              {/* Selected Hotspot Intelligence 3D Card */}
               {selectedHotspot && (
-                <div className="card-3d p-3 rounded-xl bg-black/70 border border-crimenet-cyan/40 shadow-lg space-y-2">
+                <TiltCard3D
+                  glowColor="cyan"
+                  className="p-3.5 rounded-2xl bg-black/75 border border-crimenet-cyan/40 shadow-xl space-y-2.5"
+                >
                   <div className="flex items-center justify-between border-b border-white/10 pb-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-xl">{selectedHotspot.flag}</span>
+                      <span className="text-2xl">{selectedHotspot.flag}</span>
                       <div>
-                        <div className="font-bold text-white text-xs">{selectedHotspot.name}</div>
+                        <div className="font-bold text-white text-xs tracking-wide">{selectedHotspot.name}</div>
                         <div className="text-[10px] font-mono text-crimenet-muted">{selectedHotspot.country}</div>
                       </div>
                     </div>
-                    <span className="px-2 py-0.5 rounded bg-rose-500/20 border border-rose-500/40 font-mono text-[10px] font-bold text-rose-300">
+                    <span className="px-2 py-0.5 rounded-lg bg-rose-500/20 border border-rose-500/40 font-mono text-[10px] font-bold text-rose-300">
                       {selectedHotspot.fugitiveCount} RED NOTICES
                     </span>
                   </div>
 
-                  <div className="space-y-1 text-[11px]">
-                    <div className="text-[10px] font-mono text-crimenet-cyan font-bold">
-                      ⚖️ {selectedHotspot.extraditionStatus}
+                  <div className="space-y-1.5 text-[11px]">
+                    <div className="text-[10px] font-mono text-crimenet-cyan font-bold flex items-center gap-1.5">
+                      <span>⚖️ STATUS:</span>
+                      <span>{selectedHotspot.extraditionStatus}</span>
                     </div>
                     <div className="text-white/80 text-[10px] leading-relaxed">
                       {selectedHotspot.investigativeRationale}
                     </div>
                   </div>
 
-                  <div className="pt-1.5 border-t border-white/5 flex items-center justify-between">
-                    <span className="text-[9px] font-mono text-crimenet-amber">
-                      TOP OFFENSES: {selectedHotspot.topOffenses.slice(0, 2).join(', ')}
+                  <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-[9px] font-mono text-crimenet-amber truncate max-w-[220px]">
+                      OFFENSES: {selectedHotspot.topOffenses.slice(0, 2).join(', ')}
                     </span>
                     <button
                       onClick={() => handleSelectHotspot(selectedHotspot)}
-                      className="btn-3d px-2.5 py-1 rounded bg-crimenet-cyan/20 border border-crimenet-cyan/50 text-crimenet-cyan font-mono text-[9px] font-bold hover:bg-crimenet-cyan/35 flex items-center gap-1"
+                      className="btn-3d px-3 py-1.5 rounded-xl bg-crimenet-cyan/20 border border-crimenet-cyan/50 text-crimenet-cyan font-mono text-[9px] font-bold hover:bg-crimenet-cyan/35 flex items-center gap-1 shadow-sm"
                     >
                       <span>FLY 3D</span>
                       <ChevronRight className="w-3 h-3" />
                     </button>
                   </div>
-                </div>
+                </TiltCard3D>
               )}
 
               {/* Connected CBI-Interpol Fugitives List */}
               <div className="space-y-1.5">
                 <div className="text-[10px] font-mono font-bold text-crimenet-muted uppercase tracking-wider flex items-center justify-between">
                   <span className="flex items-center gap-1.5">
-                    <ShieldAlert className="w-3 h-3 text-rose-400" />
+                    <ShieldAlert className="w-3.5 h-3.5 text-rose-400" />
                     Interpol Red Notice Subjects ({hotspotPersons.length})
                   </span>
                   <span className="text-[9px] text-white/50 font-normal">BSA 2023 SEC 63</span>
@@ -293,21 +331,18 @@ export default function GeoIntelligencePage() {
                     <div
                       key={p.id}
                       onClick={() => selectEntity(p.id)}
-                      className={`chip-3d p-2 rounded-xl text-left transition-all flex items-center justify-between cursor-pointer ${
+                      className={`btn-3d p-2 rounded-xl text-left transition-all flex items-center justify-between cursor-pointer ${
                         selectedEntityId === p.id
                           ? 'bg-crimenet-cyan/25 border-crimenet-cyan text-white shadow-md'
                           : 'bg-black/50 border border-white/5 text-white/80 hover:bg-white/10 hover:border-crimenet-cyan/40'
                       }`}
                     >
                       <div className="flex items-center gap-2 min-w-0 pr-2">
-                        <div className="w-7 h-7 rounded-lg overflow-hidden bg-black/60 shrink-0 border border-white/10">
+                        <div className="w-8 h-8 rounded-lg overflow-hidden bg-black/60 shrink-0 border border-white/10">
                           <SuspectPhoto 
                             entityId={p.id}
                             displayName={p.display_name || p.name}
-                            noticeId={p.notice_id}
-                            gender={p.gender}
                             riskLevel={p.risk_level}
-                            photoUrl={p.photo_thumbnail_url || p.photo_url}
                             size="sm" 
                           />
                         </div>
@@ -329,19 +364,13 @@ export default function GeoIntelligencePage() {
                       </span>
                     </div>
                   ))}
-
-                  {hotspotPersons.length === 0 && (
-                    <div className="p-3 text-center text-[10px] font-mono text-crimenet-muted bg-black/30 rounded-xl">
-                      Select a sanctuary hub to list wanted persons
-                    </div>
-                  )}
                 </div>
               </div>
 
               {/* All World Spotted Hubs Grid */}
               <div className="space-y-1.5 pt-2 border-t border-white/10">
                 <div className="text-[10px] font-mono font-bold text-crimenet-muted uppercase tracking-wider flex items-center gap-1.5">
-                  <Navigation className="w-3 h-3 text-crimenet-cyan" /> World Sanctuary & Interstate Nodes
+                  <Navigation className="w-3 h-3 text-crimenet-cyan" /> World Sanctuary Nodes
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   {GLOBAL_HOTSPOTS.map((spot) => (
@@ -369,33 +398,34 @@ export default function GeoIntelligencePage() {
             </div>
           )}
 
-          {/* Tab 2: Transnational Flight & Smuggling Arcs */}
+          {/* Tab 2: Transnational 3D Flight & Smuggling Arcs */}
           {activeTab === 'CORRIDORS' && (
             <div className="flex-1 overflow-y-auto scrollbar-dark space-y-3 pr-1 text-xs">
               <div className="p-2.5 rounded-xl bg-black/60 border border-white/10 text-[11px] text-white/80 leading-relaxed">
-                <span className="text-crimenet-cyan font-bold font-mono block mb-1">TRANSNATIONAL ARCS (10 ACTIVE)</span>
-                Rendered as great-circle flight paths connecting overseas safe havens to Indian syndicate landing points.
+                <span className="text-crimenet-cyan font-bold font-mono block mb-1">TRANSNATIONAL 3D FLIGHT ARCS (10 ACTIVE)</span>
+                Rendered as great-circle flight trajectories connecting safe haven airports to Indian syndicates.
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {TRANSNATIONAL_FLIGHT_ARCS.map((arc) => (
-                  <div
+                  <TiltCard3D
                     key={arc.id}
+                    glowColor={arc.density === 'CRITICAL' ? 'crimson' : 'amber'}
                     onClick={() => {
                       if (typeof window !== 'undefined') {
                         window.dispatchEvent(
                           new CustomEvent('map-fly-to', {
                             detail: {
                               center: arc.sourceCoords,
-                              zoom: 4.5,
-                              pitch: 45,
+                              zoom: 4.8,
+                              pitch: 50,
                               bearing: 0,
                             },
                           })
                         );
                       }
                     }}
-                    className="card-3d p-2.5 rounded-xl bg-black/50 border border-white/5 hover:border-crimenet-cyan/40 cursor-pointer transition-all space-y-1.5 group"
+                    className="p-3 rounded-2xl bg-black/60 border border-white/10 hover:border-crimenet-cyan/50 cursor-pointer transition-all space-y-2 group"
                   >
                     <div className="flex items-center justify-between">
                       <div className="font-mono text-[11px] font-bold text-white flex items-center gap-1.5">
@@ -403,8 +433,8 @@ export default function GeoIntelligencePage() {
                         <span className="text-white/40">➔</span>
                         <span className="text-amber-400">{arc.targetName}</span>
                       </div>
-                      <span className={`px-1.5 py-0.5 rounded text-[8px] font-mono font-bold ${
-                        arc.density === 'CRITICAL' ? 'bg-rose-500/20 text-rose-400' : 'bg-crimenet-cyan/20 text-crimenet-cyan'
+                      <span className={`px-2 py-0.5 rounded-lg text-[8px] font-mono font-bold ${
+                        arc.density === 'CRITICAL' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/40' : 'bg-crimenet-cyan/20 text-crimenet-cyan border border-cyan-500/40'
                       }`}>
                         {arc.density}
                       </span>
@@ -414,34 +444,34 @@ export default function GeoIntelligencePage() {
                       {arc.description}
                     </p>
 
-                    <div className="text-[9px] font-mono text-crimenet-muted flex items-center justify-between pt-1 border-t border-white/5">
-                      <span>TYPE: {arc.corridorType.replace(/_/g, ' ')}</span>
-                      <span className="text-crimenet-cyan group-hover:underline">FOCUS MAP ➔</span>
+                    <div className="text-[9px] font-mono text-crimenet-muted flex items-center justify-between pt-1.5 border-t border-white/10">
+                      <span>CONDUIT: {arc.corridorType.replace(/_/g, ' ')}</span>
+                      <span className="text-crimenet-cyan group-hover:underline">INSPECT 3D ➔</span>
                     </div>
-                  </div>
+                  </TiltCard3D>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Tab 3: Urban Sensors & Controls */}
+          {/* Tab 3: Urban Sensors & 3D Optical CCTV Deck */}
           {activeTab === 'SENSORS' && (
             <div className="flex-1 overflow-y-auto scrollbar-dark space-y-4 pr-1 text-xs">
               
               {/* 3D Camera Angles */}
               <div className="space-y-1.5">
                 <div className="text-[10px] font-mono font-bold text-crimenet-muted uppercase tracking-wider flex items-center gap-1.5">
-                  <Compass className="w-3 h-3 text-crimenet-cyan" /> 3D Camera Angle Presets
+                  <Compass className="w-3.5 h-3.5 text-crimenet-cyan" /> 3D Camera Angles
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   {CAMERA_ANGLES.map((angle) => (
                     <button
                       key={angle.label}
                       onClick={() => changeCameraAngle(angle)}
-                      className={`btn-3d p-2 rounded-lg text-left text-[11px] font-mono transition-all flex items-center gap-2 ${
+                      className={`btn-3d p-2 rounded-xl text-left text-[11px] font-mono transition-all flex items-center gap-2 ${
                         activeAngle === angle.label
-                          ? 'bg-crimenet-cyan/20 border-crimenet-cyan text-white shadow-[0_0_12px_rgba(0,212,255,0.35)]'
-                          : 'bg-black/50 border-white/10 text-white/80 hover:text-white hover:bg-white/5'
+                          ? 'bg-crimenet-cyan/25 border-crimenet-cyan text-white shadow-[0_0_15px_rgba(0,212,255,0.4)]'
+                          : 'bg-black/50 border-white/10 text-white/80 hover:text-white hover:bg-white/10'
                       }`}
                     >
                       <span>{angle.icon}</span>
@@ -451,98 +481,63 @@ export default function GeoIntelligencePage() {
                 </div>
               </div>
 
-              {/* 4 Live Mumbai CCTV Streets */}
-              <div className="space-y-1.5">
-                <div className="text-[10px] font-mono font-bold text-crimenet-muted uppercase tracking-wider flex items-center gap-1.5">
-                  <Video className="w-3 h-3 text-crimenet-cyan" /> Live Mumbai Surveillance Streets
-                </div>
-                <div className="space-y-1.5">
-                  {MUMBAI_STREETS.map((st) => (
-                    <button
-                      key={st.name}
-                      onClick={() => flyToStreet(st)}
-                      className={`btn-3d w-full p-2 rounded-lg text-left text-xs transition-all flex items-center justify-between ${
-                        activeStreet === st.name
-                          ? 'bg-crimenet-cyan/25 border-crimenet-cyan text-white shadow-[0_0_15px_rgba(0,212,255,0.4)]'
-                          : 'bg-black/60 border border-white/10 text-white/90 hover:bg-white/10 hover:border-crimenet-cyan/40'
-                      }`}
-                    >
-                      <div className="min-w-0 pr-2">
-                        <div className="font-semibold flex items-center gap-1.5 truncate">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                          <span className="truncate">{st.name}</span>
-                        </div>
-                        <div className="text-[10px] text-crimenet-muted truncate mt-0.5">{st.desc}</div>
-                      </div>
-                      <span className="text-[10px] font-mono text-crimenet-cyan shrink-0 px-1.5 py-0.5 rounded bg-crimenet-cyan/10 border border-crimenet-cyan/20">
-                        FLY 3D
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* 8 City Quick-Fly Corridors */}
-              <div className="space-y-1.5">
-                <div className="text-[10px] font-mono font-bold text-crimenet-muted uppercase tracking-wider flex items-center gap-1.5">
-                  <Navigation className="w-3 h-3 text-crimenet-amber" /> Indian Intelligence Corridors
-                </div>
-                <div className="grid grid-cols-4 gap-1.5">
-                  {CITIES.map((city) => (
-                    <button
-                      key={city.name}
-                      onClick={() => flyToCity(city)}
-                      className={`chip-3d p-1.5 rounded-lg text-center font-mono text-[10px] transition-all flex flex-col items-center justify-center ${
-                        activeCity === city.name
-                          ? 'bg-crimenet-amber text-black font-bold shadow-[0_0_14px_rgba(255,179,0,0.45)]'
-                          : 'bg-black/60 border border-white/10 text-white/80 hover:text-white hover:bg-white/10'
-                      }`}
-                    >
-                      <span className="font-bold truncate w-full">{city.name}</span>
-                      <span className="text-[8px] opacity-70 truncate w-full">{city.region}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Layer Switches */}
+              {/* Regional Metros Navigation */}
               <div className="space-y-1.5 pt-2 border-t border-white/10">
                 <div className="text-[10px] font-mono font-bold text-crimenet-muted uppercase tracking-wider flex items-center gap-1.5">
-                  <Layers className="w-3 h-3 text-emerald-400" /> Geospatial Layer Filters
+                  <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Regional Hub Jump
                 </div>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {[
-                    { key: 'hotspots', label: 'Global Spots', icon: Globe, color: 'text-rose-400', desc: '16 International fugitive sanctuary hubs' },
-                    { key: 'arcs', label: 'Flight Arcs', icon: Plane, color: 'text-crimenet-cyan', desc: '10 Transnational flight & smuggling arcs' },
-                    { key: 'cameras', label: 'CCTV Sensors', icon: Video, color: 'text-amber-400', desc: '8 Live street surveillance cameras' },
-                    { key: 'signals', label: 'Traffic Signals', icon: Radio, color: 'text-crimenet-crimson', desc: '9 Intersection signal controllers' },
-                    { key: 'heatmap', label: 'Crime Heatmap', icon: Flame, color: 'text-rose-400', desc: 'Geospatial crime & incident density' },
-                    { key: 'buildings', label: '3D Extrusions', icon: Building2, color: 'text-blue-400', desc: '3D Building footprints & heights' },
-                    { key: 'trajectories', label: 'Trajectories', icon: Zap, color: 'text-crimenet-cyan', desc: 'Suspect transit corridors' },
-                    { key: 'locations', label: 'Location Hubs', icon: MapPin, color: 'text-emerald-400', desc: '38 Regional jurisdiction points' },
-                    { key: 'events', label: 'Timeline Events', icon: Activity, color: 'text-purple-400', desc: 'Timeline incident & sighting markers' },
-                    { key: 'traffic', label: 'Traffic Density', icon: Target, color: 'text-yellow-400', desc: 'Real-time traffic flow velocity' },
-                  ].map(({ key, label, icon: Icon, color, desc }) => {
-                    const isActive = layers[key as keyof typeof layers];
-                    return (
-                      <button
-                        key={key}
-                        onClick={() => toggleLayer(key)}
-                        title={desc}
-                        className={`chip-3d p-2 rounded-lg text-left text-[10px] font-mono transition-all flex items-center justify-between ${
-                          isActive
-                            ? 'bg-white/15 border-white/30 text-white shadow-md'
-                            : 'bg-black/40 border-white/5 text-crimenet-muted hover:text-white hover:bg-white/5'
-                        }`}
-                      >
-                        <div className="flex items-center gap-1.5 truncate">
-                          <Icon className={`w-3.5 h-3.5 ${color}`} />
-                          <span className="truncate">{label}</span>
+                <div className="grid grid-cols-4 gap-1.5 font-mono text-[10px]">
+                  {CITIES.map((c) => (
+                    <button
+                      key={c.name}
+                      onClick={() => flyToCity(c)}
+                      className={`btn-3d py-1.5 rounded-lg text-center transition-all ${
+                        activeCity === c.name
+                          ? 'bg-emerald-500/25 border-emerald-400 text-emerald-300 font-bold shadow-sm'
+                          : 'bg-black/50 border border-white/5 text-white/70 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 3D CCTV Optical Surveillance Monitor Deck */}
+              <div className="space-y-2 pt-2 border-t border-white/10">
+                <div className="text-[10px] font-mono font-bold text-crimenet-muted uppercase tracking-wider flex items-center justify-between">
+                  <span className="flex items-center gap-1.5">
+                    <Monitor className="w-3.5 h-3.5 text-amber-400" />
+                    3D CCTV Surveillance Feeds
+                  </span>
+                  <span className="px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-mono text-[8px] font-bold">
+                    LIVE
+                  </span>
+                </div>
+
+                <div className="space-y-2">
+                  {MUMBAI_STREETS.map((st) => (
+                    <div
+                      key={st.id}
+                      onClick={() => flyToStreet(st)}
+                      className={`btn-3d p-2.5 rounded-xl border text-left cursor-pointer transition-all flex items-center justify-between group ${
+                        activeStreet === st.name
+                          ? 'bg-amber-500/20 border-amber-400/60 shadow-lg text-white'
+                          : 'bg-black/50 border-white/10 text-white/80 hover:bg-white/10'
+                      }`}
+                    >
+                      <div>
+                        <div className="font-bold text-xs group-hover:text-amber-300 transition-colors flex items-center gap-1.5 font-mono">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                          {st.name}
                         </div>
-                        <span className={`w-2 h-2 rounded-full shrink-0 transition-colors ${isActive ? 'bg-emerald-400 shadow-[0_0_6px_#10B981]' : 'bg-white/20'}`} />
-                      </button>
-                    );
-                  })}
+                        <div className="text-[9px] font-mono text-crimenet-muted mt-0.5">{st.desc}</div>
+                      </div>
+                      <span className="text-[9px] font-mono px-2 py-1 rounded bg-black/60 border border-white/10 text-crimenet-cyan font-bold">
+                        ZOOM 3D
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
 

@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { GlassPanel } from '@/components/panels/glass-panel';
+import { TiltCard3D } from '@/components/shared/tilt-card-3d';
 import { 
   Server, Shield, Activity, RefreshCw, Terminal, CheckCircle2, 
   AlertTriangle, AlertCircle, Play, Pause, Trash2, Key, Database,
-  Cpu, HardDrive, Wifi, Zap, UserCheck, UserX, ShieldAlert, Sparkles
+  Cpu, HardDrive, Wifi, Zap, UserCheck, UserX, ShieldAlert, Sparkles,
+  Layers, Lock, Radio, Flame, Award, ChevronRight
 } from 'lucide-react';
 import { api } from '@/lib/api';
 
@@ -34,6 +36,66 @@ interface TelemetryLog {
   message: string;
 }
 
+// 4 Server Blades for 3D Rack
+interface ServerBlade {
+  id: string;
+  name: string;
+  slot: string;
+  role: string;
+  cpuPct: number;
+  ramPct: number;
+  tempC: number;
+  status: 'OPTIMAL' | 'NOMINAL' | 'HIGH_LOAD';
+  ledColor: 'emerald' | 'cyan' | 'amber' | 'blue';
+}
+
+const SERVER_BLADES: ServerBlade[] = [
+  {
+    id: 'BLADE-01',
+    name: 'FastAPI Gateway Engine',
+    slot: 'U01-U02',
+    role: 'API Routing & Microservice Bus',
+    cpuPct: 18,
+    ramPct: 34,
+    tempC: 41,
+    status: 'OPTIMAL',
+    ledColor: 'emerald',
+  },
+  {
+    id: 'BLADE-02',
+    name: 'Louvain Graph Centrality Array',
+    slot: 'U03-U04',
+    role: 'Mathematical Eigen & Betweenness Compute',
+    cpuPct: 44,
+    ramPct: 62,
+    tempC: 48,
+    status: 'NOMINAL',
+    ledColor: 'cyan',
+  },
+  {
+    id: 'BLADE-03',
+    name: 'Section 63 BSA Hardware Crypto Module (HSM)',
+    slot: 'U05-U06',
+    role: 'Tamper-Evident SHA-256 Digest Signing',
+    cpuPct: 12,
+    ramPct: 28,
+    tempC: 38,
+    status: 'OPTIMAL',
+    ledColor: 'emerald',
+  },
+  {
+    id: 'BLADE-04',
+    name: 'Urban CCTV Optical Telemetry Ingestion',
+    slot: 'U07-U08',
+    role: 'HLS Live Camera Stream Feeds & Edge Pings',
+    cpuPct: 68,
+    ramPct: 78,
+    tempC: 54,
+    status: 'HIGH_LOAD',
+    ledColor: 'amber',
+  },
+];
+
 const INITIAL_PROBES: HealthProbe[] = [
   { service: 'FastAPI Core Gateway', endpoint: '/api/v1/cases/CNX-2026-041', status: 'ONLINE', latencyMs: 14 },
   { service: 'Graph Centrality Engine', endpoint: '/api/v1/analytics/centrality', status: 'ONLINE', latencyMs: 22 },
@@ -48,7 +110,7 @@ const INITIAL_OPERATORS: OperatorSession[] = [
 ];
 
 const INITIAL_LOGS: TelemetryLog[] = [
-  { id: 'LOG-9401', timestamp: '12:04:18', severity: 'INFO', service: 'AUTH', message: 'Cryptographic token session validated for operator OP-01 (Level 5 Clearance)' },
+  { id: 'LOG-9401', timestamp: '12:04:18', severity: 'INFO', service: 'AUTH', message: 'Cryptographic token session validated for operator OP-01 Devansh Savla (Level 5 Clearance)' },
   { id: 'LOG-9402', timestamp: '12:04:22', severity: 'INFO', service: 'GRAPH', message: 'Louvain community partitioning converged in 18ms across 379 nodes' },
   { id: 'LOG-9403', timestamp: '12:04:35', severity: 'WARNING', service: 'CCTV-STREET', message: 'Stream CAM-MUM-001 frame jitter detected: recovered via secondary HLS proxy' },
   { id: 'LOG-9404', timestamp: '12:04:48', severity: 'INFO', service: 'GEO', message: 'Corridor Bandra-Worli Sea Link synchronization active: 18 signals phased' },
@@ -64,6 +126,7 @@ export default function AdminPage() {
   const [telemetryLogs, setTelemetryLogs] = useState<TelemetryLog[]>(INITIAL_LOGS);
   const [telemetryFilter, setTelemetryFilter] = useState<'ALL' | 'INFO' | 'WARNING' | 'CRITICAL'>('ALL');
   const [isStreamPaused, setIsStreamPaused] = useState(false);
+  const [selectedBlade, setSelectedBlade] = useState<ServerBlade>(SERVER_BLADES[0]);
 
   // Auto-generate live telemetry events
   useEffect(() => {
@@ -182,34 +245,37 @@ export default function AdminPage() {
   });
 
   return (
-    <div className="h-full p-6 space-y-4 overflow-y-auto scrollbar-dark bg-[#030406]">
-      {/* Top Warning & Operational Status Banner */}
-      <div className="glass-card p-4 rounded-xl flex flex-col md:flex-row items-center justify-between border-l-4 border-crimenet-cyan gap-4 card-3d shadow-xl">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-crimenet-cyan/15 border border-crimenet-cyan/35 flex items-center justify-center text-crimenet-cyan">
-            <Server className="w-5 h-5" />
+    <div className="h-full p-6 space-y-5 overflow-y-auto scrollbar-dark bg-[#030406]">
+      
+      {/* ── TOP HEADER (3D RIG) ── */}
+      <TiltCard3D glowColor="cyan" maxTilt={2} className="rounded-2xl shrink-0">
+        <div className="glass-card p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between border-l-4 border-crimenet-cyan gap-4 depth-3d-box neon-depth-cyan shadow-xl bg-[#060D1A]/90">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-crimenet-cyan/15 border border-crimenet-cyan/35 flex items-center justify-center text-crimenet-cyan shadow-[0_0_15px_rgba(0,212,255,0.3)]">
+              <Server className="w-5 h-5 animate-pulse" />
+            </div>
+            <div>
+              <h1 className="text-sm font-bold text-white tracking-widest uppercase flex items-center gap-2 font-mono">
+                3D INFRASTRUCTURE TELEMETRY & OPERATIONS CONSOLE
+              </h1>
+              <p className="text-[11px] text-crimenet-muted font-mono mt-0.5">
+                HIGH-AVAILABILITY CLUSTER · LEVEL 5 SUPERVISORY ROOT · DEV: DEVANSH SAVLA & AYAAN MUKKADAM
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-sm font-bold text-white tracking-widest uppercase flex items-center gap-2 font-mono">
-              SYSTEM OPERATIONS & TELEMETRY CONSOLE
-            </h1>
-            <p className="text-[11px] text-crimenet-muted font-mono mt-0.5">
-              SIH26189 · HIGH-AVAILABILITY CLUSTER · REAL-TIME DIAGNOSTIC REASONING
-            </p>
-          </div>
-        </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={runLiveDiagnostics}
-            disabled={isTestingProbes}
-            className="btn-3d px-4 py-2 rounded-lg bg-crimenet-cyan/20 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/40 text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(0,212,255,0.3)] disabled:opacity-50"
-          >
-            <RefreshCw className={`w-3.5 h-3.5 ${isTestingProbes ? 'animate-spin' : ''}`} />
-            {isTestingProbes ? 'TESTING PROBES...' : 'RUN LIVE DIAGNOSTICS'}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={runLiveDiagnostics}
+              disabled={isTestingProbes}
+              className="btn-3d px-4 py-2 rounded-xl bg-crimenet-cyan/20 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/40 text-xs font-mono font-bold flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(0,212,255,0.3)] disabled:opacity-50"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isTestingProbes ? 'animate-spin' : ''}`} />
+              {isTestingProbes ? 'TESTING PROBES...' : 'RUN LIVE DIAGNOSTICS'}
+            </button>
+          </div>
         </div>
-      </div>
+      </TiltCard3D>
 
       {/* Action Feedback Notice */}
       {actionNotice && (
@@ -219,15 +285,213 @@ export default function AdminPage() {
         </div>
       )}
 
-      {/* Row 1: Real-time Health Probes & Maintenance Controls */}
+      {/* ── ROW 1: 3D ISOMETRIC BLADE SERVER RACK VISUALIZER (HERO 3D FEATURE) ── */}
+      <TiltCard3D glowColor="cyan" maxTilt={3} className="rounded-2xl">
+        <GlassPanel className="p-5 depth-3d-box neon-depth-cyan border-crimenet-cyan/30 bg-[#060D1A]/90">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 uppercase">
+                  HARDWARE 3D TELEMETRY
+                </span>
+                <span className="text-xs text-white/50 font-mono">42U ISOMETRIC BLADE ENCLOSURE</span>
+              </div>
+              <h2 className="text-base font-bold text-white tracking-wide mt-1 flex items-center gap-2">
+                <Layers className="w-4 h-4 text-crimenet-cyan" /> ISOMETRIC HIGH-DENSITY BLADE SERVER RACK
+              </h2>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs font-mono text-white/70">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span>CHASSIS TEMPERATURE: 42.4°C · REDUNDANT PSU ACTIVE</span>
+            </div>
+          </div>
+
+          {/* 4-Blade Enclosure Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            {SERVER_BLADES.map((blade) => {
+              const isSelected = selectedBlade.id === blade.id;
+
+              return (
+                <div
+                  key={blade.id}
+                  onClick={() => setSelectedBlade(blade)}
+                  className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer text-left relative overflow-hidden ${
+                    isSelected
+                      ? 'bg-gradient-to-b from-white/10 via-black/90 to-black/95 border-crimenet-cyan shadow-[0_0_20px_rgba(0,212,255,0.3)] scale-[1.02]'
+                      : 'bg-black/60 border-white/10 hover:border-white/30 hover:bg-white/5'
+                  }`}
+                >
+                  {/* Slot & LED Activity */}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono font-bold text-crimenet-muted">{blade.slot}</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`w-2 h-2 rounded-full ${
+                        blade.ledColor === 'emerald' ? 'bg-emerald-400 animate-pulse shadow-[0_0_8px_#10B981]'
+                        : blade.ledColor === 'amber' ? 'bg-amber-400 animate-pulse shadow-[0_0_8px_#F59E0B]'
+                        : 'bg-cyan-400 animate-pulse shadow-[0_0_8px_#00D4FF]'
+                      }`} />
+                      <span className="text-[9px] font-mono font-bold text-white/60">{blade.status}</span>
+                    </div>
+                  </div>
+
+                  <div className="text-sm font-bold text-white truncate">{blade.name}</div>
+                  <div className="text-[10px] text-crimenet-muted font-mono truncate mb-3">{blade.role}</div>
+
+                  {/* Telemetry Metric Bars */}
+                  <div className="space-y-2 text-[10px] font-mono">
+                    <div>
+                      <div className="flex justify-between text-white/70 mb-0.5">
+                        <span>CPU COMPUTE</span>
+                        <span className="text-crimenet-cyan font-bold">{blade.cpuPct}%</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-black rounded-full overflow-hidden border border-white/10">
+                        <div 
+                          className="h-full bg-gradient-to-r from-blue-500 to-crimenet-cyan"
+                          style={{ width: `${blade.cpuPct}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-white/70 mb-0.5">
+                        <span>RAM BUFFER</span>
+                        <span className="text-emerald-400 font-bold">{blade.ramPct}%</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-black rounded-full overflow-hidden border border-white/10">
+                        <div 
+                          className="h-full bg-gradient-to-r from-teal-500 to-emerald-400"
+                          style={{ width: `${blade.ramPct}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between text-white/50 pt-1 border-t border-white/5">
+                      <span>DIE TEMP: {blade.tempC}°C</span>
+                      <span className="text-crimenet-cyan font-bold">{blade.id}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </GlassPanel>
+      </TiltCard3D>
+
+      {/* ── ROW 2: 3D HOLOGRAPHIC LEVEL 5 SUPERVISORY CREDENTIALS (DEVANSH & AYAAN) ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Devansh Savla ID Card */}
+        <TiltCard3D glowColor="cyan" maxTilt={5} className="rounded-2xl">
+          <div className="p-5 rounded-2xl bg-gradient-to-br from-black/90 via-[#071322] to-black/95 border border-crimenet-cyan/40 depth-3d-box neon-depth-cyan shadow-xl relative overflow-hidden">
+            {/* Holographic Specular Glare Background */}
+            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-cyan-500/10 blur-2xl pointer-events-none" />
+
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center font-bold text-base text-cyan-300 shadow-[0_0_20px_rgba(0,212,255,0.4)]">
+                  DS
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base font-bold text-white">Devansh Savla</h3>
+                    <span className="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-crimenet-crimson/20 text-crimenet-crimson border border-crimenet-crimson/40">
+                      LEVEL 5 ROOT
+                    </span>
+                  </div>
+                  <p className="text-xs text-crimenet-cyan font-mono mt-0.5">
+                    Principal Investigator & Lead System Architect
+                  </p>
+                </div>
+              </div>
+
+              <span className="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-emerald-400 font-bold flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3" /> ACTIVE SESSION
+              </span>
+            </div>
+
+            <div className="p-3 rounded-xl bg-black/60 border border-white/5 space-y-1.5 font-mono text-xs mb-3">
+              <div className="flex justify-between text-white/70">
+                <span>OPERATOR ID:</span>
+                <span className="text-white font-bold">OP-01 · DEVANSH-ROOT</span>
+              </div>
+              <div className="flex justify-between text-white/70">
+                <span>CLEARANCE MATRIX:</span>
+                <span className="text-amber-400 font-bold">UNRESTRICTED COURT EXPORT (§63 BSA)</span>
+              </div>
+              <div className="flex justify-between text-white/70">
+                <span>CRYPTOGRAPHIC ROLE:</span>
+                <span className="text-emerald-400 font-bold">SHA-256 ROOT KEYHOLDER</span>
+              </div>
+            </div>
+
+            <div className="text-[10px] font-mono text-white/50 flex items-center justify-between">
+              <span>MEMBER: NATIONAL CYBER INTELLIGENCE DEFENSE</span>
+              <span className="text-cyan-300">AUTHORIZED FOR TRIAL BRIEFINGS</span>
+            </div>
+          </div>
+        </TiltCard3D>
+
+        {/* Ayaan Mukkadam ID Card */}
+        <TiltCard3D glowColor="purple" maxTilt={5} className="rounded-2xl">
+          <div className="p-5 rounded-2xl bg-gradient-to-br from-black/90 via-[#150924] to-black/95 border border-purple-500/40 depth-3d-box shadow-xl relative overflow-hidden">
+            {/* Holographic Specular Glare Background */}
+            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-purple-500/10 blur-2xl pointer-events-none" />
+
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400 flex items-center justify-center font-bold text-base text-purple-300 shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+                  AM
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base font-bold text-white">Ayaan Mukkadam</h3>
+                    <span className="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-crimenet-crimson/20 text-crimenet-crimson border border-crimenet-crimson/40">
+                      LEVEL 5 ROOT
+                    </span>
+                  </div>
+                  <p className="text-xs text-purple-300 font-mono mt-0.5">
+                    Core Tactical Intelligence Officer & Lead Forensic Analyst
+                  </p>
+                </div>
+              </div>
+
+              <span className="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-emerald-400 font-bold flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3" /> ACTIVE SESSION
+              </span>
+            </div>
+
+            <div className="p-3 rounded-xl bg-black/60 border border-white/5 space-y-1.5 font-mono text-xs mb-3">
+              <div className="flex justify-between text-white/70">
+                <span>OPERATOR ID:</span>
+                <span className="text-white font-bold">OP-02 · AYAAN-FORENSIC</span>
+              </div>
+              <div className="flex justify-between text-white/70">
+                <span>CLEARANCE MATRIX:</span>
+                <span className="text-amber-400 font-bold">OPTICAL SURVEILLANCE & PMLA SEIZURE</span>
+              </div>
+              <div className="flex justify-between text-white/70">
+                <span>CRYPTOGRAPHIC ROLE:</span>
+                <span className="text-purple-400 font-bold">CHAIN-OF-CUSTODY CUSTODIAN</span>
+              </div>
+            </div>
+
+            <div className="text-[10px] font-mono text-white/50 flex items-center justify-between">
+              <span>MEMBER: NATIONAL CYBER INTELLIGENCE DEFENSE</span>
+              <span className="text-purple-300">AUTHORIZED FOR INTERPOL NOTICES</span>
+            </div>
+          </div>
+        </TiltCard3D>
+      </div>
+
+      {/* Row 3: Real-time Health Probes & Maintenance Controls */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Real-time Subsystem Health Probes */}
-        <GlassPanel title="REAL-TIME SUBSYSTEM HEALTH PROBES" className="lg:col-span-2 card-3d">
+        <GlassPanel title="REAL-TIME SUBSYSTEM HEALTH PROBES" className="lg:col-span-2 depth-3d-box">
           <div className="space-y-2.5">
             {probes.map((probe) => (
               <div
                 key={probe.service}
-                className="p-3 rounded-lg bg-black/40 border border-white/5 flex items-center justify-between gap-3 hover:border-crimenet-cyan/30 transition-all card-3d"
+                className="p-3 rounded-lg bg-black/40 border border-white/5 flex items-center justify-between gap-3 hover:border-crimenet-cyan/30 transition-all"
               >
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
@@ -249,7 +513,7 @@ export default function AdminPage() {
         </GlassPanel>
 
         {/* Dynamic Maintenance Actions */}
-        <GlassPanel title="SYSTEM MAINTENANCE & OPERATIONS" className="card-3d">
+        <GlassPanel title="SYSTEM MAINTENANCE & OPERATIONS" className="depth-3d-box">
           <div className="space-y-2.5 text-xs">
             <button
               onClick={handleFlushCache}
@@ -293,70 +557,8 @@ export default function AdminPage() {
         </GlassPanel>
       </div>
 
-      {/* Row 2: Active Operator Sessions & Clearance Control */}
-      <GlassPanel title="ACTIVE INVESTIGATOR & OPERATOR SESSIONS" className="card-3d">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-sans border-collapse">
-            <thead>
-              <tr className="border-b border-white/10 text-crimenet-muted text-[10px] font-mono uppercase">
-                <th className="py-2.5 px-3">OPERATOR ID</th>
-                <th className="py-2.5 px-3">OFFICER NAME</th>
-                <th className="py-2.5 px-3">ROLE</th>
-                <th className="py-2.5 px-3">SECURITY CLEARANCE</th>
-                <th className="py-2.5 px-3">INTERNAL IP</th>
-                <th className="py-2.5 px-3">LAST ACTIVE</th>
-                <th className="py-2.5 px-3 text-right">SESSION CONTROLS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {operators.map((op) => (
-                <tr key={op.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="py-2.5 px-3 font-mono font-bold text-crimenet-cyan">{op.id}</td>
-                  <td className="py-2.5 px-3 font-semibold text-white">{op.name}</td>
-                  <td className="py-2.5 px-3 text-crimenet-muted">{op.role}</td>
-                  <td className="py-2.5 px-3">
-                    <span className={`px-2 py-0.5 rounded font-mono text-[9px] font-bold border ${
-                      op.clearance.includes('Level 5')
-                        ? 'bg-crimenet-crimson/20 text-crimenet-crimson border-crimenet-crimson/40'
-                        : op.clearance.includes('Level 4')
-                        ? 'bg-amber-500/20 text-amber-400 border-amber-500/40'
-                        : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
-                    }`}>
-                      {op.clearance}
-                    </span>
-                  </td>
-                  <td className="py-2.5 px-3 font-mono text-[11px] text-white/70">{op.ip}</td>
-                  <td className="py-2.5 px-3 text-crimenet-muted text-[11px]">{op.lastActive}</td>
-                  <td className="py-2.5 px-3 text-right">
-                    <div className="flex items-center justify-end gap-1.5">
-                      <button
-                        onClick={() => handleElevateRole(op.id)}
-                        className="btn-3d px-2.5 py-1 rounded bg-white/5 hover:bg-white/15 text-crimenet-cyan border border-white/10 text-[10px] font-mono transition-all"
-                        title="Cycle Clearance Level"
-                      >
-                        Elevate Role
-                      </button>
-                      <button
-                        onClick={() => handleToggleSession(op.id)}
-                        className={`btn-3d px-2.5 py-1 rounded text-[10px] font-mono transition-all border ${
-                          op.status === 'ACTIVE'
-                            ? 'bg-crimenet-crimson/15 hover:bg-crimenet-crimson/30 text-crimenet-crimson border-crimenet-crimson/30'
-                            : 'bg-emerald-500/15 hover:bg-emerald-500/30 text-emerald-400 border-emerald-500/30'
-                        }`}
-                      >
-                        {op.status === 'ACTIVE' ? 'Terminate' : 'Reactivate'}
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </GlassPanel>
-
-      {/* Row 3: Live System Telemetry Stream */}
-      <GlassPanel title="REAL-TIME INTELLIGENCE TELEMETRY STREAM" className="card-3d">
+      {/* Row 4: Live System Telemetry Stream */}
+      <GlassPanel title="REAL-TIME INTELLIGENCE TELEMETRY STREAM" className="depth-3d-box">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 mb-3">
           <div className="flex items-center gap-1.5">
             {(['ALL', 'INFO', 'WARNING', 'CRITICAL'] as const).map((sev) => (
@@ -427,4 +629,3 @@ export default function AdminPage() {
     </div>
   );
 }
-
