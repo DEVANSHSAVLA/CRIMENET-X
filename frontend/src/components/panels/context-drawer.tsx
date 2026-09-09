@@ -640,19 +640,41 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
             </div>
 
             {/* Action Buttons */}
-            <div className="grid grid-cols-2 gap-2 pt-2">
-              <button 
-                onClick={() => onAction && onAction('FOCUS_NETWORK', data.id)}
-                className="py-2 px-3 rounded bg-crimenet-cyan/10 hover:bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/30 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
-              >
-                <Network className="w-3.5 h-3.5" /> View Network
-              </button>
-              <button 
-                onClick={() => onAction && onAction('ASK_AI_EXPLANATION', data.id)}
-                className="py-2 px-3 rounded bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
-              >
-                <Shield className="w-3.5 h-3.5 text-crimenet-amber" /> Evidence Findings
-              </button>
+            <div className="space-y-2 pt-2 border-t border-white/10">
+              <div className="grid grid-cols-2 gap-2">
+                <button 
+                  onClick={() => onAction && onAction('FOCUS_NETWORK', data.id)}
+                  className="btn-3d py-2 px-3 rounded-xl bg-crimenet-cyan/15 hover:bg-crimenet-cyan/25 text-crimenet-cyan border border-crimenet-cyan/35 text-xs font-mono font-bold flex items-center justify-center gap-1.5 transition-all shadow-[0_0_10px_rgba(0,212,255,0.2)]"
+                >
+                  <Network className="w-3.5 h-3.5" /> View Network
+                </button>
+                <button 
+                  onClick={() => onAction && onAction('FOCUS_MAP_LOCATION', {
+                    lat: data.lat,
+                    lng: data.lng,
+                    city: data.primary_city,
+                    name: data.name
+                  })}
+                  className="btn-3d py-2 px-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/35 text-xs font-mono font-bold flex items-center justify-center gap-1.5 transition-all shadow-[0_0_10px_rgba(16,185,129,0.2)]"
+                >
+                  <MapPin className="w-3.5 h-3.5" /> Locate on 3D Map
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2">
+                <button 
+                  onClick={() => onAction && onAction('ASK_AI_EXPLANATION', data.id)}
+                  className="btn-3d py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-mono font-semibold flex items-center justify-center gap-1.5 transition-all"
+                >
+                  <Shield className="w-3.5 h-3.5 text-crimenet-amber" /> AI Findings
+                </button>
+                <button 
+                  onClick={() => onAction && onAction('NAVIGATE_TIMELINE', data.id)}
+                  className="btn-3d py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-mono font-semibold flex items-center justify-center gap-1.5 transition-all"
+                >
+                  <Clock className="w-3.5 h-3.5 text-purple-400" /> Sightings
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -1792,7 +1814,13 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
                 <Clock className="w-3.5 h-3.5" /> View in Timeline
               </button>
               <button 
-                onClick={() => onAction && onAction('FOCUS_MAP_LOCATION', { location_id: data.location_id })}
+                onClick={() => onAction && onAction('FOCUS_MAP_LOCATION', { 
+                  location_id: data.location_id,
+                  lat: data.lat,
+                  lng: data.lng,
+                  city: data.location_city,
+                  name: data.location_name || data.location_city
+                })}
                 className="py-2 px-3 rounded bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
               >
                 <MapPin className="w-3.5 h-3.5" /> Focus Location

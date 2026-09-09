@@ -34,6 +34,8 @@ export default function TimelinePage() {
     selectEntity, 
     selectEvent, 
     selectedEvent, 
+    selectLocation,
+    dispatchAction,
     timelineCursor, 
     setTimelineCursor,
     isTimelinePlaying,
@@ -331,9 +333,33 @@ export default function TimelinePage() {
                   {/* Location & Provenance Footer */}
                   <div className="flex items-center justify-between text-[10px] font-mono text-crimenet-muted mt-2 pt-2 border-t border-white/5">
                     <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1 text-white/80">
-                        <MapPin className="w-3 h-3 text-emerald-400" /> {ev.location_name || ev.location_city || 'Jurisdictional Point'}
-                      </span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (ev.location_id) {
+                            selectLocation({
+                              id: ev.location_id,
+                              name: ev.location_name || ev.location_city || 'Jurisdictional Hub',
+                              city: ev.location_city || 'India',
+                              lat: ev.lat || 18.9438,
+                              lng: ev.lng || 72.8233,
+                              risk_level: 'HIGH',
+                            } as any);
+                          } else {
+                            dispatchAction('FOCUS_MAP_LOCATION', {
+                              lat: ev.lat,
+                              lng: ev.lng,
+                              city: ev.location_city,
+                              name: ev.location_name || ev.location_city,
+                            });
+                          }
+                        }}
+                        className="chip-3d flex items-center gap-1 text-white/90 hover:text-emerald-400 p-1 -m-1 rounded hover:bg-white/5 transition-all cursor-pointer font-bold"
+                        title="Click to focus on 3D Geospatial Map"
+                      >
+                        <MapPin className="w-3 h-3 text-emerald-400" />
+                        <span>{ev.location_name || ev.location_city || 'Jurisdictional Point'}</span>
+                      </button>
                       <span>{ev.source}</span>
                     </div>
 

@@ -91,6 +91,8 @@ export interface TimelineEvent {
   location_id: string;
   location_name?: string;
   location_city?: string;
+  lat?: number;
+  lng?: number;
   entities: string[];
   confidence: number;
   source: string;

@@ -107,7 +107,7 @@ export default function NetworkPage() {
   const cyRef = useRef<Core | null>(null);
   const layoutRef = useRef<any>(null);
 
-  const { selectedEntityId, selectEntity } = useInvestigation();
+  const { selectedEntityId, selectEntity, dispatchAction } = useInvestigation();
   const selectEntityRef = useRef(selectEntity);
   selectEntityRef.current = selectEntity;
 
@@ -883,6 +883,34 @@ export default function NetworkPage() {
                 <span className="text-crimenet-muted block">CONFIDENCE:</span>
                 <span className="text-emerald-400 font-bold">{(selectedEdge.confidence * 100).toFixed(0)}% VERIFIED</span>
               </div>
+            </div>
+
+            {/* Interactive Node Drilldown & AI Corroboration */}
+            <div className="space-y-2 pt-1 border-t border-white/10">
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => selectEntityRef.current(selectedEdge.source)}
+                  className="btn-3d py-2 px-2.5 rounded-xl bg-white/5 hover:bg-crimenet-cyan/20 text-white hover:text-crimenet-cyan border border-white/10 hover:border-crimenet-cyan/40 text-[10px] font-mono font-bold flex items-center justify-center gap-1 transition-all"
+                >
+                  <span className="truncate">SOURCE: {selectedEdge.source}</span>
+                  <ChevronRight className="w-3 h-3 shrink-0" />
+                </button>
+                <button
+                  onClick={() => selectEntityRef.current(selectedEdge.target)}
+                  className="btn-3d py-2 px-2.5 rounded-xl bg-white/5 hover:bg-crimenet-cyan/20 text-white hover:text-crimenet-cyan border border-white/10 hover:border-crimenet-cyan/40 text-[10px] font-mono font-bold flex items-center justify-center gap-1 transition-all"
+                >
+                  <span className="truncate">TARGET: {selectedEdge.target}</span>
+                  <ChevronRight className="w-3 h-3 shrink-0" />
+                </button>
+              </div>
+
+              <button
+                onClick={() => dispatchAction('ASK_AI_EXPLANATION', `${selectedEdge.source} and ${selectedEdge.target}`)}
+                className="w-full btn-3d py-2 px-3 rounded-xl bg-crimenet-cyan/15 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/40 text-[10px] font-mono font-bold flex items-center justify-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,212,255,0.25)]"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-crimenet-cyan" />
+                <span>AI CORROBORATION & TIE ANALYSIS</span>
+              </button>
             </div>
           </div>
         </div>

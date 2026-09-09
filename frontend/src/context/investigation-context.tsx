@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { api } from '@/lib/api';
 import type { 
   Person, Camera, TrafficSignal, Location, EvidenceRecord, TimelineEvent,
@@ -56,6 +56,7 @@ interface InvestigationContextType {
     arcs: boolean;
   };
   toggleLayer: (layerKey: string) => void;
+  setLayer: (layerKey: string, value: boolean) => void;
 
   // Modals
   isCompareOpen: boolean;
@@ -63,7 +64,7 @@ interface InvestigationContextType {
   isReportOpen: boolean;
   setIsReportOpen: (open: boolean) => void;
   compareEntities: [Person | null, Person | null];
-  setCompareEntities: (entities: [Person | null, Person | null]) => void;
+  setCompareEntities: React.Dispatch<React.SetStateAction<[Person | null, Person | null]>>;
 
   // Active Cross-Module Filters
   activeFilters: {
@@ -86,7 +87,7 @@ interface InvestigationContextType {
 
   // Map Focus Target
   mapFocusTarget: { lat: number; lng: number; zoom?: number; timestamp: number } | null;
-  setMapFocusTarget: (target: { lat: number; lng: number; zoom?: number; timestamp: number } | null) => void;
+  setMapFocusTarget: React.Dispatch<React.SetStateAction<{ lat: number; lng: number; zoom?: number; timestamp: number } | null>>;
 
   // AI & Voice Coordination
   pendingAiQuery: string | null;
@@ -99,7 +100,6 @@ interface InvestigationContextType {
   setDisambiguationState: (state: { query: string; options: any[] } | null) => void;
   sensitiveConfirmation: { message: string; action: string; payload: any } | null;
   setSensitiveConfirmation: (state: { message: string; action: string; payload: any } | null) => void;
-  setLayer: (layerKey: string, value: boolean) => void;
   dispatchAction: (action: string, payload: any) => void;
 }
 
@@ -107,6 +107,7 @@ const InvestigationContext = createContext<InvestigationContextType | undefined>
 
 export function InvestigationProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
   const currentSelectionSeqRef = useRef<number>(0);
 
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>('P-001');
@@ -448,24 +449,58 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         break;
       }
       case 'FOCUS_MAP_LOCATION': {
-        if (payload?.lat && payload?.lng) {
+        let targetLat = payload?.lat;
+        let targetLng = payload?.lng;
+        let targetZoom = payload?.zoom || 14.5;
+
+        // Automatically resolve coordinates from city, location name or location_id if lat/lng not provided
+        if ((!targetLat || !targetLng) && (payload?.city || payload?.name || payload?.location_id)) {
+          const key = (payload.city || payload.name || payload.location_id || '').toLowerCase();
+          if (key.includes('mumbai') || key.includes('andheri') || key.includes('bandra') || key.includes('colaba') || key.includes('dharavi') || key.includes('dadar') || key.includes('kurla')) {
+            targetLat = 18.9438; targetLng = 72.8233;
+          } else if (key.includes('delhi') || key.includes('connaught') || key.includes('chandni') || key.includes('saket') || key.includes('dwarka') || key.includes('karol')) {
+            targetLat = 28.6139; targetLng = 77.2090;
+          } else if (key.includes('pune') || key.includes('kothrud') || key.includes('hinjewadi') || key.includes('shivajinagar') || key.includes('koregaon')) {
+            targetLat = 18.5204; targetLng = 73.8567;
+          } else if (key.includes('dubai') || key.includes('uae')) {
+            targetLat = 25.2048; targetLng = 55.2708; targetZoom = 6.0;
+          } else if (key.includes('london') || key.includes('uk')) {
+            targetLat = 51.5074; targetLng = -0.1278; targetZoom = 6.0;
+          } else if (key.includes('toronto') || key.includes('canada')) {
+            targetLat = 43.6532; targetLng = -79.3832; targetZoom = 6.0;
+          } else if (key.includes('new york') || key.includes('usa') || key.includes('united states')) {
+            targetLat = 40.7128; targetLng = -74.0060; targetZoom = 6.0;
+          } else if (key.includes('singapore')) {
+            targetLat = 1.3521; targetLng = 103.8198; targetZoom = 6.0;
+          } else if (key.includes('kathmandu') || key.includes('nepal')) {
+            targetLat = 27.7172; targetLng = 85.3240; targetZoom = 6.0;
+          } else if (key.includes('bangkok') || key.includes('thailand')) {
+            targetLat = 13.7563; targetLng = 100.5018; targetZoom = 6.0;
+          } else {
+            targetLat = 18.9438; targetLng = 72.8233;
+          }
+        }
+
+        if (targetLat && targetLng) {
           setMapFocusTarget({
-            lat: payload.lat,
-            lng: payload.lng,
-            zoom: payload.zoom || 14.5,
+            lat: targetLat,
+            lng: targetLng,
+            zoom: targetZoom,
             timestamp: Date.now(),
           });
-          if (payload.camera) {
+          if (payload?.camera) {
             setSelectedCamera(payload.camera);
             setCameraRadius({
-              lat: payload.lat,
-              lng: payload.lng,
+              lat: targetLat,
+              lng: targetLng,
               radiusM: payload.camera.coverage_radius_m || 350,
             });
             openDrawer('CAMERA', payload.camera);
           }
         }
-        router.push('/command-center');
+        if (pathname !== '/command-center' && pathname !== '/geo-intelligence') {
+          router.push('/command-center');
+        }
         setVoiceFeedbackNotice(`✓ Focused map on ${payload?.city || payload?.name || 'target'}`);
         break;
       }
@@ -475,7 +510,9 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
             ? { ...prev, zoom: Math.min(18, (prev.zoom || 12) + 2), timestamp: Date.now() }
             : { lat: 18.9438, lng: 72.8233, zoom: 14.5, timestamp: Date.now() }
         );
-        router.push('/command-center');
+        if (pathname !== '/command-center' && pathname !== '/geo-intelligence') {
+          router.push('/command-center');
+        }
         setVoiceFeedbackNotice('🔍 Zoomed In');
         break;
       }
@@ -485,7 +522,9 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
             ? { ...prev, zoom: Math.max(7, (prev.zoom || 12) - 2), timestamp: Date.now() }
             : { lat: 18.9438, lng: 72.8233, zoom: 10, timestamp: Date.now() }
         );
-        router.push('/command-center');
+        if (pathname !== '/command-center' && pathname !== '/geo-intelligence') {
+          router.push('/command-center');
+        }
         setVoiceFeedbackNotice('🔍 Zoomed Out');
         break;
       }
@@ -539,11 +578,22 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         router.push('/ai-investigator');
         break;
       }
+      case 'SELECT_EVENT': {
+        if (payload) {
+          selectEvent(payload);
+          setVoiceFeedbackNotice(`✓ Selected event ${payload.id || ''}`);
+        }
+        break;
+      }
       case 'RESET_VIEW': {
         setRiskFilter(null);
         setTimeYear(2026);
         clearFilters();
-        router.push('/command-center');
+        setMapFocusTarget({ lat: 18.9438, lng: 72.8233, zoom: 12.0, timestamp: Date.now() });
+        closeDrawer();
+        if (pathname !== '/command-center' && pathname !== '/geo-intelligence') {
+          router.push('/command-center');
+        }
         setVoiceFeedbackNotice('✓ Investigation view reset');
         break;
       }
@@ -552,6 +602,7 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
     }
   }, [
     router,
+    pathname,
     selectEntity,
     selectCamera,
     selectSignal,

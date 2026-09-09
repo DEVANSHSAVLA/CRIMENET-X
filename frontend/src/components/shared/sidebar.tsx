@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { 
   LayoutDashboard, 
@@ -30,6 +30,7 @@ const navItems = [
 ];
 
 export function Sidebar() {
+  const router = useRouter();
   const pathname = usePathname();
   const { isVoicePanelOpen, setIsVoicePanelOpen, dispatchAction } = useInvestigation();
 
@@ -100,15 +101,23 @@ export function Sidebar() {
         </div>
 
         {/* Operator Profile Card */}
-        <div className="card-3d p-2.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-crimenet-blue to-crimenet-cyan flex items-center justify-center text-black font-bold text-xs shadow-md shadow-cyan-500/20">
-            OP
+        <button
+          onClick={() => router.push('/admin')}
+          className="w-full card-3d p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 hover:border-crimenet-cyan/40 flex items-center gap-3 text-left transition-all group"
+          title="Open System Administration & User Clearance"
+        >
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-crimenet-blue to-crimenet-cyan flex items-center justify-center text-black font-bold text-xs shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform shrink-0">
+            DS
           </div>
           <div className="truncate">
-            <p className="text-xs font-semibold text-white truncate">Operator 01</p>
-            <p className="text-[10px] text-crimenet-cyan font-mono">Clearance: Level 5</p>
+            <p className="text-xs font-semibold text-white truncate group-hover:text-crimenet-cyan transition-colors">
+              Devansh S. & Ayaan M.
+            </p>
+            <p className="text-[10px] text-crimenet-cyan font-mono">
+              Clearance: Level 5 Admin
+            </p>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );
