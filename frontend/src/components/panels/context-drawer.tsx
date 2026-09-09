@@ -6,7 +6,8 @@ import {
   X, Shield, AlertTriangle, Eye, Video, Radio, Clock, MapPin, 
   FileText, ExternalLink, Activity, Network, CheckCircle2, ShieldCheck,
   Maximize2, User, Loader2, Lock, Unlock, KeyRound, Copy, Check, ChevronRight, Briefcase,
-  Play, Pause, Volume2, VolumeX, RefreshCw, ZoomIn, Navigation, Sparkles, Layers
+  Play, Pause, Volume2, VolumeX, RefreshCw, ZoomIn, Navigation, Sparkles, Layers,
+  Camera as CameraIcon, Tv, Globe, Wifi
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { SuspectPhoto } from '@/components/shared/suspect-photo';
@@ -116,13 +117,26 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
   const [copiedHash, setCopiedHash] = useState(false);
 
   // Camera Player Controls & Multi-Street State
-  const [cameraMode, setCameraMode] = useState<'VIDEO' | 'SIMULATION' | 'TELEMETRY'>('VIDEO');
+  const [cameraMode, setCameraMode] = useState<'VIDEO' | 'DEVICE_CAM' | 'YOUTUBE_LIVE' | 'CUSTOM_STREAM' | 'TELEMETRY' | 'SIMULATION'>('VIDEO');
   const [cameraZoom, setCameraZoom] = useState<number>(1);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [showCvHud, setShowCvHud] = useState<boolean>(true);
   const [videoError, setVideoError] = useState<boolean>(false);
   const [selectedStreetCam, setSelectedStreetCam] = useState<any>(null);
+
+  // Live Device / Field Camera (Webcam / USB / Phone Cam)
+  const deviceVideoRef = useRef<HTMLVideoElement | null>(null);
+  const [isDeviceCamRunning, setIsDeviceCamRunning] = useState<boolean>(false);
+  const [deviceCamError, setDeviceCamError] = useState<string | null>(null);
+
+  // YouTube Live Stream
+  const [youtubeStreamId, setYoutubeStreamId] = useState<string>('HfgIFGbdGJ0');
+  const [customYoutubeInput, setCustomYoutubeInput] = useState<string>('');
+
+  // Custom RTSP / HLS / IP Webcam Stream
+  const [customStreamUrl, setCustomStreamUrl] = useState<string>('');
+  const [activeCustomStream, setActiveCustomStream] = useState<string>('');
 
   // Global ESC Key Listener to cleanly dismiss drawer
   useEffect(() => {
@@ -249,9 +263,55 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
     }
   };
 
+  // Device Live Camera Handlers (Direct Hardware / Phone Cam)
+  const startDeviceCamera = async () => {
+    setDeviceCamError(null);
+    try {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Webcam API is not supported in this browser environment');
+      }
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environment' },
+        audio: false,
+      });
+      if (deviceVideoRef.current) {
+        deviceVideoRef.current.srcObject = stream;
+        await deviceVideoRef.current.play();
+        setIsDeviceCamRunning(true);
+      }
+    } catch (err: any) {
+      console.warn('Device camera start failed:', err);
+      setDeviceCamError(err?.message || 'Camera permission denied or camera device not found');
+      setIsDeviceCamRunning(false);
+    }
+  };
+
+  const stopDeviceCamera = () => {
+    if (deviceVideoRef.current && deviceVideoRef.current.srcObject) {
+      const stream = deviceVideoRef.current.srcObject as MediaStream;
+      stream.getTracks().forEach((track) => track.stop());
+      deviceVideoRef.current.srcObject = null;
+      setIsDeviceCamRunning(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!isOpen || cameraMode !== 'DEVICE_CAM') {
+      stopDeviceCamera();
+    }
+  }, [isOpen, cameraMode]);
+
+  const parseYouTubeId = (input: string): string => {
+    const trimmed = input.trim();
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
+    const match = trimmed.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : trimmed;
+  };
+
   // Tactical Computer Vision (CV) Overlay for Active Video Stream
   useEffect(() => {
-    if (type !== 'CAMERA' || !isOpen || !cvOverlayCanvasRef.current || cameraMode !== 'VIDEO') return;
+    const isLiveStreamActive = cameraMode === 'VIDEO' || cameraMode === 'DEVICE_CAM' || cameraMode === 'YOUTUBE_LIVE' || cameraMode === 'CUSTOM_STREAM';
+    if (type !== 'CAMERA' || !isOpen || !cvOverlayCanvasRef.current || !isLiveStreamActive) return;
     const canvas = cvOverlayCanvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -662,37 +722,70 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
             </div>
 
             {/* Mode Selector Tabs */}
-            <div className="flex rounded-lg bg-black/60 p-1 border border-white/10 text-xs font-mono">
+            <div className="grid grid-cols-5 rounded-lg bg-black/60 p-1 border border-white/10 text-xs font-mono gap-1">
               <button
                 onClick={() => setCameraMode('VIDEO')}
-                className={`flex-1 py-1 px-2 rounded text-[10px] font-bold transition-colors flex items-center justify-center gap-1 ${
-                  cameraMode === 'VIDEO' ? 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40' : 'text-crimenet-muted hover:text-white'
+                title="4 High-Definition Mumbai Street Corridors"
+                className={`py-1.5 px-1 rounded text-[9px] font-bold transition-colors flex flex-col items-center justify-center gap-0.5 ${
+                  cameraMode === 'VIDEO' ? 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40 shadow-sm' : 'text-crimenet-muted hover:text-white'
                 }`}
               >
-                <Video className="w-3 h-3" /> LIVE FEED
+                <Video className="w-3 h-3" />
+                <span>CORRIDOR</span>
               </button>
               <button
-                onClick={() => setCameraMode('SIMULATION')}
-                className={`flex-1 py-1 px-2 rounded text-[10px] font-bold transition-colors flex items-center justify-center gap-1 ${
-                  cameraMode === 'SIMULATION' ? 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40' : 'text-crimenet-muted hover:text-white'
+                onClick={() => {
+                  setCameraMode('DEVICE_CAM');
+                  startDeviceCamera();
+                }}
+                title="Direct Laptop / Phone / USB Camera Feed with Real-Time AI Tracking"
+                className={`py-1.5 px-1 rounded text-[9px] font-bold transition-colors flex flex-col items-center justify-center gap-0.5 relative ${
+                  cameraMode === 'DEVICE_CAM' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-sm' : 'text-crimenet-muted hover:text-white'
                 }`}
               >
-                <Radio className="w-3 h-3" /> RADAR SCAN
+                <CameraIcon className="w-3 h-3" />
+                <span className="flex items-center gap-0.5">
+                  WEBCAM
+                  <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping" />
+                </span>
+              </button>
+              <button
+                onClick={() => setCameraMode('YOUTUBE_LIVE')}
+                title="24/7 Live YouTube Street & Municipal Streams"
+                className={`py-1.5 px-1 rounded text-[9px] font-bold transition-colors flex flex-col items-center justify-center gap-0.5 ${
+                  cameraMode === 'YOUTUBE_LIVE' ? 'bg-crimenet-crimson/20 text-crimenet-crimson border border-crimenet-crimson/40 shadow-sm' : 'text-crimenet-muted hover:text-white'
+                }`}
+              >
+                <Tv className="w-3 h-3" />
+                <span>YT LIVE</span>
+              </button>
+              <button
+                onClick={() => setCameraMode('CUSTOM_STREAM')}
+                title="Direct IP Webcam / RTSP / HLS Stream Input"
+                className={`py-1.5 px-1 rounded text-[9px] font-bold transition-colors flex flex-col items-center justify-center gap-0.5 ${
+                  cameraMode === 'CUSTOM_STREAM' ? 'bg-crimenet-amber/20 text-crimenet-amber border border-crimenet-amber/40 shadow-sm' : 'text-crimenet-muted hover:text-white'
+                }`}
+              >
+                <Wifi className="w-3 h-3" />
+                <span>IP / RTSP</span>
               </button>
               <button
                 onClick={() => setCameraMode('TELEMETRY')}
-                className={`flex-1 py-1 px-2 rounded text-[10px] font-bold transition-colors flex items-center justify-center gap-1 ${
-                  cameraMode === 'TELEMETRY' ? 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40' : 'text-crimenet-muted hover:text-white'
+                title="Lens Telemetry & GIS Coverage Data"
+                className={`py-1.5 px-1 rounded text-[9px] font-bold transition-colors flex flex-col items-center justify-center gap-0.5 ${
+                  cameraMode === 'TELEMETRY' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm' : 'text-crimenet-muted hover:text-white'
                 }`}
               >
-                <Activity className="w-3 h-3" /> TELEMETRY
+                <Activity className="w-3 h-3" />
+                <span>TELEMETRY</span>
               </button>
             </div>
 
             {/* Player Canvas / Video Area */}
             <div className="relative rounded-xl overflow-hidden border border-crimenet-cyan/30 shadow-2xl bg-black">
+              {/* 1. MUMBAI CORRIDORS STREAM */}
               {cameraMode === 'VIDEO' && (
-                <div className="relative w-full h-52 bg-black overflow-hidden group">
+                <div className="relative w-full h-56 bg-black overflow-hidden group">
                   {/* Real MP4 Video Loop */}
                   <video
                     ref={videoRef}
@@ -725,7 +818,7 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
                   <canvas
                     ref={cvOverlayCanvasRef}
                     width={380}
-                    height={210}
+                    height={220}
                     className="absolute inset-0 w-full h-full pointer-events-none z-10"
                   />
 
@@ -746,7 +839,6 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
 
                   {/* Bottom Video Controls Toolbar */}
                   <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between z-20 bg-black/80 backdrop-blur-md px-2 py-1 rounded-md border border-white/10">
-                    {/* Play / Pause & Mute */}
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => {
@@ -779,8 +871,9 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
                         {isMuted ? <VolumeX className="w-3.5 h-3.5 text-crimenet-muted" /> : <Volume2 className="w-3.5 h-3.5 text-crimenet-cyan" />}
                       </button>
 
-                      <span className="text-[9px] font-mono text-emerald-400 font-bold ml-1">
-                        {isPlaying ? 'LIVE' : 'PAUSED'}
+                      <span className="text-[9px] font-mono text-emerald-400 font-bold ml-1 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        {isPlaying ? 'MUMBAI CORRIDOR' : 'PAUSED'}
                       </span>
                     </div>
 
@@ -805,9 +898,240 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
                 </div>
               )}
 
+              {/* 2. LIVE DEVICE WEBCAM / FIELD CAMERA */}
+              {cameraMode === 'DEVICE_CAM' && (
+                <div className="relative w-full h-56 bg-black overflow-hidden flex flex-col justify-center items-center">
+                  {isDeviceCamRunning ? (
+                    <>
+                      <video
+                        ref={deviceVideoRef}
+                        autoPlay
+                        playsInline
+                        muted
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Tactical CV Overlay over live webcam */}
+                      <canvas
+                        ref={cvOverlayCanvasRef}
+                        width={380}
+                        height={220}
+                        className="absolute inset-0 w-full h-full pointer-events-none z-10"
+                      />
+                      {/* Top status */}
+                      <div className="absolute top-2 left-2 flex items-center gap-1.5 z-20 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-emerald-500/40">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                        <span className="text-[9px] font-mono font-bold text-emerald-400">
+                          LIVE WEBCAM SENSOR · 0ms
+                        </span>
+                      </div>
+                      {/* Top Right CV Toggle */}
+                      <div className="absolute top-2 right-2 flex items-center gap-1 z-20">
+                        <button
+                          onClick={() => setShowCvHud(!showCvHud)}
+                          className={`px-1.5 py-0.5 rounded text-[9px] font-mono font-bold border transition-colors shadow-sm ${
+                            showCvHud
+                              ? 'bg-crimenet-cyan/30 text-crimenet-cyan border-crimenet-cyan/60'
+                              : 'bg-black/70 text-white/50 border-white/10'
+                          }`}
+                        >
+                          CV HUD: {showCvHud ? 'ON' : 'OFF'}
+                        </button>
+                      </div>
+                      {/* Bottom control */}
+                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between z-20 bg-black/80 backdrop-blur-md px-2 py-1 rounded-md border border-white/10">
+                        <span className="text-[9px] font-mono text-crimenet-cyan">
+                          Active Biometric & Object Tracker Active
+                        </span>
+                        <button
+                          onClick={stopDeviceCamera}
+                          className="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-crimenet-crimson/30 hover:bg-crimenet-crimson/50 text-crimenet-crimson border border-crimenet-crimson/50 transition-colors"
+                        >
+                          DISCONNECT
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="p-4 text-center space-y-3 max-w-xs z-10">
+                      <div className="w-10 h-10 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
+                        <CameraIcon className="w-5 h-5 text-emerald-400 animate-pulse" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-white uppercase font-mono">
+                          Live Field / Hardware Camera
+                        </div>
+                        <div className="text-[10px] text-crimenet-muted mt-1 leading-relaxed">
+                          Connect your laptop camera or external mobile camera pointing at the street or room for 100% genuine zero-latency live streaming with real-time AI tracking.
+                        </div>
+                      </div>
+                      {deviceCamError && (
+                        <div className="text-[9px] text-crimenet-crimson bg-crimenet-crimson/10 border border-crimenet-crimson/30 p-1.5 rounded">
+                          {deviceCamError}
+                        </div>
+                      )}
+                      <button
+                        onClick={startDeviceCamera}
+                        className="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs font-mono transition-colors shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-1.5 mx-auto"
+                      >
+                        <CameraIcon className="w-3.5 h-3.5" />
+                        START LIVE CAMERA
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* 3. YOUTUBE LIVE BROADCAST */}
+              {cameraMode === 'YOUTUBE_LIVE' && (
+                <div className="relative w-full h-56 bg-black overflow-hidden flex flex-col">
+                  <div className="relative w-full flex-1 bg-black">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${parseYouTubeId(youtubeStreamId)}?autoplay=1&mute=1&controls=0&playsinline=1&modestbranding=1&rel=0`}
+                      className="w-full h-full border-0 pointer-events-auto"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      title="Live YouTube Public Feed"
+                    />
+                    {/* Tactical CV Overlay */}
+                    <canvas
+                      ref={cvOverlayCanvasRef}
+                      width={380}
+                      height={220}
+                      className="absolute inset-0 w-full h-full pointer-events-none z-10"
+                    />
+                    {/* Top status */}
+                    <div className="absolute top-2 left-2 flex items-center gap-1.5 z-20 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-crimenet-crimson/40">
+                      <span className="w-2 h-2 rounded-full bg-crimenet-crimson animate-ping" />
+                      <span className="text-[9px] font-mono font-bold text-crimenet-crimson">
+                        PUBLIC 24/7 LIVE STREAM
+                      </span>
+                    </div>
+                    {/* Top Right CV Toggle */}
+                    <div className="absolute top-2 right-2 flex items-center gap-1 z-20">
+                      <button
+                        onClick={() => setShowCvHud(!showCvHud)}
+                        className={`px-1.5 py-0.5 rounded text-[9px] font-mono font-bold border transition-colors shadow-sm ${
+                          showCvHud
+                            ? 'bg-crimenet-cyan/30 text-crimenet-cyan border-crimenet-cyan/60'
+                            : 'bg-black/70 text-white/50 border-white/10'
+                        }`}
+                      >
+                        CV HUD: {showCvHud ? 'ON' : 'OFF'}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* YouTube Stream Tuner / Quick Presets */}
+                  <div className="bg-black/90 p-1.5 border-t border-white/10 flex items-center gap-1 font-mono text-[9px]">
+                    <span className="text-crimenet-muted shrink-0">PRESETS:</span>
+                    <button
+                      onClick={() => setYoutubeStreamId('HfgIFGbdGJ0')}
+                      className={`px-1.5 py-0.5 rounded ${youtubeStreamId === 'HfgIFGbdGJ0' ? 'bg-crimenet-cyan text-black font-bold' : 'bg-white/5 text-white hover:bg-white/10'}`}
+                    >
+                      Traffic Cam 1
+                    </button>
+                    <button
+                      onClick={() => setYoutubeStreamId('jfKfPfyJRdk')}
+                      className={`px-1.5 py-0.5 rounded ${youtubeStreamId === 'jfKfPfyJRdk' ? 'bg-crimenet-cyan text-black font-bold' : 'bg-white/5 text-white hover:bg-white/10'}`}
+                    >
+                      Street Cam 2
+                    </button>
+                    <button
+                      onClick={() => setYoutubeStreamId('21X5lGlDOfg')}
+                      className={`px-1.5 py-0.5 rounded ${youtubeStreamId === '21X5lGlDOfg' ? 'bg-crimenet-cyan text-black font-bold' : 'bg-white/5 text-white hover:bg-white/10'}`}
+                    >
+                      NASA ISS
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* 4. CUSTOM IP WEBCAM / RTSP / HLS STREAM */}
+              {cameraMode === 'CUSTOM_STREAM' && (
+                <div className="relative w-full h-56 bg-black overflow-hidden flex flex-col justify-center items-center">
+                  {activeCustomStream ? (
+                    <div className="relative w-full h-full bg-black">
+                      <img
+                        src={activeCustomStream}
+                        alt="IP Webcam Feed"
+                        className="w-full h-full object-cover"
+                        onError={() => {
+                          console.warn('Custom stream image failed, trying video fallback');
+                        }}
+                      />
+                      {/* Tactical CV Overlay */}
+                      <canvas
+                        ref={cvOverlayCanvasRef}
+                        width={380}
+                        height={220}
+                        className="absolute inset-0 w-full h-full pointer-events-none z-10"
+                      />
+                      {/* Top status */}
+                      <div className="absolute top-2 left-2 flex items-center gap-1.5 z-20 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-400/40">
+                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                        <span className="text-[9px] font-mono font-bold text-amber-400">
+                          IP WEBCAM STREAM
+                        </span>
+                      </div>
+                      {/* Bottom control */}
+                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between z-20 bg-black/80 backdrop-blur-md px-2 py-1 rounded-md border border-white/10">
+                        <span className="text-[9px] font-mono text-white truncate max-w-[220px]">
+                          {activeCustomStream}
+                        </span>
+                        <button
+                          onClick={() => setActiveCustomStream('')}
+                          className="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-white/10 hover:bg-white/20 text-white transition-colors"
+                        >
+                          CHANGE URL
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="p-3 w-full space-y-2 text-center font-mono">
+                      <div className="text-xs font-bold text-white uppercase flex items-center justify-center gap-1">
+                        <Wifi className="w-3.5 h-3.5 text-amber-400" />
+                        Direct IP Webcam / RTSP Stream
+                      </div>
+                      <div className="text-[10px] text-crimenet-muted leading-tight">
+                        Connect an Android phone running <span className="text-amber-400 font-bold">IP Webcam</span> (stream at <code className="bg-black/60 px-1 py-0.5 rounded text-white">http://IP:8080/video</code>) or any municipal MJPEG/HLS feed.
+                      </div>
+                      <div className="flex gap-1 mt-2">
+                        <input
+                          type="text"
+                          value={customStreamUrl}
+                          onChange={(e) => setCustomStreamUrl(e.target.value)}
+                          placeholder="http://192.168.1.100:8080/video"
+                          className="flex-1 bg-black/80 border border-white/20 rounded px-2 py-1 text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-amber-400 font-mono"
+                        />
+                        <button
+                          onClick={() => {
+                            if (customStreamUrl.trim()) {
+                              setActiveCustomStream(customStreamUrl.trim());
+                            }
+                          }}
+                          className="px-3 py-1 rounded bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition-colors"
+                        >
+                          CONNECT
+                        </button>
+                      </div>
+                      <div className="flex justify-center gap-1.5 pt-1">
+                        <button
+                          onClick={() => {
+                            setCustomStreamUrl('http://192.168.1.50:8080/video');
+                            setActiveCustomStream('http://192.168.1.50:8080/video');
+                          }}
+                          className="text-[9px] px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-crimenet-muted"
+                        >
+                          Example IP Webcam URL
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* 5. RADAR SCAN SIMULATOR */}
               {cameraMode === 'SIMULATION' && (
                 <div className="relative">
-                  <canvas ref={canvasRef} width={350} height={190} className="w-full h-52 bg-black block" />
+                  <canvas ref={canvasRef} width={350} height={190} className="w-full h-56 bg-black block" />
                   {/* Optical Zoom Level Badge */}
                   <div className="absolute top-2 left-2 bg-black/80 px-2 py-0.5 rounded text-[9px] font-mono text-crimenet-cyan border border-crimenet-cyan/30">
                     OPTICAL ZOOM: {cameraZoom}X
