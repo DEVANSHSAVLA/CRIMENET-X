@@ -106,7 +106,7 @@ const INITIAL_PROBES: HealthProbe[] = [
 
 const INITIAL_OPERATORS: OperatorSession[] = [
   { id: 'OP-01', name: 'Devansh Savla', role: 'Principal Investigator & Lead System Architect', clearance: 'Level 5 (Supervisory)', ip: '10.240.12.1', lastActive: 'Active now', status: 'ACTIVE' },
-  { id: 'OP-02', name: 'Ayaan Mukkadam', role: 'Core Tactical Intelligence Officer & Lead Forensic Analyst', clearance: 'Level 5 (Supervisory)', ip: '10.240.12.5', lastActive: 'Active now', status: 'ACTIVE' },
+  { id: 'OP-02', name: 'Ayaan Mukadam', role: 'Core Tactical Intelligence Officer & Lead Forensic Analyst', clearance: 'Level 5 (Supervisory)', ip: '10.240.12.5', lastActive: 'Active now', status: 'ACTIVE' },
 ];
 
 const INITIAL_LOGS: TelemetryLog[] = [
@@ -259,7 +259,7 @@ export default function AdminPage() {
                 3D INFRASTRUCTURE TELEMETRY & OPERATIONS CONSOLE
               </h1>
               <p className="text-[11px] text-crimenet-muted font-mono mt-0.5">
-                HIGH-AVAILABILITY CLUSTER · LEVEL 5 SUPERVISORY ROOT · DEV: DEVANSH SAVLA & AYAAN MUKKADAM
+                HIGH-AVAILABILITY CLUSTER · LEVEL 5 SUPERVISORY ROOT · DEV: DEVANSH SAVLA & AYAAN MUKADAM
               </p>
             </div>
           </div>
@@ -431,7 +431,7 @@ export default function AdminPage() {
           </div>
         </TiltCard3D>
 
-        {/* Ayaan Mukkadam ID Card */}
+        {/* Ayaan Mukadam ID Card */}
         <TiltCard3D glowColor="purple" maxTilt={5} className="rounded-2xl">
           <div className="p-5 rounded-2xl bg-gradient-to-br from-black/90 via-[#150924] to-black/95 border border-purple-500/40 depth-3d-box shadow-xl relative overflow-hidden">
             {/* Holographic Specular Glare Background */}
@@ -444,7 +444,7 @@ export default function AdminPage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-base font-bold text-white">Ayaan Mukkadam</h3>
+                    <h3 className="text-base font-bold text-white">Ayaan Mukadam</h3>
                     <span className="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-crimenet-crimson/20 text-crimenet-crimson border border-crimenet-crimson/40">
                       LEVEL 5 ROOT
                     </span>
