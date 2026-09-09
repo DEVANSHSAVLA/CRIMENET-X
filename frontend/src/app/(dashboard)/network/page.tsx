@@ -4,10 +4,103 @@ import React, { useEffect, useRef, useState } from 'react';
 import cytoscape, { Core } from 'cytoscape';
 import { GlassPanel } from '@/components/panels/glass-panel';
 import type { NetworkData, CentralityRanking } from '@/lib/types';
-import { Search, ZoomIn, ZoomOut, Maximize2, Info } from 'lucide-react';
+import { 
+  Search, ZoomIn, ZoomOut, Maximize2, Info, Network,
+  ShieldAlert, DollarSign, PhoneCall, Truck, Scale, ChevronRight,
+  ExternalLink, Sparkles, CheckCircle2, AlertTriangle, FileText
+} from 'lucide-react';
 import { api } from '@/lib/api';
 import { useInvestigation } from '@/context/investigation-context';
 import { SuspectPhoto } from '@/components/shared/suspect-photo';
+
+export type InvestigativeUseCase = 
+  | 'FULL_TOPOLOGY'
+  | 'KINGPINS'
+  | 'FINANCIAL'
+  | 'COMMUNICATIONS'
+  | 'LOGISTICS'
+  | 'LEGAL_WARRANTS';
+
+interface UseCaseConfig {
+  key: InvestigativeUseCase;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  tagline: string;
+  statute: string;
+  objective: string;
+  tacticalAction: string;
+  focusTarget: string;
+  color: string;
+}
+
+const USE_CASE_PRESETS: UseCaseConfig[] = [
+  {
+    key: 'FULL_TOPOLOGY',
+    label: 'Full Syndicate Topology',
+    icon: Network,
+    tagline: 'Macro Multi-Jurisdiction Criminal Enterprise',
+    statute: 'Inter-State Crime Intelligence Bureau SOP · Interpol Red Notices',
+    objective: 'Survey complete 3-cluster syndicate topology spanning Mumbai, Delhi, Pune, and cross-border sanctuary hubs.',
+    tacticalAction: 'Survey Global Macro Topology',
+    focusTarget: 'ALL_CLUSTERS',
+    color: '#00D4FF',
+  },
+  {
+    key: 'KINGPINS',
+    label: 'Kingpins & Bridge Actors',
+    icon: ShieldAlert,
+    tagline: 'High-Betweenness Structural Takedown Targets',
+    statute: 'Maharashtra Control of Organised Crime Act (MCOCA) Sec 3',
+    objective: 'Isolate bridge node P-017 (Vikram Reddy) and syndicate chiefs. Neutralizing these brokers structurally fractures the entire criminal syndicate into isolated, non-viable fragments.',
+    tacticalAction: 'Focus Primary Bridge Node P-017',
+    focusTarget: 'P-017',
+    color: '#FF1744',
+  },
+  {
+    key: 'FINANCIAL',
+    label: 'Financial Laundering & Hawala',
+    icon: DollarSign,
+    tagline: 'Shell Bank Accounts & Layering Channels',
+    statute: 'Prevention of Money Laundering Act (PMLA 2002) Sec 5',
+    objective: 'Map bank accounts (A-001 - A-030) and high-volume circular fund movements. Target primary layering account A-009 for immediate provisional asset restraint.',
+    tacticalAction: 'Flag Accounts for PMLA Attachment',
+    focusTarget: 'A-009',
+    color: '#FFB300',
+  },
+  {
+    key: 'COMMUNICATIONS',
+    label: 'Communications & Wiretaps',
+    icon: PhoneCall,
+    tagline: 'CDR Edge Frequencies & Burn Phone Networks',
+    statute: 'Indian Telegraph Act Sec 5(2) · Intercept Mandate',
+    objective: 'Analyze call frequency weights, burn phone rotations, and simultaneous tower associations between Mumbai drug operatives and Delhi fraud conspirators.',
+    tacticalAction: 'Track Critical Intercept Ties',
+    focusTarget: 'PH-001',
+    color: '#38BDF8',
+  },
+  {
+    key: 'LOGISTICS',
+    label: 'Logistics & Shared Vehicles',
+    icon: Truck,
+    tagline: 'Fleet Couriers & Interstate Smuggling Corridors',
+    statute: 'Motor Vehicles Act Sec 206 · BNS Sec 303 (Stolen Property)',
+    objective: 'Identify shared vehicle registrations (V-001 - V-025) and transit couriers. Deploy automated ANPR alerts on Western Express Highway and NH-48 toll plazas.',
+    tacticalAction: 'Deploy ANPR Highway Checkpoint Alert',
+    focusTarget: 'V-008',
+    color: '#34D399',
+  },
+  {
+    key: 'LEGAL_WARRANTS',
+    label: 'CBI Warrants & Red Notices',
+    icon: Scale,
+    tagline: 'Judicial Admissibility & Court Trial Dossiers',
+    statute: 'Bharatiya Sakshya Adhiniyam (BSA 2023) Sec 63 · UAPA Sec 16',
+    objective: 'Verify formal FIR charges, non-bailable warrants, and tamper-proof SHA-256 evidence integrity hashes required for special court prosecution.',
+    tacticalAction: 'Verify Section 63 BSA Hash Integrity',
+    focusTarget: 'FIR-001',
+    color: '#A855F7',
+  },
+];
 
 export default function NetworkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,6 +117,8 @@ export default function NetworkPage() {
   const [selectedEdge, setSelectedEdge] = useState<any | null>(null);
   const [activeLayout, setActiveLayout] = useState<'cose' | 'concentric' | 'circle' | 'breadthfirst'>('cose');
   const [graphRiskFilter, setGraphRiskFilter] = useState<'ALL' | 'CRITICAL' | 'HIGH'>('ALL');
+  const [activeUseCase, setActiveUseCase] = useState<InvestigativeUseCase>('FULL_TOPOLOGY');
+  const [isBriefingCardVisible, setIsBriefingCardVisible] = useState(true);
 
   const changeLayout = (layoutName: 'cose' | 'concentric' | 'circle' | 'breadthfirst') => {
     setActiveLayout(layoutName);
@@ -51,7 +146,7 @@ export default function NetworkPage() {
           animationDuration: 600,
           fit: true,
           padding: 40,
-          concentric: (node: any) => node.data('centrality') || 0,
+          concentric: (node: any) => node.data('centrality') || (node.id() === 'P-017' ? 100 : 20),
           levelWidth: () => 20,
         };
       } else if (layoutName === 'circle') {
@@ -87,6 +182,94 @@ export default function NetworkPage() {
     } catch (e) {}
   };
 
+  // Operational Knowledge Graph Use-Case Preset Handler
+  const handleSelectUseCase = (useCaseKey: InvestigativeUseCase) => {
+    setActiveUseCase(useCaseKey);
+    setIsBriefingCardVisible(true);
+    const cy = cyRef.current;
+    if (!cy) return;
+
+    cy.elements().removeClass('dimmed').removeClass('highlighted').removeClass('filtered-out');
+
+    if (useCaseKey === 'FULL_TOPOLOGY') {
+      changeLayout('cose');
+    } else if (useCaseKey === 'KINGPINS') {
+      cy.nodes().forEach((node) => {
+        const id = node.id();
+        const role = node.data('role');
+        const cluster = node.data('cluster');
+        const isTarget = id === 'P-017' || id === 'P-032' || role === 'Leader' || cluster === 'BRIDGE' || node.data('risk_level') === 'CRITICAL';
+        if (isTarget) {
+          node.addClass('highlighted');
+          node.connectedEdges().addClass('highlighted');
+        } else {
+          node.addClass('dimmed');
+          node.connectedEdges().addClass('dimmed');
+        }
+      });
+      changeLayout('concentric');
+      selectEntityRef.current('P-017');
+    } else if (useCaseKey === 'FINANCIAL') {
+      cy.nodes().forEach((node) => {
+        const type = node.data('type');
+        const id = node.id();
+        const isFin = type === 'BANK_ACCOUNT' || id.startsWith('A-') || ['P-017', 'P-020', 'P-022', 'P-028'].includes(id);
+        if (isFin) {
+          node.addClass('highlighted');
+          node.connectedEdges().addClass('highlighted');
+        } else {
+          node.addClass('dimmed');
+          node.connectedEdges().addClass('dimmed');
+        }
+      });
+      changeLayout('cose');
+      selectEntityRef.current('P-022');
+    } else if (useCaseKey === 'COMMUNICATIONS') {
+      cy.nodes().forEach((node) => {
+        const type = node.data('type');
+        const id = node.id();
+        const isComm = type === 'PHONE' || id.startsWith('PH-') || ['P-003', 'P-007', 'P-010', 'P-017', 'P-022'].includes(id);
+        if (isComm) {
+          node.addClass('highlighted');
+          node.connectedEdges().addClass('highlighted');
+        } else {
+          node.addClass('dimmed');
+          node.connectedEdges().addClass('dimmed');
+        }
+      });
+      changeLayout('cose');
+      selectEntityRef.current('P-003');
+    } else if (useCaseKey === 'LOGISTICS') {
+      cy.nodes().forEach((node) => {
+        const type = node.data('type');
+        const id = node.id();
+        const isLog = type === 'VEHICLE' || id.startsWith('V-') || ['P-017', 'P-032', 'P-038', 'P-040'].includes(id);
+        if (isLog) {
+          node.addClass('highlighted');
+          node.connectedEdges().addClass('highlighted');
+        } else {
+          node.addClass('dimmed');
+          node.connectedEdges().addClass('dimmed');
+        }
+      });
+      changeLayout('cose');
+      selectEntityRef.current('P-032');
+    } else if (useCaseKey === 'LEGAL_WARRANTS') {
+      cy.nodes().forEach((node) => {
+        const isWarrant = node.data('risk_level') === 'CRITICAL' || node.data('type') === 'FIR' || node.id().startsWith('FIR-');
+        if (isWarrant) {
+          node.addClass('highlighted');
+          node.connectedEdges().addClass('highlighted');
+        } else {
+          node.addClass('dimmed');
+          node.connectedEdges().addClass('dimmed');
+        }
+      });
+      changeLayout('breadthfirst');
+      selectEntityRef.current('P-001');
+    }
+  };
+
   // Load Network Data once
   useEffect(() => {
     let isMounted = true;
@@ -110,7 +293,6 @@ export default function NetworkPage() {
   useEffect(() => {
     if (!containerRef.current || !networkData || networkData.nodes.length === 0) return;
 
-    // Clean up any existing layout and instance
     if (layoutRef.current) {
       try { layoutRef.current.stop(); } catch (e) {}
       layoutRef.current = null;
@@ -123,7 +305,6 @@ export default function NetworkPage() {
       cyRef.current = null;
     }
 
-    // Filter to top 80 most connected nodes for optimum performance
     const topNodeIds = new Set(
       networkData.nodes
         .sort((a, b) => (b.data.centrality || 0) - (a.data.centrality || 0))
@@ -260,7 +441,6 @@ export default function NetworkPage() {
       return;
     }
 
-    // Run layout with animate: false to prevent background animation timer collisions
     try {
       const layout = cy.layout({
         name: 'cose',
@@ -383,37 +563,44 @@ export default function NetworkPage() {
     }
   };
 
+  const activePresetConfig = USE_CASE_PRESETS.find(p => p.key === activeUseCase) || USE_CASE_PRESETS[0];
+
   return (
     <div className="relative w-full h-full bg-[#030406] overflow-hidden">
-      {/* Cytoscape Container */}
+      {/* Cytoscape Canvas Container */}
       <div ref={containerRef} className="w-full h-full" />
 
-      {/* Left Top Info Card */}
-      <div className="absolute top-4 left-4 z-10 w-80">
-        <GlassPanel title="GRAPH TOPOLOGY & CLUSTERS">
-          <div className="space-y-2 text-xs">
-            <div className="flex justify-between font-mono text-[10px] text-crimenet-muted">
-              <span>ACTIVE DATASET:</span>
-              <span className="text-white font-bold">CBI-INTERPOL-RED-379</span>
-            </div>
-            <div className="flex justify-between font-mono text-[10px] text-crimenet-muted">
-              <span>NODES IN VIEW:</span>
-              <span className="text-crimenet-cyan font-bold">
-                {networkData?.nodes ? Math.min(networkData.nodes.length, 80) : 80} / 379
-              </span>
-            </div>
-            <div className="flex justify-between font-mono text-[10px] text-crimenet-muted">
-              <span>COMMUNITIES:</span>
-              <span className="text-emerald-400 font-bold">132 Detected</span>
-            </div>
-            <p className="text-[10px] text-white/70 pt-1 border-t border-white/5">
-              Force-directed layout with Betweenness Centrality mapping and source vs. derived edge distinction.
-            </p>
+      {/* ── TOP OPERATIONAL USE-CASE PRESETS BAR ── */}
+      <div className="absolute top-4 left-4 z-20 max-w-[calc(100vw-450px)]">
+        <div className="glass-panel p-1.5 rounded-2xl border border-white/10 shadow-2xl bg-[#060B14]/90 backdrop-blur-md flex flex-wrap items-center gap-1.5">
+          <div className="px-2 py-1 text-[10px] font-mono font-bold text-crimenet-cyan uppercase tracking-widest flex items-center gap-1.5 border-r border-white/10 mr-0.5 shrink-0">
+            <Sparkles className="w-3.5 h-3.5 text-crimenet-cyan" />
+            <span>INVESTIGATIVE USE-CASES:</span>
           </div>
-        </GlassPanel>
+
+          {USE_CASE_PRESETS.map((preset) => {
+            const Icon = preset.icon;
+            const isActive = activeUseCase === preset.key;
+            return (
+              <button
+                key={preset.key}
+                onClick={() => handleSelectUseCase(preset.key)}
+                className={`btn-3d px-3 py-1.5 rounded-xl font-mono text-[10px] font-bold transition-all flex items-center gap-1.5 shrink-0 ${
+                  isActive
+                    ? 'bg-white/20 text-white border border-white/40 shadow-[0_0_15px_rgba(0,212,255,0.4)]'
+                    : 'bg-black/50 text-white/70 hover:text-white hover:bg-white/10 border border-white/5'
+                }`}
+                style={isActive ? { borderColor: preset.color, color: preset.color } : {}}
+              >
+                <Icon className="w-3 h-3" />
+                <span>{preset.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Top Bar Controls */}
+      {/* Top Right Controls */}
       <div className="absolute top-4 right-4 z-10 flex flex-wrap items-center gap-2">
         {/* Dynamic Risk Filter */}
         <div className="flex bg-black/85 border border-white/10 rounded-lg p-1 gap-1 backdrop-blur-md shadow-lg">
@@ -467,7 +654,7 @@ export default function NetworkPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Focus node ID (e.g. P-001)..."
-            className="w-52 bg-black/80 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-crimenet-muted focus:outline-none focus:border-crimenet-cyan font-mono transition-all focus:shadow-[0_0_12px_rgba(0,212,255,0.3)]"
+            className="w-48 bg-black/80 border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-crimenet-muted focus:outline-none focus:border-crimenet-cyan font-mono transition-all focus:shadow-[0_0_12px_rgba(0,212,255,0.3)]"
           />
         </form>
 
@@ -504,7 +691,7 @@ export default function NetworkPage() {
           </button>
         </div>
 
-        {/* Technical Details Toggle for Expert Judges */}
+        {/* Technical Details Toggle */}
         <button
           onClick={() => setShowTechnicalDetails(!showTechnicalDetails)}
           className={`chip-3d px-2.5 py-1.5 rounded-lg bg-black/80 border text-xs font-mono flex items-center gap-1.5 transition-all ${
@@ -517,9 +704,84 @@ export default function NetworkPage() {
         </button>
       </div>
 
+      {/* ── ACTIVE OPERATIONAL USE-CASE BRIEFING CARD ── */}
+      {isBriefingCardVisible && (
+        <div className="absolute bottom-4 right-4 z-20 w-[420px] max-w-[calc(100vw-32px)]">
+          <div 
+            className="glass-panel p-4 rounded-2xl border shadow-2xl bg-[#060B14]/95 backdrop-blur-md space-y-3 animate-in fade-in slide-in-from-bottom duration-200"
+            style={{ borderColor: `${activePresetConfig.color}50` }}
+          >
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2">
+                <div 
+                  className="w-7 h-7 rounded-lg flex items-center justify-center border"
+                  style={{ backgroundColor: `${activePresetConfig.color}20`, borderColor: `${activePresetConfig.color}40`, color: activePresetConfig.color }}
+                >
+                  <activePresetConfig.icon className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="font-mono text-xs font-bold text-white uppercase tracking-wider">
+                    {activePresetConfig.label}
+                  </h4>
+                  <span className="text-[10px] font-mono" style={{ color: activePresetConfig.color }}>
+                    {activePresetConfig.tagline}
+                  </span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setIsBriefingCardVisible(false)}
+                className="text-crimenet-muted hover:text-white p-1 rounded transition-colors text-xs"
+                title="Minimize Briefing Card"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-2 text-xs">
+              <div>
+                <span className="text-[9px] font-mono uppercase text-crimenet-muted font-bold block">
+                  STATUTORY AUTHORIZATION:
+                </span>
+                <span className="text-[10px] font-mono text-white/90">
+                  {activePresetConfig.statute}
+                </span>
+              </div>
+
+              <div>
+                <span className="text-[9px] font-mono uppercase text-crimenet-muted font-bold block">
+                  TACTICAL GOAL & REASONING:
+                </span>
+                <p className="text-[11px] text-white/85 leading-relaxed mt-0.5">
+                  {activePresetConfig.objective}
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+              <button
+                onClick={() => handleSelectUseCase(activePresetConfig.key)}
+                className="btn-3d px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all text-black shadow-md"
+                style={{ backgroundColor: activePresetConfig.color }}
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>{activePresetConfig.tacticalAction}</span>
+              </button>
+
+              <span className="text-[9px] font-mono text-crimenet-muted">
+                ACTIVE FOCUS: {activePresetConfig.focusTarget}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Graph Legend */}
-      <div className="absolute bottom-4 left-4 z-10 bg-black/80 border border-white/10 rounded-lg p-3 text-[10px] space-y-2 backdrop-blur-sm">
-        <div className="font-bold text-white uppercase tracking-wider">GRAPH TOPOLOGY LEGEND</div>
+      <div className="absolute bottom-4 left-4 z-10 bg-black/80 border border-white/10 rounded-xl p-3 text-[10px] space-y-2 backdrop-blur-sm shadow-xl">
+        <div className="font-bold text-white uppercase tracking-wider flex items-center justify-between">
+          <span>GRAPH TOPOLOGY LEGEND</span>
+          <span className="text-[9px] font-mono text-crimenet-cyan">{networkData?.nodes?.length || 379} TOTAL NODES</span>
+        </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-white/80">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-crimenet-crimson" />
@@ -576,7 +838,7 @@ export default function NetworkPage() {
         </div>
       )}
 
-      {/* ── RELATIONSHIP INTELLIGENCE DOCKED SIDE PANEL ── */}
+      {/* Relationship Intelligence Side Panel */}
       {selectedEdge && (
         <div className="absolute top-16 right-4 w-96 bg-[#060B14]/95 border border-crimenet-cyan/40 rounded-2xl p-5 shadow-2xl z-30 space-y-4 backdrop-blur-md animate-in slide-in-from-right">
           <div className="flex justify-between items-center border-b border-white/10 pb-2">
@@ -593,77 +855,34 @@ export default function NetworkPage() {
           </div>
 
           <div className="space-y-3 text-xs">
-            {/* Classification Badge */}
             <div className="flex items-center justify-between">
               <span className="text-crimenet-muted font-mono text-[10px]">TIE CLASSIFICATION:</span>
               <span className={`px-2 py-0.5 rounded font-mono text-[9px] font-bold border ${
                 selectedEdge.classification === 'SOURCE RELATIONSHIP'
-                  ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
-                  : 'bg-amber-500/20 text-amber-400 border-amber-500/40'
+                  ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400'
+                  : 'bg-amber-500/20 border-amber-500/40 text-amber-400'
               }`}>
                 {selectedEdge.classification}
               </span>
             </div>
 
-            {/* Connected Nodes */}
-            <div className="grid grid-cols-2 gap-2 pt-1">
-              <div 
-                onClick={() => selectEntity(selectedEdge.source)}
-                className="p-2.5 rounded-lg bg-black/60 border border-white/10 hover:border-crimenet-cyan/50 cursor-pointer transition-colors flex items-center gap-2"
-              >
-                <SuspectPhoto entityId={selectedEdge.source} size="sm" showLightboxOnClick={false} />
-                <div className="min-w-0 flex-1">
-                  <div className="text-[9px] text-crimenet-muted font-mono uppercase">Node A (Source)</div>
-                  <div className="font-bold text-white text-xs mt-0.5 truncate">{selectedEdge.source}</div>
-                </div>
+            <div className="p-3 bg-black/50 border border-white/5 rounded-xl space-y-1.5">
+              <div className="text-[10px] font-mono text-crimenet-cyan font-bold">
+                {selectedEdge.source} ➔ {selectedEdge.target}
               </div>
-              <div 
-                onClick={() => selectEntity(selectedEdge.target)}
-                className="p-2.5 rounded-lg bg-black/60 border border-white/10 hover:border-crimenet-cyan/50 cursor-pointer transition-colors flex items-center gap-2"
-              >
-                <SuspectPhoto entityId={selectedEdge.target} size="sm" showLightboxOnClick={false} />
-                <div className="min-w-0 flex-1">
-                  <div className="text-[9px] text-crimenet-muted font-mono uppercase">Node B (Target)</div>
-                  <div className="font-bold text-white text-xs mt-0.5 truncate">{selectedEdge.target}</div>
-                </div>
-              </div>
+              <div className="text-white font-medium text-xs">{selectedEdge.relationship}</div>
+              <div className="text-[10px] text-crimenet-muted font-mono">{selectedEdge.timestamp}</div>
             </div>
 
-            {/* Specific Relationship Type */}
-            <div className="glass-card p-3 rounded-lg space-y-1.5 text-xs">
-              <div className="text-[10px] uppercase font-bold text-crimenet-muted tracking-wider">
-                Corroborated Relationship
+            <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+              <div className="p-2 rounded-lg bg-black/40 border border-white/5">
+                <span className="text-crimenet-muted block">PROVENANCE:</span>
+                <span className="text-white font-bold">{selectedEdge.evidenceSource}</span>
               </div>
-              <div className="text-white font-medium">{selectedEdge.relationship}</div>
-              <div className="flex justify-between items-center text-[10px] pt-1 border-t border-white/5">
-                <span className="text-crimenet-muted">Confidence:</span>
-                <span className="text-emerald-400 font-bold font-mono">{Math.round(selectedEdge.confidence * 100)}%</span>
+              <div className="p-2 rounded-lg bg-black/40 border border-white/5">
+                <span className="text-crimenet-muted block">CONFIDENCE:</span>
+                <span className="text-emerald-400 font-bold">{(selectedEdge.confidence * 100).toFixed(0)}% VERIFIED</span>
               </div>
-              <div className="flex justify-between items-center text-[10px]">
-                <span className="text-crimenet-muted">Linked Evidence / Charges:</span>
-                <span className="text-crimenet-cyan font-bold font-mono">{selectedEdge.evidenceCount} verified records</span>
-              </div>
-            </div>
-
-            {/* Source & Provenance */}
-            <div className="p-2 rounded bg-black/40 border border-white/5 text-[9px] font-mono text-crimenet-muted">
-              Source: <span className="text-white/80">{selectedEdge.evidenceSource || 'CBI-Interpol Public Record & Graph Centrality'}</span>
-            </div>
-
-            {/* Actions */}
-            <div className="grid grid-cols-2 gap-2 pt-1">
-              <button
-                onClick={() => selectEntity(selectedEdge.source)}
-                className="btn-3d py-1.5 px-2.5 rounded-lg bg-crimenet-cyan/20 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/40 text-xs font-mono font-bold text-center transition-all shadow-[0_0_12px_rgba(0,212,255,0.25)] hover:shadow-[0_0_18px_rgba(0,212,255,0.45)]"
-              >
-                Focus Node A
-              </button>
-              <button
-                onClick={() => selectEntity(selectedEdge.target)}
-                className="btn-3d py-1.5 px-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-mono font-bold text-center transition-all shadow-[0_0_10px_rgba(255,255,255,0.1)] hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-              >
-                Focus Node B
-              </button>
             </div>
           </div>
         </div>

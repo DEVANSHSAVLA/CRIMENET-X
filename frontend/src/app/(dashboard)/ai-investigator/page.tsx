@@ -5,7 +5,8 @@ import { GlassPanel } from '@/components/panels/glass-panel';
 import { 
   Send, Brain, Sparkles, CheckCircle2, Paperclip, Image as ImageIcon, 
   Mic, MicOff, Volume2, VolumeX, FileText, ArrowRight, ExternalLink,
-  MapPin, Network, Clock, ShieldCheck, User, X
+  MapPin, Network, Clock, ShieldCheck, User, X, ThumbsUp, RefreshCw,
+  Search, FileSpreadsheet, Scale, DollarSign, Video, ShieldAlert, ChevronDown
 } from 'lucide-react';
 import type { AIResponse } from '@/lib/types';
 import { api } from '@/lib/api';
@@ -23,6 +24,8 @@ interface ChatMessage {
     previewUrl?: string;
   };
   timestamp: string;
+  isVerified?: boolean;
+  refinementMenuOpen?: boolean;
 }
 
 const SUGGESTED_QUERIES = [
@@ -33,6 +36,14 @@ const SUGGESTED_QUERIES = [
   "Where was this entity observed?",
   "Which countries are most represented?",
   "Show suspicious patterns",
+];
+
+const REFINEMENT_OPTIONS = [
+  { label: 'Summarize for Court (BSA 2023)', icon: Scale, prompt: 'Summarize for court charge sheet with Section 63 BSA 2023 compliance' },
+  { label: 'Focus on Financial Hawala (PMLA)', icon: DollarSign, prompt: 'Focus on financial Hawala trails and shell accounts under PMLA 2002' },
+  { label: 'Cross-check Urban CCTV Feeds', icon: Video, prompt: 'Which cameras were nearby and cross-check urban surveillance sensors' },
+  { label: 'Deepen Graph Centrality Metrics', icon: Network, prompt: 'Deepen mathematical graph metrics including Betweenness, PageRank, and Modularity' },
+  { label: 'Generate Formal Legal Memo', icon: FileText, prompt: 'Generate a formal confidential CBI-Interpol investigative memo and briefing' },
 ];
 
 export default function AIInvestigatorPage() {
@@ -49,7 +60,7 @@ export default function AIInvestigatorPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'ai',
-      text: "Aetherius AI Investigative Copilot operational. I am grounded in 379 CBI-Interpol Red Notices, urban CCTV telemetry, graph centrality, and forensic records.\n\nYou can query in English, Hindi, or Hinglish, attach documents (PDF/CSV/TXT), or upload surveillance images.",
+      text: "Aetherius AI Investigative Copilot operational. Grounded in 379 CBI-Interpol Red Notices, urban CCTV telemetry, graph centrality, and forensic records.\n\nYou can query in English, Hindi, or Hinglish, attach dossiers (PDF/CSV/TXT), upload surveillance stills, or use the interactive feedback actions below each finding.",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
@@ -57,6 +68,7 @@ export default function AIInvestigatorPage() {
   const [loading, setLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [speechMuted, setSpeechMuted] = useState(false);
+  const [feedbackToast, setFeedbackToast] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +92,6 @@ export default function AIInvestigatorPage() {
     if (speechMuted || typeof window === 'undefined' || !('speechSynthesis' in window)) return;
     try {
       window.speechSynthesis.cancel();
-      // Clean markdown tags for natural speech
       const cleanText = text.replace(/[*_#`[\]()]/g, ' ').slice(0, 280);
       const utter = new SpeechSynthesisUtterance(cleanText);
       utter.rate = 1.05;
@@ -107,7 +118,6 @@ export default function AIInvestigatorPage() {
     setLoading(true);
 
     try {
-      // Build conversation payload for multi-turn conversational memory
       const chatHistory = newMessages.map(m => ({
         role: m.role === 'user' ? 'user' : 'assistant',
         content: m.text
@@ -129,7 +139,6 @@ export default function AIInvestigatorPage() {
       setMessages((prev) => [...prev, aiMsg]);
       speakResponse(res.answer);
     } catch (err) {
-      // Fallback query single mode
       try {
         const fallbackRes = await api.askAI(q, 'CBI-INTERPOL-RED-379', selectedEntityId || 'P-017');
         const aiMsg: ChatMessage = {
@@ -153,6 +162,28 @@ export default function AIInvestigatorPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Feedback Action Handlers
+  const handleVerifyMessage = (msgIdx: number) => {
+    setMessages((prev) => 
+      prev.map((m, idx) => idx === msgIdx ? { ...m, isVerified: !m.isVerified } : m)
+    );
+    setFeedbackToast('Feedback recorded: Case Officer verified finding against ground-truth registry.');
+    setTimeout(() => setFeedbackToast(null), 3500);
+  };
+
+  const handleToggleRefineMenu = (msgIdx: number) => {
+    setMessages((prev) =>
+      prev.map((m, idx) => idx === msgIdx ? { ...m, refinementMenuOpen: !m.refinementMenuOpen } : m)
+    );
+  };
+
+  const handleApplyRefinement = (msgIdx: number, prompt: string) => {
+    setMessages((prev) =>
+      prev.map((m, idx) => idx === msgIdx ? { ...m, refinementMenuOpen: false } : m)
+    );
+    handleSend(prompt);
   };
 
   // Handle Document Upload
@@ -233,18 +264,24 @@ export default function AIInvestigatorPage() {
     }
   };
 
-  // Voice Microphone Recognition
   const handleToggleVoice = () => {
     setIsVoicePanelOpen(true);
   };
-
 
   return (
     <div className="h-full p-4 flex gap-4 overflow-hidden">
       
       {/* ── MAIN CONVERSATIONAL CHAT AREA ── */}
-      <div className="flex-1 flex flex-col glass-panel rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#03060C]/90">
+      <div className="flex-1 flex flex-col glass-panel rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#03060C]/90 relative">
         
+        {/* Feedback Confirmation Toast */}
+        {feedbackToast && (
+          <div className="absolute top-16 left-1/2 -translate-x-1/2 z-30 px-4 py-2 rounded-xl bg-emerald-500/90 border border-emerald-400 text-black font-mono text-xs font-bold shadow-2xl flex items-center gap-2 animate-in fade-in slide-in-from-top duration-200">
+            <CheckCircle2 className="w-4 h-4" />
+            <span>{feedbackToast}</span>
+          </div>
+        )}
+
         {/* Chat Header */}
         <div className="p-3.5 border-b border-white/10 flex items-center justify-between bg-black/40">
           <div className="flex items-center gap-2.5">
@@ -255,6 +292,9 @@ export default function AIInvestigatorPage() {
               <div className="text-xs font-bold text-white tracking-widest uppercase flex items-center gap-1.5">
                 <span>INVESTIGATIVE COPILOT</span>
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span className="px-2 py-0.5 rounded bg-white/10 text-[9px] font-mono font-normal text-crimenet-cyan">
+                  ADAPTIVE FEEDBACK LOOP ACTIVE
+                </span>
               </div>
               <div className="text-[10px] text-crimenet-muted font-mono">
                 MULTI-TURN MEMORY · MULTIMODAL INGESTION · HINDI / HINGLISH VOICE READY
@@ -293,6 +333,14 @@ export default function AIInvestigatorPage() {
                     : 'glass-card border border-white/10 text-white/95 rounded-tl-none space-y-3 bg-[#080E1A]/95 shadow-xl'
                 }`}
               >
+                {/* Verified Ground Truth Badge */}
+                {msg.isVerified && (
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[10px] font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>VERIFIED BY INVESTIGATING OFFICER (GROUND TRUTH CORROBORATED)</span>
+                  </div>
+                )}
+
                 {/* Image Attachment Preview */}
                 {msg.attachment?.type === 'IMAGE' && msg.attachment.previewUrl && (
                   <div className="relative rounded-lg overflow-hidden border border-white/20 max-w-xs mb-2">
@@ -344,6 +392,86 @@ export default function AIInvestigatorPage() {
                         <ArrowRight className="w-3 h-3" />
                       </button>
                     ))}
+                  </div>
+                )}
+
+                {/* ── USER FEEDBACK & REFINEMENT ACTION BAR ── */}
+                {msg.role === 'ai' && idx > 0 && (
+                  <div className="pt-2.5 border-t border-white/10 space-y-2">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      {/* 1. Verified Button */}
+                      <button
+                        onClick={() => handleVerifyMessage(idx)}
+                        className={`chip-3d px-2.5 py-1 rounded-lg font-mono text-[9px] font-bold transition-all flex items-center gap-1.5 ${
+                          msg.isVerified
+                            ? 'bg-emerald-500/30 text-emerald-300 border border-emerald-400'
+                            : 'bg-black/50 text-white/70 hover:text-white hover:bg-white/10 border border-white/5'
+                        }`}
+                        title="Mark finding as verified against Interpol Red Notice records"
+                      >
+                        <ThumbsUp className="w-3 h-3" />
+                        <span>{msg.isVerified ? 'VERIFIED' : 'VERIFY GROUND TRUTH'}</span>
+                      </button>
+
+                      {/* 2. Refine Answer Button */}
+                      <button
+                        onClick={() => handleToggleRefineMenu(idx)}
+                        className={`chip-3d px-2.5 py-1 rounded-lg font-mono text-[9px] font-bold transition-all flex items-center gap-1.5 ${
+                          msg.refinementMenuOpen
+                            ? 'bg-crimenet-amber text-black'
+                            : 'bg-black/50 text-crimenet-amber hover:bg-crimenet-amber/20 border border-crimenet-amber/30'
+                        }`}
+                        title="Refine this answer into specialized intelligence formats"
+                      >
+                        <RefreshCw className="w-3 h-3" />
+                        <span>REFINE ANSWER</span>
+                        <ChevronDown className="w-3 h-3" />
+                      </button>
+
+                      {/* 3. Deepen Graph Metrics */}
+                      <button
+                        onClick={() => handleSend('Deepen graph metrics and modularity for the subjects in this finding')}
+                        className="chip-3d px-2.5 py-1 rounded-lg bg-black/50 hover:bg-crimenet-cyan/20 border border-crimenet-cyan/30 text-crimenet-cyan font-mono text-[9px] font-bold transition-all flex items-center gap-1.5"
+                        title="Calculate Betweenness, PageRank, and Louvain modularity"
+                      >
+                        <Network className="w-3 h-3" />
+                        <span>DEEPEN GRAPH METRICS</span>
+                      </button>
+
+                      {/* 4. Generate Formal Memo */}
+                      <button
+                        onClick={() => handleSend('Generate a formal confidential CBI legal memo and extradition brief')}
+                        className="chip-3d px-2.5 py-1 rounded-lg bg-black/50 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 font-mono text-[9px] font-bold transition-all flex items-center gap-1.5"
+                        title="Export confidential prosecution briefing memo"
+                      >
+                        <FileText className="w-3 h-3" />
+                        <span>GENERATE FORMAL MEMO</span>
+                      </button>
+                    </div>
+
+                    {/* Popover Refinement Options */}
+                    {msg.refinementMenuOpen && (
+                      <div className="p-2 rounded-xl bg-black/80 border border-crimenet-amber/40 space-y-1 animate-in fade-in zoom-in-95 duration-150">
+                        <div className="text-[9px] font-mono text-crimenet-amber font-bold uppercase tracking-wider px-1 pb-1 border-b border-white/5">
+                          Select Answer Refinement Format:
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-1 pt-1">
+                          {REFINEMENT_OPTIONS.map((opt, rIdx) => {
+                            const OptIcon = opt.icon;
+                            return (
+                              <button
+                                key={rIdx}
+                                onClick={() => handleApplyRefinement(idx, opt.prompt)}
+                                className="chip-3d p-2 rounded-lg text-left bg-black/50 hover:bg-white/10 border border-white/5 text-white/85 text-[10px] font-mono transition-all flex items-center gap-2 group"
+                              >
+                                <OptIcon className="w-3.5 h-3.5 text-crimenet-cyan shrink-0 group-hover:scale-110 transition-transform" />
+                                <span className="truncate">{opt.label}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -488,9 +616,9 @@ export default function AIInvestigatorPage() {
               </span>
             </div>
             <div className="card-3d p-2.5 rounded-xl bg-black/50 border border-white/5 space-y-1 hover:border-emerald-400/30 transition-all">
-              <span className="text-emerald-400 font-bold block text-[11px] font-mono">3. Grounded Citations</span>
+              <span className="text-emerald-400 font-bold block text-[11px] font-mono">3. Adaptive User Feedback</span>
               <span className="text-[10px] text-white/70 leading-relaxed block">
-                Every response provides actionable jump buttons to Map, Network Graph, and protected Evidence.
+                Every finding features interactive buttons to refine output for court, focus on financials, or export legal briefs.
               </span>
             </div>
           </div>

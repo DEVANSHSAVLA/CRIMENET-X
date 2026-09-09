@@ -43,9 +43,8 @@ const INITIAL_PROBES: HealthProbe[] = [
 ];
 
 const INITIAL_OPERATORS: OperatorSession[] = [
-  { id: 'OP-01', name: 'Devansh Savla', role: 'Principal Investigator', clearance: 'Level 5 (Supervisory)', ip: '10.240.12.1', lastActive: 'Active now', status: 'ACTIVE' },
-  { id: 'OP-02', name: 'Agent Priya Sen', role: 'Intelligence Analyst', clearance: 'Level 4', ip: '10.240.12.8', lastActive: '2m ago', status: 'ACTIVE' },
-  { id: 'OP-03', name: 'Officer R. K. Verma', role: 'Tactical Corridor Lead', clearance: 'Level 3', ip: '10.240.14.22', lastActive: '14m ago', status: 'ACTIVE' },
+  { id: 'OP-01', name: 'Devansh Savla', role: 'Principal Investigator & Lead System Architect', clearance: 'Level 5 (Supervisory)', ip: '10.240.12.1', lastActive: 'Active now', status: 'ACTIVE' },
+  { id: 'OP-02', name: 'Ayaan Mukkadam', role: 'Core Tactical Intelligence Officer & Lead Forensic Analyst', clearance: 'Level 5 (Supervisory)', ip: '10.240.12.5', lastActive: 'Active now', status: 'ACTIVE' },
 ];
 
 const INITIAL_LOGS: TelemetryLog[] = [
