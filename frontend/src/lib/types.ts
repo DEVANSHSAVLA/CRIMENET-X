@@ -103,7 +103,7 @@ export interface TimelineEvent {
 export interface Camera {
   id: string;
   name: string;
-  type: string;
+  type?: string;
   city: string;
   lat: number;
   lng: number;
@@ -312,12 +312,27 @@ export interface AIResponse {
 }
 
 export interface VoiceCommandResult {
-  action: string;
-  target: string;
-  spoken_response: string;
-  language?: string;
+  intent?: string;
   confidence?: number;
+  language?: string;
+  transcript?: string;
+  entities?: string[];
+  parameters?: Record<string, any>;
+  requires_confirmation?: boolean;
+  confirmation_message?: string;
+  spoken_response: string;
+  action: string;
+  target?: string;
   data: any;
+  is_disambiguation?: boolean;
+  disambiguation_options?: Array<{
+    id: string;
+    label: string;
+    type: string;
+    details?: string;
+    role?: string;
+  }>;
+  feedback_notice?: string;
 }
 
 export type InvestigationMode = 'EXPLORE' | 'INVESTIGATE' | 'COMPARE';

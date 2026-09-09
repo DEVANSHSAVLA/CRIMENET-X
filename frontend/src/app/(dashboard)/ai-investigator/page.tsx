@@ -42,7 +42,8 @@ export default function AIInvestigatorPage() {
     selectEntity, 
     pendingAiQuery, 
     setPendingAiQuery, 
-    dispatchAction 
+    dispatchAction,
+    setIsVoicePanelOpen,
   } = useInvestigation();
 
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -234,42 +235,9 @@ export default function AIInvestigatorPage() {
 
   // Voice Microphone Recognition
   const handleToggleVoice = () => {
-    if (typeof window === 'undefined') return;
-
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      handleSend("Why is P-017 important in this criminal network?");
-      return;
-    }
-
-    if (isRecording) {
-      setIsRecording(false);
-      return;
-    }
-
-    try {
-      const recognition = new SpeechRecognition();
-      recognition.lang = 'hi-IN'; // Multi-lingual (Hindi / Hinglish / English)
-      recognition.continuous = false;
-      recognition.interimResults = false;
-
-      recognition.onstart = () => setIsRecording(true);
-      recognition.onend = () => setIsRecording(false);
-      recognition.onerror = () => setIsRecording(false);
-
-      recognition.onresult = (event: any) => {
-        const transcript = event.results[0][0].transcript;
-        if (transcript) {
-          handleSend(transcript);
-        }
-      };
-
-      recognition.start();
-    } catch (e) {
-      setIsRecording(false);
-      handleSend("Why is this person important?");
-    }
+    setIsVoicePanelOpen(true);
   };
+
 
   return (
     <div className="h-full p-4 flex gap-4 overflow-hidden">

@@ -86,6 +86,15 @@ interface InvestigationContextType {
   // AI & Voice Coordination
   pendingAiQuery: string | null;
   setPendingAiQuery: (query: string | null) => void;
+  voiceFeedbackNotice: string | null;
+  setVoiceFeedbackNotice: (notice: string | null) => void;
+  isVoicePanelOpen: boolean;
+  setIsVoicePanelOpen: (open: boolean) => void;
+  disambiguationState: { query: string; options: any[] } | null;
+  setDisambiguationState: (state: { query: string; options: any[] } | null) => void;
+  sensitiveConfirmation: { message: string; action: string; payload: any } | null;
+  setSensitiveConfirmation: (state: { message: string; action: string; payload: any } | null) => void;
+  setLayer: (layerKey: string, value: boolean) => void;
   dispatchAction: (action: string, payload: any) => void;
 }
 
@@ -147,6 +156,19 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [compareEntities, setCompareEntities] = useState<[Person | null, Person | null]>([null, null]);
   const [pendingAiQuery, setPendingAiQuery] = useState<string | null>(null);
+
+  // Voice Interaction & Feedback Coordination
+  const [voiceFeedbackNotice, setVoiceFeedbackNotice] = useState<string | null>(null);
+  const [isVoicePanelOpen, setIsVoicePanelOpen] = useState<boolean>(false);
+  const [disambiguationState, setDisambiguationState] = useState<{ query: string; options: any[] } | null>(null);
+  const [sensitiveConfirmation, setSensitiveConfirmation] = useState<{ message: string; action: string; payload: any } | null>(null);
+
+  useEffect(() => {
+    if (voiceFeedbackNotice) {
+      const timer = setTimeout(() => setVoiceFeedbackNotice(null), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [voiceFeedbackNotice]);
 
   // Initial Load for default entity P-001
   useEffect(() => {
@@ -253,38 +275,125 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
     }));
   }, []);
 
+  const setLayer = useCallback((layerKey: string, value: boolean) => {
+    setLayers((prev) => ({
+      ...prev,
+      [layerKey]: value,
+    }));
+  }, []);
+
   // Centralized Cross-View Action Dispatcher
   const dispatchAction = useCallback((action: string, payload: any) => {
+    // Show feedback notice if available in payload
+    if (payload?.feedback_notice) {
+      setVoiceFeedbackNotice(payload.feedback_notice);
+    }
+
     switch (action) {
       case 'SELECT_ENTITY': {
         const id = typeof payload === 'string' ? payload : payload?.entity_id || payload?.id;
-        if (id) selectEntity(id);
+        if (id) {
+          selectEntity(id);
+          setVoiceFeedbackNotice(`✓ Selected suspect ${id}`);
+        }
         break;
       }
       case 'SELECT_CAMERA': {
-        if (payload) selectCamera(payload);
+        if (payload) {
+          selectCamera(payload);
+          setVoiceFeedbackNotice(`✓ Selected camera ${payload.name || payload.id}`);
+        }
         break;
       }
       case 'SELECT_SIGNAL': {
-        if (payload) selectSignal(payload);
+        if (payload) {
+          selectSignal(payload);
+          setVoiceFeedbackNotice(`✓ Selected traffic signal ${payload.name || payload.id}`);
+        }
         break;
       }
       case 'SELECT_LOCATION': {
-        if (payload) selectLocation(payload);
+        if (payload) {
+          selectLocation(payload);
+          setVoiceFeedbackNotice(`✓ Selected location ${payload.name || payload.id}`);
+        }
         break;
       }
       case 'SELECT_EVENT': {
-        if (payload) selectEvent(payload);
+        if (payload) {
+          selectEvent(payload);
+          setVoiceFeedbackNotice(`✓ Selected event ${payload.title || payload.id}`);
+        }
         break;
       }
       case 'SELECT_EVIDENCE': {
-        if (payload) selectEvidence(payload);
+        if (payload) {
+          selectEvidence(payload);
+          setVoiceFeedbackNotice(`✓ Selected evidence ${payload.id}`);
+        }
         break;
       }
+      case 'NAVIGATE_COMMAND_CENTER': {
+        router.push('/command-center');
+        setVoiceFeedbackNotice('✓ Navigated to Command Center');
+        break;
+      }
+      case 'OPEN_GEO': {
+        router.push('/geo-intelligence');
+        setVoiceFeedbackNotice('✓ Navigated to 3D Geo Intelligence');
+        break;
+      }
+      case 'OPEN_NETWORK':
       case 'FOCUS_NETWORK': {
         const id = typeof payload === 'string' ? payload : payload?.entity_id || selectedEntityId;
         if (id) setSelectedEntityId(id);
         router.push('/network');
+        setVoiceFeedbackNotice(`✓ Focused network on ${id || 'suspect'}`);
+        break;
+      }
+      case 'OPEN_TIMELINE':
+      case 'NAVIGATE_TIMELINE':
+      case 'VIEW_TIMELINE_EVENTS': {
+        router.push('/timeline');
+        setVoiceFeedbackNotice('✓ Navigated to Timeline');
+        break;
+      }
+      case 'OPEN_ANALYTICS':
+      case 'SHOW_COUNTRIES':
+      case 'SHOW_CENTRALITY': {
+        router.push('/analytics');
+        setVoiceFeedbackNotice('✓ Navigated to Analytics');
+        break;
+      }
+      case 'OPEN_EVIDENCE': {
+        router.push('/evidence');
+        setVoiceFeedbackNotice('✓ Navigated to Evidence Vault');
+        break;
+      }
+      case 'OPEN_ADMIN': {
+        router.push('/admin');
+        setVoiceFeedbackNotice('✓ Navigated to Admin');
+        break;
+      }
+      case 'PLAY_TIMELINE': {
+        setIsTimelinePlaying(true);
+        router.push('/timeline');
+        setVoiceFeedbackNotice('▶ Playing chronological timeline');
+        break;
+      }
+      case 'PAUSE_TIMELINE': {
+        setIsTimelinePlaying(false);
+        setVoiceFeedbackNotice('⏸ Timeline paused');
+        break;
+      }
+      case 'NEXT_EVENT': {
+        router.push('/timeline');
+        setVoiceFeedbackNotice('⏭ Stepping to next event');
+        break;
+      }
+      case 'PREVIOUS_EVENT': {
+        router.push('/timeline');
+        setVoiceFeedbackNotice('⏮ Stepping to previous event');
         break;
       }
       case 'FOCUS_MAP_LOCATION': {
@@ -292,7 +401,7 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
           setMapFocusTarget({
             lat: payload.lat,
             lng: payload.lng,
-            zoom: payload.zoom || 15.2,
+            zoom: payload.zoom || 14.5,
             timestamp: Date.now(),
           });
           if (payload.camera) {
@@ -306,44 +415,106 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
           }
         }
         router.push('/command-center');
+        setVoiceFeedbackNotice(`✓ Focused map on ${payload?.city || payload?.name || 'target'}`);
         break;
       }
-      case 'VIEW_TIMELINE_EVENTS': {
-        router.push('/timeline');
+      case 'ZOOM_IN': {
+        setMapFocusTarget((prev) =>
+          prev
+            ? { ...prev, zoom: Math.min(18, (prev.zoom || 12) + 2), timestamp: Date.now() }
+            : { lat: 18.9438, lng: 72.8233, zoom: 14.5, timestamp: Date.now() }
+        );
+        router.push('/command-center');
+        setVoiceFeedbackNotice('🔍 Zoomed In');
         break;
       }
-      case 'NAVIGATE_TIMELINE': {
-        router.push('/timeline');
+      case 'ZOOM_OUT': {
+        setMapFocusTarget((prev) =>
+          prev
+            ? { ...prev, zoom: Math.max(7, (prev.zoom || 12) - 2), timestamp: Date.now() }
+            : { lat: 18.9438, lng: 72.8233, zoom: 10, timestamp: Date.now() }
+        );
+        router.push('/command-center');
+        setVoiceFeedbackNotice('🔍 Zoomed Out');
         break;
       }
-      case 'ASK_AI_EXPLANATION': {
-        const id = typeof payload === 'string' ? payload : selectedEntityId || 'P-001';
-        setPendingAiQuery(`Why is ${id} important in the network?`);
-        router.push('/ai-investigator');
+      case 'SET_LAYER': {
+        if (payload?.layer) {
+          setLayer(payload.layer, payload.value ?? true);
+          setVoiceFeedbackNotice(`✓ Layer ${payload.layer} set to ${payload.value ? 'ON' : 'OFF'}`);
+        }
         break;
       }
       case 'TOGGLE_CAMERAS': {
         toggleLayer('cameras');
+        setVoiceFeedbackNotice('✓ Toggled Cameras layer');
         break;
       }
       case 'TOGGLE_SIGNALS': {
         toggleLayer('signals');
+        setVoiceFeedbackNotice('✓ Toggled Traffic Signals layer');
+        break;
+      }
+      case 'COMPARE_ENTITIES': {
+        setIsCompareOpen(true);
+        setVoiceFeedbackNotice('✓ Opened Comparison view');
+        break;
+      }
+      case 'DISAMBIGUATE_ENTITY': {
+        setDisambiguationState({
+          query: payload?.query || payload?.target || '',
+          options: payload?.disambiguation_options || [],
+        });
+        setVoiceFeedbackNotice(`Found ${payload?.disambiguation_options?.length || 0} matching suspects`);
+        break;
+      }
+      case 'REQUIRE_SECURITY_CONFIRMATION': {
+        setSensitiveConfirmation({
+          message: payload?.confirmation_message || 'Critical operation requires explicit human confirmation.',
+          action: payload?.operation || action,
+          payload,
+        });
+        break;
+      }
+      case 'OPEN_EXPLANATION':
+      case 'ASK_AI_EXPLANATION': {
+        const id = typeof payload === 'string' ? payload : payload?.entity_id || selectedEntityId || 'P-017';
+        setPendingAiQuery(`Why is ${id} important in the network?`);
+        router.push('/ai-investigator');
+        setVoiceFeedbackNotice(`💡 Requesting AI analysis for ${id}`);
+        break;
+      }
+      case 'AI_COPILOT_RESPONSE': {
+        router.push('/ai-investigator');
         break;
       }
       case 'RESET_VIEW': {
         setRiskFilter(null);
         setTimeYear(2026);
+        clearFilters();
         router.push('/command-center');
-        break;
-      }
-      case 'FLY_TO_CITY': {
-        router.push('/command-center');
+        setVoiceFeedbackNotice('✓ Investigation view reset');
         break;
       }
       default:
         console.log('Action dispatched:', action, payload);
     }
-  }, [router, selectEntity, selectCamera, selectSignal, selectLocation, selectEvent, selectEvidence, selectedEntityId, toggleLayer, openDrawer]);
+  }, [
+    router,
+    selectEntity,
+    selectCamera,
+    selectSignal,
+    selectLocation,
+    selectEvent,
+    selectEvidence,
+    selectedEntityId,
+    toggleLayer,
+    setLayer,
+    clearFilters,
+    openDrawer,
+    setMapFocusTarget,
+    setCameraRadius,
+  ]);
 
   return (
     <InvestigationContext.Provider
@@ -374,6 +545,7 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         setRiskFilter,
         layers,
         toggleLayer,
+        setLayer,
         isCompareOpen,
         setIsCompareOpen,
         isReportOpen,
@@ -393,6 +565,14 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         setMapFocusTarget,
         pendingAiQuery,
         setPendingAiQuery,
+        voiceFeedbackNotice,
+        setVoiceFeedbackNotice,
+        isVoicePanelOpen,
+        setIsVoicePanelOpen,
+        disambiguationState,
+        setDisambiguationState,
+        sensitiveConfirmation,
+        setSensitiveConfirmation,
         dispatchAction,
       }}
     >

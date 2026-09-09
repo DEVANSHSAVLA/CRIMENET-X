@@ -142,9 +142,9 @@ export const api = {
   },
 
   // Voice Command Processing
-  sendVoiceCommand: (transcript: string, contextEntityId?: string, language?: string) => fetchAPI<VoiceCommandResult>('/api/v1/voice/command', {
+  sendVoiceCommand: (transcript: string, contextEntityId?: string, language?: string, pendingOptions?: any[]) => fetchAPI<VoiceCommandResult>('/api/v1/voice/command', {
     method: 'POST',
-    body: JSON.stringify({ transcript, context_entity_id: contextEntityId, language }),
+    body: JSON.stringify({ transcript, context_entity_id: contextEntityId, language, pending_options: pendingOptions }),
   }),
 
 
