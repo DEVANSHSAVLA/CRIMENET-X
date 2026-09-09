@@ -191,6 +191,16 @@ body {
 }
 
 /* MapLibre overrides */
+.maplibregl-marker {
+  width: auto !important;
+  height: auto !important;
+  max-width: fit-content !important;
+  max-height: fit-content !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .maplibregl-popup-content {
   background: rgba(15, 23, 42, 0.9) !important;
   backdrop-filter: blur(12px);
@@ -202,3 +212,4 @@ body {
 .maplibregl-popup-tip {
   border-top-color: rgba(15, 23, 42, 0.9) !important;
 }
+

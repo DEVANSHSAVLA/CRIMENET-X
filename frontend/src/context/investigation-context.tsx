@@ -49,6 +49,8 @@ interface InvestigationContextType {
     trajectories: boolean;
     heatmap: boolean;
     buildings: boolean;
+    hotspots: boolean;
+    arcs: boolean;
   };
   toggleLayer: (layerKey: string) => void;
 
@@ -149,6 +151,8 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
     trajectories: true,
     heatmap: false,
     buildings: true,
+    hotspots: true,
+    arcs: true,
   });
 
   // Modals

@@ -29,14 +29,14 @@ interface MapComponentProps {
   cameraRadius?: { lat: number; lng: number; radiusM: number } | null;
   initialViewMode?: 'GLOBAL' | 'NATIONAL' | 'URBAN';
   layerVisibility?: {
-    locations: boolean;
-    events: boolean;
-    cameras: boolean;
-    signals: boolean;
-    traffic: boolean;
-    trajectories: boolean;
-    heatmap: boolean;
-    buildings: boolean;
+    locations?: boolean;
+    events?: boolean;
+    cameras?: boolean;
+    signals?: boolean;
+    traffic?: boolean;
+    trajectories?: boolean;
+    heatmap?: boolean;
+    buildings?: boolean;
     hotspots?: boolean;
     arcs?: boolean;
   };
@@ -360,32 +360,48 @@ export default function MapComponent({
 
     GLOBAL_HOTSPOTS.forEach((spot) => {
       const el = document.createElement('div');
-      el.className = 'group relative cursor-pointer z-30 select-none';
+      el.className = 'group cursor-pointer select-none';
+      el.style.width = '24px';
+      el.style.height = '24px';
+      el.style.minWidth = '24px';
+      el.style.maxWidth = '24px';
+      el.style.minHeight = '24px';
+      el.style.maxHeight = '24px';
+      el.style.position = 'relative';
+      el.style.display = 'flex';
+      el.style.alignItems = 'center';
+      el.style.justifyContent = 'center';
       el.dataset.featureType = 'GLOBAL_HOTSPOT';
       el.dataset.featureId = spot.id;
 
-      const isCritical = spot.category === 'CROSS_BORDER_CORRIDOR' || spot.category === 'INTERNATIONAL_SANCTUARY';
-      const badgeColor = spot.countryCode === 'IN' ? 'border-amber-400 text-amber-300' : 'border-rose-500 text-rose-300';
-      const pulseBg = spot.countryCode === 'IN' ? 'bg-amber-400/25' : 'bg-rose-500/25';
+      const isIndia = spot.countryCode === 'IN';
+      const accentColor = isIndia ? '#F59E0B' : '#F43F5E';
 
-      // Pulse Radar Effect
-      const radar = document.createElement('div');
-      radar.className = `absolute -inset-3 rounded-full ${pulseBg} animate-ping pointer-events-none opacity-60`;
-      el.appendChild(radar);
+      // Micro pulse ring (exactly 22px, never expands container)
+      const pulse = document.createElement('div');
+      pulse.className = 'absolute rounded-full pointer-events-none animate-ping';
+      pulse.style.width = '20px';
+      pulse.style.height = '20px';
+      pulse.style.backgroundColor = isIndia ? 'rgba(245, 158, 11, 0.35)' : 'rgba(244, 63, 94, 0.35)';
+      el.appendChild(pulse);
 
-      // Core Spotted Badge
-      const badge = document.createElement('div');
-      badge.className = `relative px-2.5 py-1 rounded-full bg-[#070D18]/95 border-2 ${badgeColor} shadow-[0_0_20px_rgba(0,0,0,0.9)] flex items-center gap-1.5 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_25px_#FF1744]`;
-      badge.innerHTML = `
-        <span class="text-xs">${spot.flag}</span>
-        <span class="font-mono text-[10px] font-black tracking-wider text-white">${spot.fugitiveCount}</span>
-      `;
-      el.appendChild(badge);
+      // Core Pinpoint 18px circle
+      const pin = document.createElement('div');
+      pin.className = 'relative rounded-full flex items-center justify-center font-mono font-bold text-white shadow-md transition-transform duration-200 group-hover:scale-125';
+      pin.style.width = '18px';
+      pin.style.height = '18px';
+      pin.style.backgroundColor = '#070D18';
+      pin.style.border = `2px solid ${accentColor}`;
+      pin.style.boxShadow = `0 0 8px ${accentColor}aa`;
+      pin.style.fontSize = '8.5px';
+      pin.style.lineHeight = '1';
+      pin.textContent = String(spot.fugitiveCount);
+      el.appendChild(pin);
 
-      // Label below spot
+      // Hover micro-badge
       const label = document.createElement('div');
-      label.className = 'absolute top-full left-1/2 -translate-x-1/2 mt-1 px-1.5 py-0.5 rounded bg-black/90 border border-white/20 text-[9px] font-mono text-white/90 whitespace-nowrap shadow-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-40';
-      label.textContent = spot.name;
+      label.className = 'absolute top-full left-1/2 -translate-x-1/2 mt-1 px-1.5 py-0.5 rounded bg-black/95 border border-white/20 text-[9px] font-mono text-white whitespace-nowrap shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50';
+      label.textContent = `${spot.flag} ${spot.name}`;
       el.appendChild(label);
 
       // Interactive Popup
@@ -496,21 +512,23 @@ export default function MapComponent({
 
     locations.forEach(loc => {
       const el = document.createElement('div');
-      el.className = 'group relative cursor-pointer z-20';
+      el.className = 'group cursor-pointer select-none';
+      el.style.width = '18px';
+      el.style.height = '18px';
+      el.style.minWidth = '18px';
+      el.style.maxWidth = '18px';
+      el.style.minHeight = '18px';
+      el.style.maxHeight = '18px';
+      el.style.position = 'relative';
+      el.style.display = 'flex';
+      el.style.alignItems = 'center';
+      el.style.justifyContent = 'center';
       el.dataset.featureType = 'LOCATION';
       el.dataset.featureId = loc.id;
 
-      const halo = document.createElement('div');
-      halo.className = 'absolute -inset-1.5 rounded-full bg-emerald-500/20 group-hover:bg-emerald-500/40 transition-colors pointer-events-none';
-      el.appendChild(halo);
-
       const pin = document.createElement('div');
-      pin.className = 'relative w-6 h-6 rounded-full bg-emerald-500/90 border-2 border-white flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-125';
-      pin.innerHTML = `
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
-        </svg>
-      `;
+      pin.className = 'w-3.5 h-3.5 rounded-full bg-emerald-500 border border-white flex items-center justify-center shadow-md transition-transform duration-200 group-hover:scale-125';
+      pin.innerHTML = `<span class="w-1 h-1 rounded-full bg-white"></span>`;
       el.appendChild(pin);
 
       const popup = new maplibregl.Popup({ offset: 15, closeButton: false })
@@ -566,7 +584,17 @@ export default function MapComponent({
 
     cameras.forEach(cam => {
       const el = document.createElement('div');
-      el.className = 'group relative cursor-pointer z-30';
+      el.className = 'group cursor-pointer select-none';
+      el.style.width = '20px';
+      el.style.height = '20px';
+      el.style.minWidth = '20px';
+      el.style.maxWidth = '20px';
+      el.style.minHeight = '20px';
+      el.style.maxHeight = '20px';
+      el.style.position = 'relative';
+      el.style.display = 'flex';
+      el.style.alignItems = 'center';
+      el.style.justifyContent = 'center';
       el.dataset.featureType = 'CAMERA';
       el.dataset.featureId = cam.id;
 
@@ -574,16 +602,16 @@ export default function MapComponent({
       const isLive = cam.status === 'LIVE' || Boolean(cam.stream_url);
 
       const beacon = document.createElement('div');
-      beacon.className = `w-7 h-7 rounded-lg flex items-center justify-center border transition-all duration-300 ${
+      beacon.className = `w-4 h-4 rounded flex items-center justify-center border transition-all duration-200 group-hover:scale-125 ${
         isNearSelected
-          ? 'bg-amber-500/30 border-amber-400 shadow-lg shadow-amber-500/50 scale-125 animate-pulse'
+          ? 'bg-amber-500/40 border-amber-400 shadow-md shadow-amber-500/50 animate-pulse'
           : isLive
-            ? 'bg-black/90 border-emerald-400 text-emerald-400 hover:scale-125 shadow-md shadow-emerald-500/20'
-            : 'bg-black/85 border-amber-400/60 text-amber-400 hover:scale-125'
+            ? 'bg-black/90 border-emerald-400 text-emerald-400 shadow-sm'
+            : 'bg-black/85 border-amber-400/70 text-amber-400'
       }`;
 
       beacon.innerHTML = `
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${isLive ? '#10B981' : '#FFB300'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="${isLive ? '#10B981' : '#FFB300'}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/>
         </svg>
       `;
@@ -641,17 +669,27 @@ export default function MapComponent({
 
     signals.forEach(sig => {
       const el = document.createElement('div');
-      el.className = 'group relative cursor-pointer z-25';
+      el.className = 'group cursor-pointer select-none';
+      el.style.width = '18px';
+      el.style.height = '18px';
+      el.style.minWidth = '18px';
+      el.style.maxWidth = '18px';
+      el.style.minHeight = '18px';
+      el.style.maxHeight = '18px';
+      el.style.position = 'relative';
+      el.style.display = 'flex';
+      el.style.alignItems = 'center';
+      el.style.justifyContent = 'center';
       el.dataset.featureType = 'SIGNAL';
       el.dataset.featureId = sig.id;
 
       const phaseColor = sig.phase === 'RED' ? '#FF1744' : sig.phase === 'YELLOW' ? '#FFB300' : '#10B981';
 
       const ring = document.createElement('div');
-      ring.className = 'w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow-md transition-transform duration-200 group-hover:scale-125';
+      ring.className = 'w-3.5 h-3.5 rounded-full flex items-center justify-center border border-white shadow-sm transition-transform duration-200 group-hover:scale-125';
       ring.style.backgroundColor = phaseColor;
-      ring.style.boxShadow = `0 0 10px ${phaseColor}`;
-      ring.innerHTML = `<span style="font-size: 8px; font-weight: bold; color: #fff; font-family: monospace;">${sig.remaining_seconds || 20}</span>`;
+      ring.style.boxShadow = `0 0 6px ${phaseColor}`;
+      ring.innerHTML = `<span style="font-size: 7px; font-weight: bold; color: #fff; font-family: monospace;">${sig.remaining_seconds || 20}</span>`;
       el.appendChild(ring);
 
       const popup = new maplibregl.Popup({ offset: 15, closeButton: false })
@@ -698,12 +736,22 @@ export default function MapComponent({
       if (!loc) return;
 
       const el = document.createElement('div');
-      el.className = 'group relative cursor-pointer z-20';
+      el.className = 'group cursor-pointer select-none';
+      el.style.width = '14px';
+      el.style.height = '14px';
+      el.style.minWidth = '14px';
+      el.style.maxWidth = '14px';
+      el.style.minHeight = '14px';
+      el.style.maxHeight = '14px';
+      el.style.position = 'relative';
+      el.style.display = 'flex';
+      el.style.alignItems = 'center';
+      el.style.justifyContent = 'center';
       el.dataset.featureType = 'EVENT';
       el.dataset.featureId = ev.id;
 
       const diamond = document.createElement('div');
-      diamond.className = 'w-4 h-4 bg-purple-500 border-2 border-white rotate-45 flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-150';
+      diamond.className = 'w-2.5 h-2.5 bg-purple-500 border border-white rotate-45 flex items-center justify-center shadow-sm transition-transform duration-200 group-hover:scale-150';
       el.appendChild(diamond);
 
       const popup = new maplibregl.Popup({ offset: 15, closeButton: false })
@@ -782,12 +830,297 @@ export default function MapComponent({
     });
   }, [trafficCorridors, layerVisibility.traffic]);
 
+  // 11. Crime Heatmap Layer (Dynamic Geo Density)
+  useEffect(() => {
+    if (!map.current) return;
+
+    const setupHeatmap = () => {
+      if (!map.current || !map.current.isStyleLoaded()) return;
+
+      const sourceId = 'crime-heatmap-source';
+      const layerId = 'crime-heatmap-layer';
+
+      if (map.current.getLayer(layerId)) map.current.removeLayer(layerId);
+      if (map.current.getSource(sourceId)) map.current.removeSource(sourceId);
+
+      if (layerVisibility.heatmap === false || locations.length === 0) return;
+
+      const features: GeoJSON.Feature<GeoJSON.Point>[] = [];
+
+      locations.forEach(loc => {
+        const weight = loc.risk_level === 'CRITICAL' ? 1.0 : loc.risk_level === 'HIGH' ? 0.8 : loc.risk_level === 'MEDIUM' ? 0.5 : 0.3;
+        features.push({
+          type: 'Feature',
+          properties: { weight, name: loc.name },
+          geometry: {
+            type: 'Point',
+            coordinates: [loc.lng, loc.lat],
+          },
+        });
+      });
+
+      timelineEvents.forEach(ev => {
+        const loc = locations.find(l => l.id === ev.location_id);
+        if (loc) {
+          const jitterLng = loc.lng + (Math.random() - 0.5) * 0.005;
+          const jitterLat = loc.lat + (Math.random() - 0.5) * 0.005;
+          features.push({
+            type: 'Feature',
+            properties: { weight: 0.7 },
+            geometry: {
+              type: 'Point',
+              coordinates: [jitterLng, jitterLat],
+            },
+          });
+        }
+      });
+
+      map.current.addSource(sourceId, {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features,
+        },
+      });
+
+      map.current.addLayer({
+        id: layerId,
+        type: 'heatmap',
+        source: sourceId,
+        maxzoom: 15,
+        paint: {
+          'heatmap-weight': [
+            'interpolate',
+            ['linear'],
+            ['get', 'weight'],
+            0, 0,
+            1, 1,
+          ],
+          'heatmap-intensity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            0, 1,
+            9, 3,
+          ],
+          'heatmap-color': [
+            'interpolate',
+            ['linear'],
+            ['heatmap-density'],
+            0, 'rgba(0, 212, 255, 0)',
+            0.2, 'rgba(0, 212, 255, 0.6)',
+            0.4, 'rgba(16, 185, 129, 0.75)',
+            0.6, 'rgba(255, 179, 0, 0.85)',
+            0.8, 'rgba(255, 23, 68, 0.9)',
+            1, 'rgba(255, 0, 85, 1.0)',
+          ],
+          'heatmap-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            0, 4,
+            5, 14,
+            10, 30,
+            14, 48,
+          ],
+          'heatmap-opacity': 0.85,
+        },
+      });
+    };
+
+    if (map.current.isStyleLoaded()) {
+      setupHeatmap();
+    } else {
+      map.current.once('load', setupHeatmap);
+    }
+  }, [locations, timelineEvents, layerVisibility.heatmap]);
+
+  // 12. 3D Buildings Fill-Extrusion Layer
+  useEffect(() => {
+    if (!map.current) return;
+
+    const setupBuildings = () => {
+      if (!map.current || !map.current.isStyleLoaded()) return;
+
+      const layerId = '3d-buildings-extrusion';
+      if (map.current.getLayer(layerId)) {
+        map.current.setLayoutProperty(
+          layerId,
+          'visibility',
+          layerVisibility.buildings !== false ? 'visible' : 'none'
+        );
+        return;
+      }
+
+      if (layerVisibility.buildings === false) return;
+      if (!map.current.getSource('carto')) return;
+
+      const styleLayers = map.current.getStyle().layers || [];
+      let labelLayerId: string | undefined;
+      for (const layer of styleLayers) {
+        if (layer.type === 'symbol' && layer.layout && (layer.layout as any)['text-field']) {
+          labelLayerId = layer.id;
+          break;
+        }
+      }
+
+      try {
+        map.current.addLayer({
+          id: layerId,
+          source: 'carto',
+          'source-layer': 'building',
+          type: 'fill-extrusion',
+          minzoom: 13,
+          paint: {
+            'fill-extrusion-color': '#0f172a',
+            'fill-extrusion-height': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              13, 0,
+              13.5, ['coalesce', ['get', 'render_height'], ['get', 'height'], 22]
+            ],
+            'fill-extrusion-base': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              13, 0,
+              13.5, ['coalesce', ['get', 'render_min_height'], ['get', 'min_height'], 0]
+            ],
+            'fill-extrusion-opacity': 0.75,
+          },
+        }, labelLayerId);
+      } catch (e) {
+        console.warn('3D building extrusion not available');
+      }
+    };
+
+    if (map.current.isStyleLoaded()) {
+      setupBuildings();
+    } else {
+      map.current.once('load', setupBuildings);
+    }
+  }, [layerVisibility.buildings]);
+
+  // 13. Suspect Trajectories Layer
+  useEffect(() => {
+    if (!map.current) return;
+
+    const setupTrajectories = () => {
+      if (!map.current || !map.current.isStyleLoaded()) return;
+
+      const sourceId = 'suspect-trajectories-source';
+      const lineLayerId = 'suspect-trajectories-line';
+      const glowLayerId = 'suspect-trajectories-glow';
+
+      if (map.current.getLayer(lineLayerId)) map.current.removeLayer(lineLayerId);
+      if (map.current.getLayer(glowLayerId)) map.current.removeLayer(glowLayerId);
+      if (map.current.getSource(sourceId)) map.current.removeSource(sourceId);
+
+      if (layerVisibility.trajectories === false) return;
+
+      const trajectoryRoutes = [
+        {
+          id: 'TRAJ-001',
+          name: 'P-017 Mumbai-Pune Smuggling Path',
+          points: [
+            [72.8147, 18.9067], // Colaba Safehouse
+            [72.8234, 18.9438], // Marine Drive
+            [72.8153, 19.0176], // Worli Sea Face
+            [72.8495, 19.0596], // Bandra East
+            [72.8518, 19.0422], // Dharavi Workshop
+            [72.8296, 19.1364], // Andheri West Hub
+            [73.8077, 18.5074], // Pune Kothrud
+            [73.8930, 18.5362], // Pune Koregaon Park
+          ],
+          color: '#00D4FF',
+        },
+        {
+          id: 'TRAJ-002',
+          name: 'Delhi Financial Laundering Transit',
+          points: [
+            [77.2167, 28.6315], // Connaught Place
+            [77.2334, 28.6507], // Chandni Chowk
+            [77.1909, 28.6519], // Karol Bagh
+            [77.0460, 28.5921], // Dwarka
+            [77.1000, 28.5562], // IGI Airport T3
+          ],
+          color: '#FFB300',
+        },
+        {
+          id: 'TRAJ-003',
+          name: 'Interstate Western Logistics Run',
+          points: [
+            [72.8567, 19.2307], // Borivali
+            [72.8789, 19.0728], // Kurla Yard
+            [73.7380, 18.5912], // Hinjewadi IT Park
+            [73.9260, 18.5089], // Hadapsar MIDC
+          ],
+          color: '#10B981',
+        },
+      ];
+
+      const features: GeoJSON.Feature<GeoJSON.LineString>[] = trajectoryRoutes.map(route => ({
+        type: 'Feature',
+        properties: {
+          id: route.id,
+          name: route.name,
+          color: route.color,
+        },
+        geometry: {
+          type: 'LineString',
+          coordinates: route.points,
+        },
+      }));
+
+      map.current.addSource(sourceId, {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features,
+        },
+      });
+
+      // Outer glow line
+      map.current.addLayer({
+        id: glowLayerId,
+        type: 'line',
+        source: sourceId,
+        paint: {
+          'line-color': ['get', 'color'],
+          'line-width': 5,
+          'line-opacity': 0.35,
+          'line-blur': 3,
+        },
+      });
+
+      // Core dashed line
+      map.current.addLayer({
+        id: lineLayerId,
+        type: 'line',
+        source: sourceId,
+        paint: {
+          'line-color': ['get', 'color'],
+          'line-width': 2.5,
+          'line-dasharray': [3, 2],
+          'line-opacity': 0.9,
+        },
+      });
+    };
+
+    if (map.current.isStyleLoaded()) {
+      setupTrajectories();
+    } else {
+      map.current.once('load', setupTrajectories);
+    }
+  }, [layerVisibility.trajectories]);
+
   return (
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="w-full h-full bg-crimenet-bg" />
 
-      {/* ── TOP VIEW MODE SWITCHER CONTROL BAR ── */}
-      <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+      {/* ── TOP VIEW MODE SWITCHER CONTROL BAR (CENTERED, NON-COLLIDING) ── */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 max-w-[calc(100vw-360px)]">
         <div className="glass-panel p-1.5 rounded-xl border border-white/10 shadow-2xl bg-[#060B14]/90 backdrop-blur-md flex items-center gap-1.5">
           <button
             onClick={() => setViewMode('GLOBAL')}

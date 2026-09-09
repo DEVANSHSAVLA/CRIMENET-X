@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { GlassPanel } from '@/components/panels/glass-panel';
 import { 
   Users, MapPin, Video, Radio, Activity, Shield, AlertTriangle, 
-  Layers, Clock, Filter, Eye, ChevronRight
+  Layers, Clock, Filter, Eye, ChevronRight, Globe, Plane
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
@@ -76,6 +76,7 @@ export default function CommandCenter() {
         onSelectSignal={selectSignal}
         onSelectLocation={selectLocation}
         layerVisibility={layers}
+        initialViewMode="URBAN"
       />
 
       {/* Left Control Panel: Urban Layers & Filters */}
@@ -92,9 +93,11 @@ export default function CommandCenter() {
               </div>
               <div className="space-y-1.5 text-xs">
                 {[
-                  { key: 'locations', label: 'Regional Locations (38)', icon: MapPin, color: 'text-crimenet-cyan' },
+                  { key: 'hotspots', label: 'Global Spots (16 Hubs)', icon: Globe, color: 'text-rose-400' },
+                  { key: 'arcs', label: 'Flight Arcs (10 Routes)', icon: Plane, color: 'text-crimenet-cyan' },
+                  { key: 'locations', label: 'Regional Locations (38)', icon: MapPin, color: 'text-emerald-400' },
                   { key: 'cameras', label: 'Urban Cameras (8 Active)', icon: Video, color: 'text-crimenet-amber' },
-                  { key: 'signals', label: 'Traffic Signals (9 Intersections)', icon: Radio, color: 'text-emerald-400' },
+                  { key: 'signals', label: 'Traffic Signals (9 Intersections)', icon: Radio, color: 'text-crimenet-crimson' },
                   { key: 'traffic', label: 'Traffic Flow Corridors', icon: Activity, color: 'text-crimenet-blue' },
                   { key: 'trajectories', label: 'Suspect Trajectories', icon: Clock, color: 'text-white' },
                 ].map(({ key, label, icon: Icon, color }) => (

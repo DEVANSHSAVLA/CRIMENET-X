@@ -506,22 +506,23 @@ export default function GeoIntelligencePage() {
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { key: 'hotspots', label: 'Global Spots', icon: Globe, color: 'text-rose-400' },
-                    { key: 'arcs', label: 'Flight Arcs', icon: Plane, color: 'text-crimenet-cyan' },
-                    { key: 'cameras', label: 'CCTV Sensors', icon: Video, color: 'text-amber-400' },
-                    { key: 'signals', label: 'Traffic Signals', icon: Radio, color: 'text-crimenet-crimson' },
-                    { key: 'heatmap', label: 'Crime Heatmap', icon: Flame, color: 'text-rose-400' },
-                    { key: 'buildings', label: '3D Extrusions', icon: Building2, color: 'text-blue-400' },
-                    { key: 'trajectories', label: 'Trajectories', icon: Zap, color: 'text-crimenet-cyan' },
-                    { key: 'locations', label: 'Location Hubs', icon: MapPin, color: 'text-emerald-400' },
-                    { key: 'events', label: 'Timeline Events', icon: Activity, color: 'text-purple-400' },
-                    { key: 'traffic', label: 'Traffic Density', icon: Target, color: 'text-yellow-400' },
-                  ].map(({ key, label, icon: Icon, color }) => {
-                    const isActive = (layers as any)[key] ?? true;
+                    { key: 'hotspots', label: 'Global Spots', icon: Globe, color: 'text-rose-400', desc: '16 International fugitive sanctuary hubs' },
+                    { key: 'arcs', label: 'Flight Arcs', icon: Plane, color: 'text-crimenet-cyan', desc: '10 Transnational flight & smuggling arcs' },
+                    { key: 'cameras', label: 'CCTV Sensors', icon: Video, color: 'text-amber-400', desc: '8 Live street surveillance cameras' },
+                    { key: 'signals', label: 'Traffic Signals', icon: Radio, color: 'text-crimenet-crimson', desc: '9 Intersection signal controllers' },
+                    { key: 'heatmap', label: 'Crime Heatmap', icon: Flame, color: 'text-rose-400', desc: 'Geospatial crime & incident density' },
+                    { key: 'buildings', label: '3D Extrusions', icon: Building2, color: 'text-blue-400', desc: '3D Building footprints & heights' },
+                    { key: 'trajectories', label: 'Trajectories', icon: Zap, color: 'text-crimenet-cyan', desc: 'Suspect transit corridors' },
+                    { key: 'locations', label: 'Location Hubs', icon: MapPin, color: 'text-emerald-400', desc: '38 Regional jurisdiction points' },
+                    { key: 'events', label: 'Timeline Events', icon: Activity, color: 'text-purple-400', desc: 'Timeline incident & sighting markers' },
+                    { key: 'traffic', label: 'Traffic Density', icon: Target, color: 'text-yellow-400', desc: 'Real-time traffic flow velocity' },
+                  ].map(({ key, label, icon: Icon, color, desc }) => {
+                    const isActive = layers[key as keyof typeof layers];
                     return (
                       <button
                         key={key}
-                        onClick={() => toggleLayer(key as any)}
+                        onClick={() => toggleLayer(key)}
+                        title={desc}
                         className={`chip-3d p-2 rounded-lg text-left text-[10px] font-mono transition-all flex items-center justify-between ${
                           isActive
                             ? 'bg-white/15 border-white/30 text-white shadow-md'
@@ -532,7 +533,7 @@ export default function GeoIntelligencePage() {
                           <Icon className={`w-3.5 h-3.5 ${color}`} />
                           <span className="truncate">{label}</span>
                         </div>
-                        <span className={`w-2 h-2 rounded-full shrink-0 ${isActive ? 'bg-emerald-400 shadow-[0_0_6px_#10B981]' : 'bg-white/20'}`} />
+                        <span className={`w-2 h-2 rounded-full shrink-0 transition-colors ${isActive ? 'bg-emerald-400 shadow-[0_0_6px_#10B981]' : 'bg-white/20'}`} />
                       </button>
                     );
                   })}
