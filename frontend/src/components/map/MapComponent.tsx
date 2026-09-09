@@ -26,6 +26,7 @@ interface MapComponentProps {
   onSelectLocation?: (location: Location) => void;
   onSelectEvent?: (event: TimelineEvent) => void;
   onSelectHotspot?: (hotspot: GlobalHotspot) => void;
+  onSelectCorridor?: (corridor: any) => void;
   cameraRadius?: { lat: number; lng: number; radiusM: number } | null;
   initialViewMode?: 'GLOBAL' | 'NATIONAL' | 'URBAN';
   topBarPlacement?: 'left' | 'offset-command-center';
@@ -96,7 +97,8 @@ export default function MapComponent({
   onSelectSignal: propSelectSignal,
   onSelectLocation: propSelectLocation,
   onSelectEvent: propSelectEvent,
-  onSelectHotspot,
+  onSelectHotspot: propSelectHotspot,
+  onSelectCorridor: propSelectCorridor,
   cameraRadius: propCameraRadius,
   initialViewMode = 'GLOBAL',
   topBarPlacement = 'left',
@@ -120,6 +122,8 @@ export default function MapComponent({
   const onSelectSignal = propSelectSignal ?? context.selectSignal;
   const onSelectLocation = propSelectLocation ?? context.selectLocation;
   const onSelectEvent = propSelectEvent ?? context.selectEvent;
+  const onSelectHotspot = propSelectHotspot ?? context.selectHotspot;
+  const onSelectCorridor = propSelectCorridor ?? context.selectCorridor;
   const cameraRadius = propCameraRadius ?? context.cameraRadius;
 
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -343,6 +347,21 @@ export default function MapComponent({
           'line-opacity': 0.9,
         },
       });
+
+      // Interactive Click & Hover for Flight Arcs
+      map.current.on('click', lineLayerId, (e) => {
+        if (!e.features || e.features.length === 0) return;
+        const feat = e.features[0];
+        const arcId = feat.properties?.id;
+        const arc = TRANSNATIONAL_FLIGHT_ARCS.find((a) => a.id === arcId) || feat.properties;
+        if (onSelectCorridor) onSelectCorridor(arc);
+      });
+      map.current.on('mouseenter', lineLayerId, () => {
+        if (map.current) map.current.getCanvas().style.cursor = 'pointer';
+      });
+      map.current.on('mouseleave', lineLayerId, () => {
+        if (map.current) map.current.getCanvas().style.cursor = '';
+      });
     };
 
     if (map.current.isStyleLoaded()) {
@@ -350,7 +369,7 @@ export default function MapComponent({
     } else {
       map.current.once('load', setupArcs);
     }
-  }, [layerVisibility.arcs]);
+  }, [layerVisibility.arcs, onSelectCorridor]);
 
   // 4. Render Global Hotspot Spotted Markers
   useEffect(() => {
@@ -825,7 +844,31 @@ export default function MapComponent({
         'line-dasharray': [2, 2],
       },
     });
-  }, [trafficCorridors, layerVisibility.traffic]);
+
+    map.current.on('click', layerId, (e) => {
+      if (!e.features || e.features.length === 0) return;
+      const feat = e.features[0];
+      const corridorName = feat.properties?.corridor || 'Traffic Corridor';
+      const density = feat.properties?.density || 'MEDIUM';
+      if (onSelectCorridor) {
+        onSelectCorridor({
+          id: 'TRAFFIC-' + corridorName.replace(/\s+/g, '-'),
+          name: `${corridorName} Urban Arterial`,
+          sourceName: corridorName,
+          targetName: 'Metropolitan Grid',
+          corridorType: 'LOGISTICS_SMUGGLING',
+          description: `Monitored Traffic Flow Corridor: ${corridorName}. Real-time urban congestion rated ${density}. Correlated with automated CCTV cameras and synchronized traffic signal controllers.`,
+          density: density,
+        });
+      }
+    });
+    map.current.on('mouseenter', layerId, () => {
+      if (map.current) map.current.getCanvas().style.cursor = 'pointer';
+    });
+    map.current.on('mouseleave', layerId, () => {
+      if (map.current) map.current.getCanvas().style.cursor = '';
+    });
+  }, [trafficCorridors, layerVisibility.traffic, onSelectCorridor]);
 
   // 11. Crime Heatmap Layer (Dynamic Geo Density)
   useEffect(() => {
@@ -1103,6 +1146,32 @@ export default function MapComponent({
           'line-opacity': 0.9,
         },
       });
+
+      map.current.on('click', lineLayerId, (e) => {
+        if (!e.features || e.features.length === 0) return;
+        const feat = e.features[0];
+        const routeId = feat.properties?.id;
+        const route = trajectoryRoutes.find((r) => r.id === routeId) || feat.properties;
+        if (onSelectCorridor) {
+          onSelectCorridor({
+            id: route.id,
+            name: route.name,
+            sourceName: route.name?.split(' ')[0] || 'Origin Hub',
+            targetName: route.name?.split(' ').pop() || 'Terminal',
+            corridorType: 'LOGISTICS_SMUGGLING',
+            description: `Active Suspect Trajectory: ${route.name}. Ground transit telemetry tracking across arterial transit nodes and regional safe houses.`,
+            density: 'HIGH',
+            sourceCoords: route.points?.[0],
+            targetCoords: route.points?.[route.points?.length - 1],
+          });
+        }
+      });
+      map.current.on('mouseenter', lineLayerId, () => {
+        if (map.current) map.current.getCanvas().style.cursor = 'pointer';
+      });
+      map.current.on('mouseleave', lineLayerId, () => {
+        if (map.current) map.current.getCanvas().style.cursor = '';
+      });
     };
 
     if (map.current.isStyleLoaded()) {
@@ -1110,7 +1179,7 @@ export default function MapComponent({
     } else {
       map.current.once('load', setupTrajectories);
     }
-  }, [layerVisibility.trajectories]);
+  }, [layerVisibility.trajectories, onSelectCorridor]);
 
   return (
     <div className="relative w-full h-full">

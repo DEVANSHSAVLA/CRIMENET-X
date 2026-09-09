@@ -337,7 +337,7 @@ export interface VoiceCommandResult {
 
 export type InvestigationMode = 'EXPLORE' | 'INVESTIGATE' | 'COMPARE';
 
-export type ContextDrawerType = 'ENTITY' | 'CAMERA' | 'SIGNAL' | 'LOCATION' | 'EVENT' | 'EVIDENCE' | null;
+export type ContextDrawerType = 'ENTITY' | 'CAMERA' | 'SIGNAL' | 'LOCATION' | 'EVENT' | 'EVIDENCE' | 'HOTSPOT' | 'CORRIDOR' | null;
 
 export type ContextSelection =
   | { type: 'ENTITY'; id: string; data: Person }
@@ -346,6 +346,8 @@ export type ContextSelection =
   | { type: 'LOCATION'; id: string; data: Location }
   | { type: 'EVENT'; id: string; data: TimelineEvent }
   | { type: 'EVIDENCE'; id: string; data: EvidenceRecord }
+  | { type: 'HOTSPOT'; id: string; data: any }
+  | { type: 'CORRIDOR'; id: string; data: any }
   | null;
 
 export interface ContextDrawerState {

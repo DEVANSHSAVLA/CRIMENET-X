@@ -7,10 +7,11 @@ import {
   FileText, ExternalLink, Activity, Network, CheckCircle2, ShieldCheck,
   Maximize2, User, Loader2, Lock, Unlock, KeyRound, Copy, Check, ChevronRight, Briefcase,
   Play, Pause, Volume2, VolumeX, RefreshCw, ZoomIn, Navigation, Sparkles, Layers,
-  Camera as CameraIcon, Tv, Globe, Wifi
+  Camera as CameraIcon, Tv, Globe, Wifi, Plane, ArrowRight, Route, Building, Compass
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { SuspectPhoto } from '@/components/shared/suspect-photo';
+import { GLOBAL_HOTSPOTS, TRANSNATIONAL_FLIGHT_ARCS } from '@/lib/global-hotspots';
 
 export const MUMBAI_STREET_CAMERAS = [
   {
@@ -457,6 +458,8 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
           {type === 'LOCATION' && <MapPin className="w-4 h-4 text-emerald-400" />}
           {type === 'EVENT' && <Clock className="w-4 h-4 text-purple-400" />}
           {type === 'EVIDENCE' && <FileText className="w-4 h-4 text-emerald-400" />}
+          {type === 'HOTSPOT' && <Globe className="w-4 h-4 text-rose-400" />}
+          {type === 'CORRIDOR' && <Plane className="w-4 h-4 text-crimenet-cyan" />}
           <span className="text-xs font-mono font-bold tracking-widest text-crimenet-muted uppercase">
             {type === 'ENTITY' && 'SUSPECT INTELLIGENCE'}
             {type === 'CAMERA' && 'SURVEILLANCE SENSOR'}
@@ -464,6 +467,8 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
             {type === 'LOCATION' && 'LOCATION INTELLIGENCE'}
             {type === 'EVENT' && 'TIMELINE EVENT'}
             {type === 'EVIDENCE' && 'EVIDENCE RECORD'}
+            {type === 'HOTSPOT' && 'GLOBAL SANCTUARY HUB'}
+            {type === 'CORRIDOR' && 'TRANSNATIONAL CORRIDOR'}
           </span>
         </div>
         <button 
@@ -1323,17 +1328,41 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
             </div>
 
             {/* Context Correlations */}
-            <div className="glass-card p-3 rounded text-xs space-y-2">
+            <div className="glass-card p-3 rounded text-xs space-y-2.5">
               <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted">
                 Intersection Infrastructure
               </div>
-              <div className="flex justify-between">
-                <span className="text-crimenet-muted">Connected CCTV Sensors:</span>
-                <span className="text-white font-mono">{data.nearby_cameras ? data.nearby_cameras.join(', ') : 'CAM-001'}</span>
+              <div className="space-y-1">
+                <div className="text-crimenet-muted text-[10px]">Connected CCTV Sensors:</div>
+                <div className="flex flex-wrap gap-1">
+                  {(data.nearby_cameras || ['CAM-001']).map((cid: string) => (
+                    <button
+                      key={cid}
+                      onClick={() => onAction && onAction('SELECT_CAMERA', { id: cid, name: `Street Cam ${cid}`, city: data.city || 'Mumbai', lat: data.lat, lng: data.lng })}
+                      className="px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-mono flex items-center gap-1 transition-colors"
+                    >
+                      <Video className="w-2.5 h-2.5" /> {cid}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-crimenet-muted">Suspect Entities Nearby:</span>
-                <span className="text-crimenet-cyan font-bold">{data.nearby_entities ? data.nearby_entities.join(', ') : 'None'}</span>
+              <div className="space-y-1 pt-1 border-t border-white/5">
+                <div className="text-crimenet-muted text-[10px]">Suspect Entities Nearby:</div>
+                <div className="flex flex-wrap gap-1">
+                  {(data.nearby_entities && data.nearby_entities.length > 0) ? (
+                    data.nearby_entities.map((eid: string) => (
+                      <button
+                        key={eid}
+                        onClick={() => onAction && onAction('SELECT_ENTITY', eid)}
+                        className="px-2 py-0.5 rounded bg-crimenet-cyan/10 hover:bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/30 text-[10px] font-mono flex items-center gap-1 transition-colors"
+                      >
+                        <User className="w-2.5 h-2.5" /> {eid}
+                      </button>
+                    ))
+                  ) : (
+                    <span className="text-crimenet-muted text-[10px]">No active correlations</span>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -1549,45 +1578,98 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
                   {data.associated_persons?.length || data.linked_persons || 1} fugitives
                 </span>
               </div>
-              <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto scrollbar-dark">
+              <div className="space-y-1.5 max-h-48 overflow-y-auto scrollbar-dark">
                 {(data.associated_persons && data.associated_persons.length > 0) ? (
                   data.associated_persons.map((p: any) => (
-                    <button
+                    <div
                       key={p.id}
-                      onClick={() => onAction && onAction('SELECT_ENTITY', p.id)}
-                      className="px-2 py-1 rounded bg-white/5 hover:bg-crimenet-cyan/20 text-white hover:text-crimenet-cyan border border-white/10 text-xs font-mono transition-colors flex items-center gap-1"
+                      className="p-1.5 rounded-lg bg-black/40 border border-white/5 hover:border-crimenet-cyan/40 transition-all flex items-center justify-between gap-2 group"
                     >
-                      <span>{p.name || p.id}</span>
-                      <span className="text-[9px] text-crimenet-muted">({p.id})</span>
-                    </button>
+                      <div className="flex items-center gap-2 truncate">
+                        <SuspectPhoto
+                          entityId={p.id}
+                          displayName={p.name || p.id}
+                          size="sm"
+                        />
+                        <div className="truncate">
+                          <div className="font-bold text-white text-xs truncate group-hover:text-crimenet-cyan transition-colors">
+                            {p.name || p.id}
+                          </div>
+                          <div className="text-[9px] text-crimenet-muted font-mono">
+                            {p.id} · {p.role || 'OPERATIVE'}
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => onAction && onAction('SELECT_ENTITY', p.id)}
+                        className="px-2 py-0.5 rounded bg-crimenet-cyan/15 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/30 text-[10px] font-mono font-bold shrink-0 transition-colors"
+                      >
+                        DOSSIER →
+                      </button>
+                    </div>
                   ))
                 ) : (
-                  <button
-                    onClick={() => onAction && onAction('SELECT_ENTITY', 'P-017')}
-                    className="px-2 py-1 rounded bg-white/5 hover:bg-crimenet-cyan/20 text-crimenet-cyan border border-white/10 text-xs font-mono"
-                  >
-                    Vikram Reddy (P-017)
-                  </button>
+                  <div className="p-2 rounded bg-black/40 border border-white/5 flex items-center justify-between">
+                    <div className="text-white text-xs font-mono">Vikram Reddy (P-017)</div>
+                    <button
+                      onClick={() => onAction && onAction('SELECT_ENTITY', 'P-017')}
+                      className="px-2 py-0.5 rounded bg-crimenet-cyan/15 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/30 text-[10px] font-mono font-bold"
+                    >
+                      DOSSIER →
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
 
-            {/* Nearby Cameras and Signals */}
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="glass-card p-2.5 rounded space-y-1">
-                <div className="text-[10px] uppercase font-bold text-crimenet-muted flex items-center gap-1">
-                  <Video className="w-3 h-3 text-amber-400" /> Cameras
+            {/* Nearby Cameras and Signals - Clickable to Open Live Feed */}
+            <div className="space-y-2 text-xs">
+              <div className="glass-card p-2.5 rounded-lg space-y-1.5">
+                <div className="text-[10px] uppercase font-bold text-crimenet-muted flex items-center justify-between">
+                  <span className="flex items-center gap-1">
+                    <Video className="w-3 h-3 text-amber-400" /> Nearby CCTV Sensors ({data.nearby_cameras?.length || 2})
+                  </span>
+                  <span className="text-[9px] text-amber-400 font-mono">CLICK TO STREAM</span>
                 </div>
-                <div className="text-white font-bold font-mono text-sm">
-                  {data.nearby_cameras?.length || 2} Nearby
+                <div className="flex flex-wrap gap-1">
+                  {(data.nearby_cameras && data.nearby_cameras.length > 0 ? data.nearby_cameras : ['CAM-004', 'CAM-002']).map((cam: any) => {
+                    const camId = typeof cam === 'string' ? cam : cam.id;
+                    const camName = typeof cam === 'string' ? `Sensor ${cam}` : cam.name || cam.street_name;
+                    return (
+                      <button
+                        key={camId}
+                        onClick={() => onAction && onAction('SELECT_CAMERA', typeof cam === 'object' ? cam : { id: camId, name: camName, city: data.city, lat: data.lat, lng: data.lng, stream_url: '/videos/marine-drive.mp4', status: 'LIVE' })}
+                        className="px-2 py-1 rounded bg-amber-500/10 hover:bg-amber-500/25 text-amber-400 border border-amber-500/30 text-[10px] font-mono flex items-center gap-1 transition-colors"
+                      >
+                        <Video className="w-2.5 h-2.5" />
+                        <span>{camId}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
-              <div className="glass-card p-2.5 rounded space-y-1">
-                <div className="text-[10px] uppercase font-bold text-crimenet-muted flex items-center gap-1">
-                  <Radio className="w-3 h-3 text-emerald-400" /> Signals
+
+              <div className="glass-card p-2.5 rounded-lg space-y-1.5">
+                <div className="text-[10px] uppercase font-bold text-crimenet-muted flex items-center justify-between">
+                  <span className="flex items-center gap-1">
+                    <Radio className="w-3 h-3 text-emerald-400" /> Linked Traffic Signals ({data.nearby_signals?.length || 2})
+                  </span>
+                  <span className="text-[9px] text-emerald-400 font-mono">CLICK TO INSPECT</span>
                 </div>
-                <div className="text-white font-bold font-mono text-sm">
-                  {data.nearby_signals?.length || 2} Linked
+                <div className="flex flex-wrap gap-1">
+                  {(data.nearby_signals && data.nearby_signals.length > 0 ? data.nearby_signals : ['SIG-MUM-01', 'SIG-MUM-02']).map((sig: any) => {
+                    const sigId = typeof sig === 'string' ? sig : sig.id;
+                    return (
+                      <button
+                        key={sigId}
+                        onClick={() => onAction && onAction('SELECT_SIGNAL', typeof sig === 'object' ? sig : { id: sigId, intersection: `${data.name} Junction`, phase: 'RED', traffic_density: 'MEDIUM', lat: data.lat, lng: data.lng })}
+                        className="px-2 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono flex items-center gap-1 transition-colors"
+                      >
+                        <Radio className="w-2.5 h-2.5" />
+                        <span>{sigId}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -1714,6 +1796,314 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
                 className="py-2 px-3 rounded bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
               >
                 <MapPin className="w-3.5 h-3.5" /> Focus Location
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ── 7. GLOBAL SANCTUARY HUB INTELLIGENCE PANEL ── */}
+        {!data.loading && type === 'HOTSPOT' && (
+          <div className="space-y-4">
+            {/* Header with Flag, Name, Country, Red Notice Count */}
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <span className="text-3xl p-1.5 rounded-lg bg-white/5 border border-white/10 shadow-inner">
+                  {data.flag || '🌐'}
+                </span>
+                <div>
+                  <div className="text-base font-bold text-white leading-tight">{data.name}</div>
+                  <div className="text-xs text-crimenet-muted font-mono mt-0.5">
+                    {data.id} · {data.country} ({data.countryCode})
+                  </div>
+                </div>
+              </div>
+              <span className="px-2 py-1 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[10px] font-mono font-bold shrink-0">
+                {data.fugitiveCount || 0} RED NOTICES
+              </span>
+            </div>
+
+            {/* Category & Extradition Treaty Status */}
+            <div className="glass-card p-3 rounded-xl space-y-2 border border-white/10">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-crimenet-muted uppercase font-bold tracking-wider">
+                  Legal Treaty Status
+                </span>
+                <span className={`text-[9px] px-2 py-0.5 rounded font-mono font-bold uppercase tracking-wider ${
+                  data.treatyStatus === 'IN_FORCE' 
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' 
+                    : data.treatyStatus === 'MLAT_ONLY'
+                      ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
+                      : 'bg-rose-500/20 text-rose-400 border border-rose-500/40'
+                }`}>
+                  {data.treatyStatus === 'IN_FORCE' ? 'EXTRADITION IN FORCE' : data.treatyStatus === 'MLAT_ONLY' ? 'MUTUAL LEGAL ASSIST (MLAT)' : 'INTERPOL NOTICE ONLY'}
+                </span>
+              </div>
+              <div className="text-xs text-white font-medium">
+                {data.extraditionStatus}
+              </div>
+              <div className="text-[10px] text-crimenet-cyan font-mono flex items-center gap-1.5 pt-1 border-t border-white/5">
+                <Shield className="w-3 h-3 text-crimenet-cyan shrink-0" />
+                <span>{data.interpolArticle}</span>
+              </div>
+            </div>
+
+            {/* Tactical & Investigative Rationale */}
+            <div className="glass-card p-3 rounded-xl space-y-1.5 border border-white/10">
+              <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted flex items-center gap-1">
+                <Activity className="w-3 h-3 text-crimenet-amber" /> Investigative Intelligence Rationale
+              </div>
+              <p className="text-xs text-white/90 leading-relaxed">
+                {data.investigativeRationale}
+              </p>
+            </div>
+
+            {/* Top Offense Categories */}
+            {data.topOffenses && data.topOffenses.length > 0 && (
+              <div className="space-y-1.5">
+                <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted">
+                  Top Charged Criminal Offenses ({data.topOffenses.length})
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {data.topOffenses.map((off: string, idx: number) => (
+                    <span
+                      key={idx}
+                      className="px-2 py-0.5 rounded bg-white/5 text-white/80 border border-white/10 text-[10px] font-mono"
+                    >
+                      {off}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Key Wanted Persons Linked to this Hub */}
+            <div className="space-y-2">
+              <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted flex items-center justify-between">
+                <span className="flex items-center gap-1.5">
+                  <User className="w-3 h-3 text-rose-400" /> Key Fugitives & Brokers Linked
+                </span>
+                <span className="text-[9px] text-rose-400 font-mono font-bold">CLICK TO INSPECT DOSSIER</span>
+              </div>
+              <div className="space-y-1.5 max-h-48 overflow-y-auto scrollbar-dark">
+                {((data.linkedFugitiveIds && data.linkedFugitiveIds.length > 0) ? data.linkedFugitiveIds : ['P-017', 'P-022']).map((fid: string) => {
+                  const keyName = (data.keyPersons || []).find((kp: string) => kp.includes(fid)) || fid;
+                  return (
+                    <div
+                      key={fid}
+                      className="p-2 rounded-xl bg-black/40 border border-white/10 hover:border-crimenet-cyan/40 transition-all flex items-center justify-between gap-2 group"
+                    >
+                      <div className="flex items-center gap-2 truncate">
+                        <SuspectPhoto
+                          entityId={fid}
+                          displayName={keyName}
+                          size="sm"
+                        />
+                        <div className="truncate">
+                          <div className="font-bold text-white text-xs truncate group-hover:text-crimenet-cyan transition-colors">
+                            {keyName}
+                          </div>
+                          <div className="text-[9px] text-crimenet-muted font-mono">
+                            ID: {fid} · RED NOTICE
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => onAction && onAction('SELECT_ENTITY', fid)}
+                        className="px-2.5 py-1 rounded bg-crimenet-cyan/15 hover:bg-crimenet-cyan/30 text-crimenet-cyan border border-crimenet-cyan/40 text-[10px] font-mono font-bold shrink-0 transition-colors"
+                      >
+                        DOSSIER →
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Active Flight Arcs / Corridors Linked */}
+            {(() => {
+              const linkedArcs = TRANSNATIONAL_FLIGHT_ARCS.filter(
+                (a) => a.sourceId === data.id || a.targetId === data.id
+              );
+              if (linkedArcs.length === 0) return null;
+              return (
+                <div className="space-y-1.5">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted flex items-center gap-1.5">
+                    <Plane className="w-3 h-3 text-crimenet-cyan" /> Correlated Air & Smuggling Corridors ({linkedArcs.length})
+                  </div>
+                  <div className="space-y-1">
+                    {linkedArcs.map((arc) => (
+                      <div
+                        key={arc.id}
+                        onClick={() => onAction && onAction('SELECT_CORRIDOR', arc)}
+                        className="p-2 rounded-lg bg-black/40 hover:bg-white/5 border border-white/10 hover:border-crimenet-cyan/40 cursor-pointer transition-all flex items-center justify-between text-xs"
+                      >
+                        <div>
+                          <div className="font-semibold text-white text-xs flex items-center gap-1">
+                            <span>{arc.sourceName}</span>
+                            <ArrowRight className="w-3 h-3 text-crimenet-cyan" />
+                            <span>{arc.targetName}</span>
+                          </div>
+                          <div className="text-[9px] text-crimenet-muted font-mono mt-0.5">
+                            {arc.corridorType}
+                          </div>
+                        </div>
+                        <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono font-bold ${
+                          arc.density === 'CRITICAL' ? 'bg-crimenet-crimson/20 text-crimenet-crimson' : 'bg-crimenet-cyan/20 text-crimenet-cyan'
+                        }`}>
+                          {arc.density}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Action Buttons */}
+            <div className="grid grid-cols-2 gap-2 pt-2">
+              <button
+                onClick={() => onAction && onAction('FOCUS_MAP_LOCATION', { lat: data.lat, lng: data.lng, zoom: data.countryCode === 'IN' ? 10.5 : 5.8 })}
+                className="py-2 px-3 rounded bg-crimenet-cyan/10 hover:bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/30 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+              >
+                <MapPin className="w-3.5 h-3.5" /> Center 3D Map
+              </button>
+              <button
+                onClick={() => onAction && onAction('OPEN_NETWORK', null)}
+                className="py-2 px-3 rounded bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+              >
+                <Network className="w-3.5 h-3.5" /> View Network
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ── 8. TRANSNATIONAL CORRIDOR & MOVEMENT ROUTE PANEL ── */}
+        {!data.loading && type === 'CORRIDOR' && (
+          <div className="space-y-4">
+            {/* Corridor Header */}
+            <div>
+              <div className="text-base font-bold text-white">
+                {data.name || `${data.sourceName || 'Origin'} ⇄ ${data.targetName || 'Destination'}`}
+              </div>
+              <div className="text-xs text-crimenet-muted font-mono mt-0.5">
+                ID: {data.id} · {data.corridorType || 'TRANSIT_CORRIDOR'}
+              </div>
+              <div className="mt-1.5 flex flex-wrap gap-1.5">
+                <span className={`text-[10px] px-2 py-0.5 rounded font-mono font-bold ${
+                  data.density === 'CRITICAL' 
+                    ? 'bg-crimenet-crimson/20 text-crimenet-crimson border border-crimenet-crimson/40' 
+                    : 'bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/40'
+                }`}>
+                  {data.density || 'HIGH'} DENSITY
+                </span>
+                <span className="text-[10px] px-2 py-0.5 rounded font-mono bg-white/5 text-emerald-400 border border-white/10">
+                  ACTIVE SURVEILLANCE
+                </span>
+              </div>
+            </div>
+
+            {/* Origin and Destination Terminals */}
+            <div className="glass-card p-3 rounded-xl border border-white/10 space-y-2">
+              <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted">
+                Corridor Vector Terminals
+              </div>
+              <div className="flex items-center justify-between gap-2 p-2 rounded bg-black/40 border border-white/5">
+                <div className="text-left">
+                  <div className="text-[9px] text-crimenet-muted uppercase">Origin Hub</div>
+                  <div className="text-xs font-bold text-white">{data.sourceName || 'Origin Hub'}</div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-crimenet-cyan shrink-0" />
+                <div className="text-right">
+                  <div className="text-[9px] text-crimenet-muted uppercase">Target Terminal</div>
+                  <div className="text-xs font-bold text-white">{data.targetName || 'Indian Destination'}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tactical Intelligence Synopsis */}
+            <div className="glass-card p-3 rounded-xl border border-white/10 space-y-1.5">
+              <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted flex items-center gap-1.5">
+                <Activity className="w-3 h-3 text-crimenet-amber" /> Operational Synopsis & Modality
+              </div>
+              <p className="text-xs text-white/90 leading-relaxed">
+                {data.description || 'Monitored transnational vector utilized for illicit fund transfers, proxy communications, and suspect relocation across jurisdictions.'}
+              </p>
+            </div>
+
+            {/* Linked Sanctuary Hubs (Clickable) */}
+            {(() => {
+              const srcSpot = GLOBAL_HOTSPOTS.find(h => h.id === data.sourceId);
+              const tgtSpot = GLOBAL_HOTSPOTS.find(h => h.id === data.targetId);
+              if (!srcSpot && !tgtSpot) return null;
+              return (
+                <div className="space-y-1.5">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted">
+                    Linked Jurisdictional Hubs
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    {srcSpot && (
+                      <button
+                        onClick={() => onAction && onAction('SELECT_HOTSPOT', srcSpot)}
+                        className="p-2 rounded-lg bg-black/40 hover:bg-white/5 border border-white/10 hover:border-crimenet-cyan/40 text-left transition-all"
+                      >
+                        <div className="text-[9px] text-crimenet-muted font-mono">{srcSpot.country}</div>
+                        <div className="text-xs font-bold text-white truncate">{srcSpot.flag} {srcSpot.name}</div>
+                      </button>
+                    )}
+                    {tgtSpot && (
+                      <button
+                        onClick={() => onAction && onAction('SELECT_HOTSPOT', tgtSpot)}
+                        className="p-2 rounded-lg bg-black/40 hover:bg-white/5 border border-white/10 hover:border-crimenet-cyan/40 text-left transition-all"
+                      >
+                        <div className="text-[9px] text-crimenet-muted font-mono">{tgtSpot.country}</div>
+                        <div className="text-xs font-bold text-white truncate">{tgtSpot.flag} {tgtSpot.name}</div>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Suspects Active Along this Vector */}
+            <div className="space-y-2">
+              <div className="text-[10px] uppercase font-bold tracking-wider text-crimenet-muted flex items-center justify-between">
+                <span className="flex items-center gap-1.5">
+                  <User className="w-3 h-3 text-crimenet-cyan" /> Correlated Suspects Active on Route
+                </span>
+              </div>
+              <div className="space-y-1.5">
+                {['P-017', 'P-022', 'P-038'].map((fid) => (
+                  <button
+                    key={fid}
+                    onClick={() => onAction && onAction('SELECT_ENTITY', fid)}
+                    className="w-full p-2 rounded-lg bg-black/40 hover:bg-crimenet-cyan/15 border border-white/10 hover:border-crimenet-cyan/40 text-left transition-all flex items-center justify-between text-xs"
+                  >
+                    <span className="font-mono text-crimenet-cyan font-bold">{fid}</span>
+                    <span className="text-[10px] text-crimenet-muted">Inspect Criminal Dossier →</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="grid grid-cols-2 gap-2 pt-1">
+              <button
+                onClick={() => {
+                  if (data.sourceCoords && data.targetCoords) {
+                    const midLat = (data.sourceCoords[1] + data.targetCoords[1]) / 2;
+                    const midLng = (data.sourceCoords[0] + data.targetCoords[0]) / 2;
+                    onAction && onAction('FOCUS_MAP_LOCATION', { lat: midLat, lng: midLng, zoom: 4.8 });
+                  }
+                }}
+                className="py-2 px-3 rounded bg-crimenet-cyan/10 hover:bg-crimenet-cyan/20 text-crimenet-cyan border border-crimenet-cyan/30 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+              >
+                <MapPin className="w-3.5 h-3.5" /> Fit on 3D Map
+              </button>
+              <button
+                onClick={() => onAction && onAction('NAVIGATE_COMMAND_CENTER', null)}
+                className="py-2 px-3 rounded bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+              >
+                <Briefcase className="w-3.5 h-3.5" /> Command View
               </button>
             </div>
           </div>

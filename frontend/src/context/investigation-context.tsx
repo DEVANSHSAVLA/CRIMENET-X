@@ -17,6 +17,7 @@ interface InvestigationContextType {
   selectedEvidence: EvidenceRecord | null;
   selectedLocation: Location | null;
   selectedEvent: TimelineEvent | null;
+  selectedHotspot: any | null;
 
   // Drawer
   drawerType: ContextDrawerType;
@@ -32,6 +33,8 @@ interface InvestigationContextType {
   selectEvidence: (evidence: EvidenceRecord) => void;
   selectLocation: (location: Location) => void;
   selectEvent: (event: TimelineEvent) => void;
+  selectHotspot: (hotspot: any) => void;
+  selectCorridor: (corridor: any) => void;
 
   // Filters & State
   mode: InvestigationMode;
@@ -113,6 +116,7 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
   const [selectedEvidence, setSelectedEvidence] = useState<EvidenceRecord | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null);
+  const [selectedHotspot, setSelectedHotspot] = useState<any | null>(null);
 
   // Drawer State
   const [drawerType, setDrawerType] = useState<ContextDrawerType>('ENTITY');
@@ -272,6 +276,35 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
     openDrawer('EVENT', event);
   }, [openDrawer]);
 
+  const selectHotspot = useCallback((hotspot: any) => {
+    currentSelectionSeqRef.current += 1;
+    setSelectedHotspot(hotspot);
+    openDrawer('HOTSPOT', hotspot);
+    if (hotspot?.lat && hotspot?.lng) {
+      setMapFocusTarget({
+        lat: hotspot.lat,
+        lng: hotspot.lng,
+        zoom: hotspot.countryCode === 'IN' ? 10.5 : 5.8,
+        timestamp: Date.now(),
+      });
+    }
+  }, [openDrawer]);
+
+  const selectCorridor = useCallback((corridor: any) => {
+    currentSelectionSeqRef.current += 1;
+    openDrawer('CORRIDOR', corridor);
+    if (corridor?.sourceCoords && corridor?.targetCoords) {
+      const midLat = (corridor.sourceCoords[1] + corridor.targetCoords[1]) / 2;
+      const midLng = (corridor.sourceCoords[0] + corridor.targetCoords[0]) / 2;
+      setMapFocusTarget({
+        lat: midLat,
+        lng: midLng,
+        zoom: 4.8,
+        timestamp: Date.now(),
+      });
+    }
+  }, [openDrawer]);
+
   const toggleLayer = useCallback((layerKey: string) => {
     setLayers((prev) => ({
       ...prev,
@@ -334,6 +367,20 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         if (payload) {
           selectEvidence(payload);
           setVoiceFeedbackNotice(`✓ Selected evidence ${payload.id}`);
+        }
+        break;
+      }
+      case 'SELECT_HOTSPOT': {
+        if (payload) {
+          selectHotspot(payload);
+          setVoiceFeedbackNotice(`✓ Selected sanctuary ${payload.name || payload.id}`);
+        }
+        break;
+      }
+      case 'SELECT_CORRIDOR': {
+        if (payload) {
+          selectCorridor(payload);
+          setVoiceFeedbackNotice(`✓ Selected corridor ${payload.name || payload.id}`);
         }
         break;
       }
@@ -511,6 +558,8 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
     selectLocation,
     selectEvent,
     selectEvidence,
+    selectHotspot,
+    selectCorridor,
     selectedEntityId,
     toggleLayer,
     setLayer,
@@ -530,6 +579,7 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         selectedEvidence,
         selectedLocation,
         selectedEvent,
+        selectedHotspot,
         drawerType,
         drawerData,
         isDrawerOpen,
@@ -541,6 +591,8 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         selectEvidence,
         selectLocation,
         selectEvent,
+        selectHotspot,
+        selectCorridor,
         mode,
         setMode,
         timeYear,

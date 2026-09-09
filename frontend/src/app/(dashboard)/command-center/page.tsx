@@ -34,6 +34,9 @@ export default function CommandCenter() {
     selectCamera,
     selectSignal,
     selectLocation,
+    selectEvent,
+    selectHotspot,
+    selectCorridor,
     layers,
     toggleLayer,
     timeYear,
@@ -56,7 +59,7 @@ export default function CommandCenter() {
           api.getCentrality(),
         ]);
         setCaseData(caseRes);
-        setRankings((centRes.rankings || []).slice(0, 5));
+        setRankings(centRes.rankings.slice(0, 5));
       } catch (err) {
         console.warn('Initial data fetch fallback');
       }
@@ -75,6 +78,9 @@ export default function CommandCenter() {
         onSelectCamera={selectCamera}
         onSelectSignal={selectSignal}
         onSelectLocation={selectLocation}
+        onSelectEvent={selectEvent}
+        onSelectHotspot={selectHotspot}
+        onSelectCorridor={selectCorridor}
         layerVisibility={layers}
         initialViewMode="URBAN"
         topBarPlacement="offset-command-center"

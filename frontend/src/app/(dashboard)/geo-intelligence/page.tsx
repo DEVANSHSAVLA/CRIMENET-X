@@ -53,6 +53,9 @@ export default function GeoIntelligencePage() {
     selectCamera,
     selectSignal,
     selectLocation,
+    selectEvent,
+    selectHotspot,
+    selectCorridor,
     layers,
     toggleLayer,
     setLayer,
@@ -108,6 +111,7 @@ export default function GeoIntelligencePage() {
 
   const handleSelectHotspot = (hotspot: GlobalHotspot) => {
     setSelectedHotspot(hotspot);
+    selectHotspot(hotspot);
     if (typeof window !== 'undefined') {
       window.dispatchEvent(
         new CustomEvent('map-fly-to', {
@@ -180,7 +184,9 @@ export default function GeoIntelligencePage() {
         onSelectCamera={selectCamera}
         onSelectSignal={selectSignal}
         onSelectLocation={selectLocation}
+        onSelectEvent={selectEvent}
         onSelectHotspot={handleSelectHotspot}
+        onSelectCorridor={selectCorridor}
         layerVisibility={layers}
         initialViewMode="GLOBAL"
       />
