@@ -77,6 +77,7 @@ export default function CommandCenter() {
         onSelectLocation={selectLocation}
         layerVisibility={layers}
         initialViewMode="URBAN"
+        topBarPlacement="offset-command-center"
       />
 
       {/* Left Control Panel: Urban Layers & Filters */}

@@ -28,6 +28,7 @@ interface MapComponentProps {
   onSelectHotspot?: (hotspot: GlobalHotspot) => void;
   cameraRadius?: { lat: number; lng: number; radiusM: number } | null;
   initialViewMode?: 'GLOBAL' | 'NATIONAL' | 'URBAN';
+  topBarPlacement?: 'left' | 'offset-command-center';
   layerVisibility?: {
     locations?: boolean;
     events?: boolean;
@@ -98,6 +99,7 @@ export default function MapComponent({
   onSelectHotspot,
   cameraRadius: propCameraRadius,
   initialViewMode = 'GLOBAL',
+  topBarPlacement = 'left',
   layerVisibility = {
     locations: true,
     events: true,
@@ -367,7 +369,6 @@ export default function MapComponent({
       el.style.maxWidth = '24px';
       el.style.minHeight = '24px';
       el.style.maxHeight = '24px';
-      el.style.position = 'relative';
       el.style.display = 'flex';
       el.style.alignItems = 'center';
       el.style.justifyContent = 'center';
@@ -519,7 +520,6 @@ export default function MapComponent({
       el.style.maxWidth = '18px';
       el.style.minHeight = '18px';
       el.style.maxHeight = '18px';
-      el.style.position = 'relative';
       el.style.display = 'flex';
       el.style.alignItems = 'center';
       el.style.justifyContent = 'center';
@@ -591,7 +591,6 @@ export default function MapComponent({
       el.style.maxWidth = '20px';
       el.style.minHeight = '20px';
       el.style.maxHeight = '20px';
-      el.style.position = 'relative';
       el.style.display = 'flex';
       el.style.alignItems = 'center';
       el.style.justifyContent = 'center';
@@ -676,7 +675,6 @@ export default function MapComponent({
       el.style.maxWidth = '18px';
       el.style.minHeight = '18px';
       el.style.maxHeight = '18px';
-      el.style.position = 'relative';
       el.style.display = 'flex';
       el.style.alignItems = 'center';
       el.style.justifyContent = 'center';
@@ -743,7 +741,6 @@ export default function MapComponent({
       el.style.maxWidth = '14px';
       el.style.minHeight = '14px';
       el.style.maxHeight = '14px';
-      el.style.position = 'relative';
       el.style.display = 'flex';
       el.style.alignItems = 'center';
       el.style.justifyContent = 'center';
@@ -1119,8 +1116,12 @@ export default function MapComponent({
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="w-full h-full bg-crimenet-bg" />
 
-      {/* ── TOP VIEW MODE SWITCHER CONTROL BAR (CENTERED, NON-COLLIDING) ── */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 max-w-[calc(100vw-360px)]">
+      {/* ── TOP VIEW MODE SWITCHER CONTROL BAR ── */}
+      <div className={`absolute top-4 z-20 flex items-center gap-2 ${
+        topBarPlacement === 'offset-command-center'
+          ? 'left-[304px]'
+          : 'left-4'
+      }`}>
         <div className="glass-panel p-1.5 rounded-xl border border-white/10 shadow-2xl bg-[#060B14]/90 backdrop-blur-md flex items-center gap-1.5">
           <button
             onClick={() => setViewMode('GLOBAL')}
