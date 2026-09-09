@@ -79,6 +79,10 @@ interface InvestigationContextType {
   cameraRadius: { lat: number; lng: number; radiusM: number } | null;
   setCameraRadius: (radius: { lat: number; lng: number; radiusM: number } | null) => void;
 
+  // Map Focus Target
+  mapFocusTarget: { lat: number; lng: number; zoom?: number; timestamp: number } | null;
+  setMapFocusTarget: (target: { lat: number; lng: number; zoom?: number; timestamp: number } | null) => void;
+
   // AI & Voice Coordination
   pendingAiQuery: string | null;
   setPendingAiQuery: (query: string | null) => void;
@@ -116,6 +120,7 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
   const [timelineCursor, setTimelineCursor] = useState<string | null>(null);
   const [isTimelinePlaying, setIsTimelinePlaying] = useState<boolean>(false);
   const [cameraRadius, setCameraRadius] = useState<{ lat: number; lng: number; radiusM: number } | null>(null);
+  const [mapFocusTarget, setMapFocusTarget] = useState<{ lat: number; lng: number; zoom?: number; timestamp: number } | null>(null);
 
   const setFilter = useCallback((key: 'country' | 'riskLevel' | 'entityType', value: string | null) => {
     setActiveFilters((prev) => ({ ...prev, [key]: value }));
@@ -194,7 +199,13 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
       setCameraRadius({
         lat: camera.lat,
         lng: camera.lng,
-        radiusM: camera.coverage_radius_m || 300,
+        radiusM: camera.coverage_radius_m || 350,
+      });
+      setMapFocusTarget({
+        lat: camera.lat,
+        lng: camera.lng,
+        zoom: 15.2,
+        timestamp: Date.now(),
       });
     }
     openDrawer('CAMERA', camera);
@@ -277,6 +288,23 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         break;
       }
       case 'FOCUS_MAP_LOCATION': {
+        if (payload?.lat && payload?.lng) {
+          setMapFocusTarget({
+            lat: payload.lat,
+            lng: payload.lng,
+            zoom: payload.zoom || 15.2,
+            timestamp: Date.now(),
+          });
+          if (payload.camera) {
+            setSelectedCamera(payload.camera);
+            setCameraRadius({
+              lat: payload.lat,
+              lng: payload.lng,
+              radiusM: payload.camera.coverage_radius_m || 350,
+            });
+            openDrawer('CAMERA', payload.camera);
+          }
+        }
         router.push('/command-center');
         break;
       }
@@ -315,7 +343,7 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
       default:
         console.log('Action dispatched:', action, payload);
     }
-  }, [router, selectEntity, selectCamera, selectSignal, selectLocation, selectEvent, selectEvidence, selectedEntityId, toggleLayer]);
+  }, [router, selectEntity, selectCamera, selectSignal, selectLocation, selectEvent, selectEvidence, selectedEntityId, toggleLayer, openDrawer]);
 
   return (
     <InvestigationContext.Provider
@@ -361,6 +389,8 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         setIsTimelinePlaying,
         cameraRadius,
         setCameraRadius,
+        mapFocusTarget,
+        setMapFocusTarget,
         pendingAiQuery,
         setPendingAiQuery,
         dispatchAction,

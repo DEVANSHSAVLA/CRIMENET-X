@@ -10,6 +10,7 @@ import {
 import { api } from '@/lib/api';
 import { useInvestigation } from '@/context/investigation-context';
 import type { CaseSummary, CentralityRanking, Camera, TrafficSignal, Location } from '@/lib/types';
+import { MUMBAI_STREET_CAMERAS } from '@/components/panels/context-drawer';
 
 const Map = dynamic(() => import('@/components/map/MapComponent'), {
   ssr: false,
@@ -106,6 +107,35 @@ export default function CommandCenter() {
                       className="accent-crimenet-cyan rounded"
                     />
                   </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Live Mumbai Public CCTV Corridors */}
+            <div className="pt-2 border-t border-white/10">
+              <div className="text-[10px] text-crimenet-cyan uppercase font-bold tracking-widest mb-1.5 flex items-center justify-between font-mono">
+                <span className="flex items-center gap-1">
+                  <Video className="w-3 h-3 text-crimenet-amber" /> Live Mumbai Feeds (4)
+                </span>
+                <span className="px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 text-[8px] font-bold border border-emerald-500/30 flex items-center gap-1">
+                  <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping" />
+                  ONLINE
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-1 font-mono text-[10px]">
+                {MUMBAI_STREET_CAMERAS.map((cam) => (
+                  <button
+                    key={cam.id}
+                    onClick={() => selectCamera(cam)}
+                    className="p-1.5 rounded bg-white/5 hover:bg-crimenet-cyan/20 border border-white/10 hover:border-crimenet-cyan/40 text-left transition-colors flex items-center gap-1.5 group"
+                    title={`Open live feed for ${cam.street_name}`}
+                  >
+                    <span className="text-xs">{cam.icon}</span>
+                    <div className="truncate">
+                      <div className="text-white font-bold group-hover:text-crimenet-cyan truncate">{cam.short_label}</div>
+                      <div className="text-[8px] text-crimenet-muted">{cam.id}</div>
+                    </div>
+                  </button>
                 ))}
               </div>
             </div>

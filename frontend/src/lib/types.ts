@@ -103,13 +103,15 @@ export interface TimelineEvent {
 export interface Camera {
   id: string;
   name: string;
-  type: 'PUBLIC CAMERA' | 'TRAFFIC CAMERA' | 'CITY CAMERA' | 'DEMONSTRATION CAMERA';
+  type: string;
   city: string;
   lat: number;
   lng: number;
-  status: 'ONLINE' | 'SIMULATED' | 'OFFLINE' | 'DEMO FEED';
-  stream_type: string;
+  status: 'ONLINE' | 'SIMULATED' | 'OFFLINE' | 'DEMO FEED' | 'LIVE';
+  stream_type?: string;
   coverage_radius_m: number;
+  street_name?: string;
+  stream_url?: string;
   nearby_entities: string[];
   nearby_signals: string[];
   nearby_events: string[];

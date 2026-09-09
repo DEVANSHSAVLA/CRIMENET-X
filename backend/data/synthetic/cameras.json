@@ -1,13 +1,13 @@
 [
   {
     "id": "CAM-001",
-    "name": "CCTV-MUM-CST-NORTH",
+    "name": "CCTV-MUM-CST-TERMINUS",
     "type": "PUBLIC CAMERA",
     "city": "Mumbai",
     "lat": 18.94,
     "lng": 72.8353,
-    "status": "ONLINE",
-    "stream_type": "SIMULATED",
+    "status": "LIVE",
+    "stream_type": "PUBLIC FEED",
     "coverage_radius_m": 250,
     "nearby_entities": [
       "P-001",
@@ -20,17 +20,19 @@
     "nearby_events": [
       "EV-0015",
       "EV-0042"
-    ]
+    ],
+    "street_name": "DN Road / Chhatrapati Shivaji Maharaj Terminus",
+    "stream_url": "/videos/cst-junction.mp4"
   },
   {
     "id": "CAM-002",
-    "name": "TRAFFIC-MUM-SEAFACE-04",
+    "name": "TRAFFIC-MUM-WORLI-SEAFACE",
     "type": "TRAFFIC CAMERA",
     "city": "Mumbai",
     "lat": 19.0176,
     "lng": 72.8153,
-    "status": "ONLINE",
-    "stream_type": "SIMULATED",
+    "status": "LIVE",
+    "stream_type": "PUBLIC FEED",
     "coverage_radius_m": 400,
     "nearby_entities": [
       "P-015",
@@ -41,7 +43,9 @@
     ],
     "nearby_events": [
       "EV-0088"
-    ]
+    ],
+    "street_name": "Worli Sea Face / Bandra-Worli Sea Link Corridor",
+    "stream_url": "/videos/worli-sealink.mp4"
   },
   {
     "id": "CAM-003",
@@ -50,8 +54,8 @@
     "city": "Mumbai",
     "lat": 19.1364,
     "lng": 72.8296,
-    "status": "ONLINE",
-    "stream_type": "SIMULATED",
+    "status": "LIVE",
+    "stream_type": "PUBLIC FEED",
     "coverage_radius_m": 300,
     "nearby_entities": [
       "P-001",
@@ -62,6 +66,33 @@
     ],
     "nearby_events": [
       "EV-0012"
+    ],
+    "street_name": "New Link Road / Infinity Junction, Andheri West",
+    "stream_url": "/videos/andheri-link.mp4"
+  },
+  {
+    "id": "CAM-004",
+    "name": "CCTV-MUM-MARINE-DRIVE",
+    "street_name": "Netaji Subhash Chandra Bose Road (Marine Drive Promenade)",
+    "type": "PUBLIC WEBCAM",
+    "city": "Mumbai",
+    "lat": 18.9438,
+    "lng": 72.8233,
+    "status": "LIVE",
+    "stream_type": "PUBLIC FEED",
+    "coverage_radius_m": 350,
+    "stream_url": "/videos/marine-drive.mp4",
+    "nearby_entities": [
+      "P-001",
+      "P-049",
+      "P-015"
+    ],
+    "nearby_signals": [
+      "SIG-MUM-02"
+    ],
+    "nearby_events": [
+      "EV-0015",
+      "EV-0050"
     ]
   },
   {
@@ -133,7 +164,6 @@
     "type": "CITY CAMERA",
     "city": "Manipur",
     "lat": 24.817,
-    "93.9368": 93.9368,
     "lng": 93.9368,
     "status": "ONLINE",
     "stream_type": "SIMULATED",

@@ -11,6 +11,9 @@ def list_cameras(
     type: Optional[str] = None,
     status: Optional[str] = None
 ):
+    # Ensure latest camera definitions from disk are loaded
+    if not data_store.cameras or len(data_store.cameras) < 9:
+        data_store.load_data()
     cameras = data_store.cameras
     if city:
         cameras = [c for c in cameras if c.get("city", "").lower() == city.lower()]

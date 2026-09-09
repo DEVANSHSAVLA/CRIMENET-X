@@ -253,6 +253,20 @@ export default function MapComponent({
     });
   }, [locations, layerVisibility.locations, onSelectLocation]);
 
+  // Synchronize Map Camera to Focus Target
+  useEffect(() => {
+    if (!map.current || !context.mapFocusTarget) return;
+    const { lat, lng, zoom } = context.mapFocusTarget;
+    map.current.flyTo({
+      center: [lng, lat],
+      zoom: zoom || 15.0,
+      pitch: 60,
+      bearing: -15,
+      speed: 1.3,
+      curve: 1.4,
+    });
+  }, [context.mapFocusTarget]);
+
   // 5. Render Camera Markers (CCTV Lens Glyph)
   useEffect(() => {
     if (!map.current) return;
@@ -268,16 +282,19 @@ export default function MapComponent({
       el.dataset.featureId = cam.id;
 
       const isNearSelected = selectedEntityId && cam.nearby_entities?.includes(selectedEntityId);
+      const isLive = cam.status === 'LIVE' || Boolean(cam.stream_url);
 
       const beacon = document.createElement('div');
       beacon.className = `w-7 h-7 rounded-lg flex items-center justify-center border transition-all duration-300 ${
         isNearSelected
           ? 'bg-amber-500/30 border-amber-400 shadow-lg shadow-amber-500/50 scale-125 animate-pulse'
-          : 'bg-black/85 border-amber-400/60 text-amber-400 hover:scale-125'
+          : isLive
+            ? 'bg-black/90 border-emerald-400 text-emerald-400 hover:scale-125 shadow-md shadow-emerald-500/20'
+            : 'bg-black/85 border-amber-400/60 text-amber-400 hover:scale-125'
       }`;
 
       beacon.innerHTML = `
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFB300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${isLive ? '#10B981' : '#FFB300'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/>
         </svg>
       `;
@@ -285,11 +302,24 @@ export default function MapComponent({
 
       const popup = new maplibregl.Popup({ offset: 15, closeButton: false })
         .setHTML(`
-          <div style="font-family: monospace; font-size: 11px; padding: 6px; background: rgba(3,4,6,0.95); border: 1px solid #FFB300; border-radius: 6px;">
-            <div style="color: #FFB300; font-weight: bold;">CAMERA: ${cam.id}</div>
-            <div style="color: #E0E0E0; font-size: 10px;">${cam.name}</div>
-            <div style="color: #4CAF50; font-size: 9px; margin-top: 2px;">STATUS: ${cam.status} [${cam.stream_type || 'SIMULATED'}]</div>
-            <div style="color: #00D4FF; font-size: 9px;">COVERAGE: ${cam.coverage_radius_m || 300}m radius</div>
+          <div style="font-family: monospace; font-size: 11px; padding: 7px; background: rgba(3,4,6,0.95); border: 1px solid ${isLive ? '#10B981' : '#FFB300'}; border-radius: 6px; box-shadow: 0 4px 20px rgba(0,0,0,0.8); min-width: 180px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <span style="color: ${isLive ? '#10B981' : '#FFB300'}; font-weight: bold;">${cam.id}</span>
+              <span style="background: ${isLive ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255, 179, 0, 0.2)'}; color: ${isLive ? '#10B981' : '#FFB300'}; padding: 1px 5px; border-radius: 4px; font-size: 8px; font-weight: bold;">
+                ${isLive ? 'LIVE FEED' : (cam.stream_type || 'SIMULATED')}
+              </span>
+            </div>
+            <div style="color: #00D4FF; font-size: 10px; font-weight: bold; margin-top: 3px;">
+              ${cam.street_name || cam.name}
+            </div>
+            <div style="color: #94A3B8; font-size: 9px; margin-top: 2px;">
+              CITY: ${cam.city} · RADIUS: ${cam.coverage_radius_m || 300}m
+            </div>
+            ${cam.nearby_entities && cam.nearby_entities.length > 0 ? `
+              <div style="color: #FFB300; font-size: 9px; font-weight: bold; margin-top: 3px;">
+                NEARBY SUSPECTS: ${cam.nearby_entities.join(', ')}
+              </div>
+            ` : ''}
           </div>
         `);
 
@@ -305,7 +335,7 @@ export default function MapComponent({
         e.stopPropagation();
         popup.remove();
         if (onSelectCamera) onSelectCamera(cam);
-        map.current?.flyTo({ center: [cam.lng, cam.lat], zoom: 14.5, pitch: 60, speed: 1.2 });
+        map.current?.flyTo({ center: [cam.lng, cam.lat], zoom: 15.0, pitch: 60, speed: 1.2 });
       });
 
       cameraMarkersRef.current.push(marker);
