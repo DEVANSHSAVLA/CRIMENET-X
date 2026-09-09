@@ -2,15 +2,13 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import maplibregl from 'maplibre-gl';
-import type { Location, Person, Camera, TrafficSignal, TrafficCorridor } from '@/lib/types';
+import type { Location, Person, Camera, TrafficSignal, TrafficCorridor, TimelineEvent } from '@/lib/types';
 import { api } from '@/lib/api';
-
-const RISK_COLORS: Record<string, string> = {
-  CRITICAL: '#FF1744',
-  HIGH: '#FF5252',
-  MEDIUM: '#FFB300',
-  LOW: '#4FC3F7',
-};
+import { useInvestigation } from '@/context/investigation-context';
+import { 
+  User, Shield, Video, Radio, Clock, MapPin, Activity, 
+  Layers, ChevronDown, ChevronUp, AlertCircle, Eye, Info
+} from 'lucide-react';
 
 interface MapComponentProps {
   selectedEntityId?: string | null;
@@ -18,6 +16,8 @@ interface MapComponentProps {
   onSelectCamera?: (camera: Camera) => void;
   onSelectSignal?: (signal: TrafficSignal) => void;
   onSelectLocation?: (location: Location) => void;
+  onSelectEvent?: (event: TimelineEvent) => void;
+  cameraRadius?: { lat: number; lng: number; radiusM: number } | null;
   layerVisibility?: {
     locations: boolean;
     events: boolean;
@@ -30,12 +30,38 @@ interface MapComponentProps {
   };
 }
 
+function createGeoJSONCircle(center: [number, number], radiusInMeters: number, points: number = 64): GeoJSON.Feature<GeoJSON.Polygon> {
+  const coords: [number, number][] = [];
+  const radiusInKm = radiusInMeters / 1000.0;
+  const distanceX = radiusInKm / (111.32 * Math.cos((center[1] * Math.PI) / 180));
+  const distanceY = radiusInKm / 110.574;
+
+  for (let i = 0; i < points; i++) {
+    const theta = (i / points) * (2 * Math.PI);
+    const x = distanceX * Math.cos(theta);
+    const y = distanceY * Math.sin(theta);
+    coords.push([center[0] + x, center[1] + y]);
+  }
+  coords.push(coords[0]);
+
+  return {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [coords],
+    },
+    properties: {},
+  };
+}
+
 export default function MapComponent({
-  selectedEntityId,
-  onSelectEntity,
-  onSelectCamera,
-  onSelectSignal,
-  onSelectLocation,
+  selectedEntityId: propEntityId,
+  onSelectEntity: propSelectEntity,
+  onSelectCamera: propSelectCamera,
+  onSelectSignal: propSelectSignal,
+  onSelectLocation: propSelectLocation,
+  onSelectEvent: propSelectEvent,
+  cameraRadius: propCameraRadius,
   layerVisibility = {
     locations: true,
     events: true,
@@ -47,31 +73,51 @@ export default function MapComponent({
     buildings: true,
   }
 }: MapComponentProps) {
+  const context = useInvestigation();
+  const selectedEntityId = propEntityId ?? context.selectedEntityId;
+  const onSelectEntity = propSelectEntity ?? context.selectEntity;
+  const onSelectCamera = propSelectCamera ?? context.selectCamera;
+  const onSelectSignal = propSelectSignal ?? context.selectSignal;
+  const onSelectLocation = propSelectLocation ?? context.selectLocation;
+  const onSelectEvent = propSelectEvent ?? context.selectEvent;
+  const cameraRadius = propCameraRadius ?? context.cameraRadius;
+
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
-  const markersRef = useRef<maplibregl.Marker[]>([]);
+
+  // Marker References
+  const locationMarkersRef = useRef<maplibregl.Marker[]>([]);
   const cameraMarkersRef = useRef<maplibregl.Marker[]>([]);
   const signalMarkersRef = useRef<maplibregl.Marker[]>([]);
+  const eventMarkersRef = useRef<maplibregl.Marker[]>([]);
+  const noticeMarkersRef = useRef<maplibregl.Marker[]>([]);
 
+  // Geospatial Data States
   const [locations, setLocations] = useState<Location[]>([]);
   const [cameras, setCameras] = useState<Camera[]>([]);
   const [signals, setSignals] = useState<TrafficSignal[]>([]);
   const [trafficCorridors, setTrafficCorridors] = useState<TrafficCorridor[]>([]);
+  const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>([]);
 
-  // Fetch all map entities and urban sensor data
+  // Legend State
+  const [isLegendOpen, setIsLegendOpen] = useState(true);
+
+  // 1. Fetch All Geospatial & Sensor Data
   useEffect(() => {
     const loadGeoData = async () => {
       try {
-        const [locRes, camRes, sigRes, flowRes] = await Promise.all([
+        const [locRes, camRes, sigRes, flowRes, timeRes] = await Promise.all([
           api.getLocations(),
           api.getCameras(),
           api.getTrafficSignals(),
           api.getTrafficFlow(),
+          api.getTimeline('CBI-INTERPOL-RED-379'),
         ]);
         setLocations(locRes.locations || []);
         setCameras(camRes.cameras || []);
         setSignals(sigRes.signals || []);
         setTrafficCorridors(flowRes.corridors || []);
+        setTimelineEvents((timeRes.events || []).slice(0, 40));
       } catch (err) {
         console.warn('Geo Data API loading fallback');
       }
@@ -79,38 +125,21 @@ export default function MapComponent({
     loadGeoData();
   }, []);
 
-  // Initialize MapLibre GL
+  // 2. Initialize MapLibre GL
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
       style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
-      center: [78.9629, 22.5937], // India Overview
-      zoom: 4.8,
-      pitch: 50,
-      bearing: -10,
+      center: [72.8777, 19.0760], // Mumbai Core Urban Center
+      zoom: 11.2,
+      pitch: 55,
+      bearing: -15,
       antialias: true,
     });
 
     map.current.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
-
-    map.current.on('load', () => {
-      // Smooth fly-to initial hub (Mumbai corridor)
-      map.current?.flyTo({
-        center: [72.8777, 19.0760],
-        zoom: 11,
-        pitch: 58,
-        bearing: -20,
-        speed: 0.8,
-        curve: 1.2,
-      });
-
-      // Add 3D Buildings Fill-Extrusion Layer
-      if (map.current?.getSource('carto')) {
-        // Optional 3D buildings can be added if vector tiles support
-      }
-    });
 
     return () => {
       map.current?.remove();
@@ -118,13 +147,58 @@ export default function MapComponent({
     };
   }, []);
 
-  // Sync Location Markers
+  // 3. Camera Coverage Circle Layer (Dynamic Polygon Buffer)
+  useEffect(() => {
+    if (!map.current || !map.current.isStyleLoaded()) return;
+
+    const sourceId = 'camera-coverage-radius-source';
+    const fillLayerId = 'camera-coverage-radius-fill';
+    const lineLayerId = 'camera-coverage-radius-line';
+
+    if (map.current.getLayer(fillLayerId)) map.current.removeLayer(fillLayerId);
+    if (map.current.getLayer(lineLayerId)) map.current.removeLayer(lineLayerId);
+    if (map.current.getSource(sourceId)) map.current.removeSource(sourceId);
+
+    if (!cameraRadius || !cameraRadius.lat || !cameraRadius.lng) return;
+
+    const circleGeoJSON = createGeoJSONCircle(
+      [cameraRadius.lng, cameraRadius.lat],
+      cameraRadius.radiusM || 300
+    );
+
+    map.current.addSource(sourceId, {
+      type: 'geojson',
+      data: circleGeoJSON,
+    });
+
+    map.current.addLayer({
+      id: fillLayerId,
+      type: 'fill',
+      source: sourceId,
+      paint: {
+        'fill-color': '#00D4FF',
+        'fill-opacity': 0.15,
+      },
+    });
+
+    map.current.addLayer({
+      id: lineLayerId,
+      type: 'line',
+      source: sourceId,
+      paint: {
+        'line-color': '#00D4FF',
+        'line-width': 2,
+        'line-dasharray': [3, 2],
+        'line-opacity': 0.85,
+      },
+    });
+  }, [cameraRadius]);
+
+  // 4. Render Location Markers (Emerald Pin Glyph)
   useEffect(() => {
     if (!map.current) return;
-
-    // Clear old location markers
-    markersRef.current.forEach(m => m.remove());
-    markersRef.current = [];
+    locationMarkersRef.current.forEach(m => m.remove());
+    locationMarkersRef.current = [];
 
     if (!layerVisibility.locations) return;
 
@@ -134,22 +208,29 @@ export default function MapComponent({
       el.dataset.featureType = 'LOCATION';
       el.dataset.featureId = loc.id;
 
-      const pulseRing = document.createElement('div');
-      pulseRing.className = 'absolute -inset-2 rounded-full bg-crimenet-cyan/20 animate-ping opacity-60 pointer-events-none';
-      el.appendChild(pulseRing);
+      // Glow halo
+      const halo = document.createElement('div');
+      halo.className = 'absolute -inset-1.5 rounded-full bg-emerald-500/20 group-hover:bg-emerald-500/40 transition-colors pointer-events-none';
+      el.appendChild(halo);
 
-      const dot = document.createElement('div');
-      dot.className = 'relative w-4 h-4 rounded-full bg-crimenet-cyan border-2 border-white shadow-lg transition-transform duration-200 group-hover:scale-150';
-      el.appendChild(dot);
+      // Distinct Location Pin Glyph
+      const pin = document.createElement('div');
+      pin.className = 'relative w-6 h-6 rounded-full bg-emerald-500/90 border-2 border-white flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-125';
+      pin.innerHTML = `
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+      `;
+      el.appendChild(pin);
 
-      // Hover-only Tooltip
+      // Tooltip
       const popup = new maplibregl.Popup({ offset: 15, closeButton: false })
         .setHTML(`
-          <div style="font-family: monospace; font-size: 11px; padding: 4px; background: rgba(3,4,6,0.95); border: 1px solid #00D4FF; border-radius: 6px;">
-            <div style="color: #00D4FF; font-weight: bold; text-transform: uppercase;">${loc.name}</div>
-            <div style="color: #E0E0E0; margin-top: 2px;">${loc.city}, ${loc.country || 'India'}</div>
-            <div style="color: #94A3B8; font-size: 9px; margin-top: 2px;">TYPE: ${loc.provenance_type || 'SOURCE-DERIVED'}</div>
-            <div style="color: #FFB300; font-size: 9px; margin-top: 2px;">SUSPECTS LINKED: ${loc.linked_persons || 1}</div>
+          <div style="font-family: monospace; font-size: 11px; padding: 6px; background: rgba(3,4,6,0.95); border: 1px solid #10B981; border-radius: 6px;">
+            <div style="color: #10B981; font-weight: bold;">LOCATION: ${loc.name}</div>
+            <div style="color: #E0E0E0; font-size: 10px; margin-top: 2px;">${loc.city}, ${loc.country || 'India'}</div>
+            <div style="color: #94A3B8; font-size: 9px; margin-top: 2px;">SOURCE: ${loc.provenance_type || 'SOURCE-DERIVED'}</div>
+            <div style="color: #FFB300; font-size: 9px; font-weight: bold;">SUSPECTS LINKED: ${loc.linked_persons || 1}</div>
           </div>
         `);
 
@@ -160,9 +241,7 @@ export default function MapComponent({
       el.addEventListener('mouseenter', () => {
         if (map.current) popup.setLngLat([loc.lng, loc.lat]).addTo(map.current);
       });
-      el.addEventListener('mouseleave', () => {
-        popup.remove();
-      });
+      el.addEventListener('mouseleave', () => popup.remove());
       el.addEventListener('click', (e) => {
         e.stopPropagation();
         popup.remove();
@@ -170,14 +249,13 @@ export default function MapComponent({
         map.current?.flyTo({ center: [loc.lng, loc.lat], zoom: 13.5, pitch: 60, speed: 1.2 });
       });
 
-      markersRef.current.push(marker);
+      locationMarkersRef.current.push(marker);
     });
   }, [locations, layerVisibility.locations, onSelectLocation]);
 
-  // Sync Camera Markers (Urban Intelligence Layer)
+  // 5. Render Camera Markers (CCTV Lens Glyph)
   useEffect(() => {
     if (!map.current) return;
-
     cameraMarkersRef.current.forEach(m => m.remove());
     cameraMarkersRef.current = [];
 
@@ -189,18 +267,17 @@ export default function MapComponent({
       el.dataset.featureType = 'CAMERA';
       el.dataset.featureId = cam.id;
 
-      // Illuminated glow if linked to selected entity
       const isNearSelected = selectedEntityId && cam.nearby_entities?.includes(selectedEntityId);
 
       const beacon = document.createElement('div');
       beacon.className = `w-7 h-7 rounded-lg flex items-center justify-center border transition-all duration-300 ${
         isNearSelected
-          ? 'bg-crimenet-cyan/30 border-crimenet-cyan shadow-lg shadow-cyan-500/50 scale-125 animate-pulse'
-          : 'bg-black/80 border-crimenet-cyan/50 text-crimenet-cyan hover:scale-125'
+          ? 'bg-amber-500/30 border-amber-400 shadow-lg shadow-amber-500/50 scale-125 animate-pulse'
+          : 'bg-black/85 border-amber-400/60 text-amber-400 hover:scale-125'
       }`;
 
       beacon.innerHTML = `
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFB300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/>
         </svg>
       `;
@@ -208,11 +285,11 @@ export default function MapComponent({
 
       const popup = new maplibregl.Popup({ offset: 15, closeButton: false })
         .setHTML(`
-          <div style="font-family: monospace; font-size: 11px; padding: 6px; background: rgba(3,4,6,0.95); border: 1px solid #00D4FF; border-radius: 6px;">
-            <div style="color: #00D4FF; font-weight: bold;">${cam.name}</div>
-            <div style="color: #94A3B8; font-size: 9px;">TYPE: ${cam.type} · ${cam.city}</div>
-            <div style="color: #4CAF50; font-size: 9px; font-weight: bold; margin-top: 2px;">STATUS: ${cam.status} [SIMULATED FEED]</div>
-            <div style="color: #FFB300; font-size: 9px;">NEARBY ENTITIES: ${cam.nearby_entities?.length || 0}</div>
+          <div style="font-family: monospace; font-size: 11px; padding: 6px; background: rgba(3,4,6,0.95); border: 1px solid #FFB300; border-radius: 6px;">
+            <div style="color: #FFB300; font-weight: bold;">CAMERA: ${cam.id}</div>
+            <div style="color: #E0E0E0; font-size: 10px;">${cam.name}</div>
+            <div style="color: #4CAF50; font-size: 9px; margin-top: 2px;">STATUS: ${cam.status} [${cam.stream_type || 'SIMULATED'}]</div>
+            <div style="color: #00D4FF; font-size: 9px;">COVERAGE: ${cam.coverage_radius_m || 300}m radius</div>
           </div>
         `);
 
@@ -223,9 +300,7 @@ export default function MapComponent({
       el.addEventListener('mouseenter', () => {
         if (map.current) popup.setLngLat([cam.lng, cam.lat]).addTo(map.current);
       });
-      el.addEventListener('mouseleave', () => {
-        popup.remove();
-      });
+      el.addEventListener('mouseleave', () => popup.remove());
       el.addEventListener('click', (e) => {
         e.stopPropagation();
         popup.remove();
@@ -237,10 +312,9 @@ export default function MapComponent({
     });
   }, [cameras, layerVisibility.cameras, selectedEntityId, onSelectCamera]);
 
-  // Sync Traffic Signal Markers (Urban Intelligence Layer)
+  // 6. Render Traffic Signal Markers (Traffic Light Glyph)
   useEffect(() => {
     if (!map.current) return;
-
     signalMarkersRef.current.forEach(m => m.remove());
     signalMarkersRef.current = [];
 
@@ -252,16 +326,13 @@ export default function MapComponent({
       el.dataset.featureType = 'SIGNAL';
       el.dataset.featureId = sig.id;
 
-      const phaseColor = sig.phase === 'RED' ? '#FF1744' : sig.phase === 'YELLOW' ? '#FFB300' : '#4CAF50';
+      const phaseColor = sig.phase === 'RED' ? '#FF1744' : sig.phase === 'YELLOW' ? '#FFB300' : '#10B981';
 
       const ring = document.createElement('div');
-      ring.className = `w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow-md transition-transform duration-200 group-hover:scale-125`;
+      ring.className = 'w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow-md transition-transform duration-200 group-hover:scale-125';
       ring.style.backgroundColor = phaseColor;
-      ring.style.boxShadow = `0 0 12px ${phaseColor}`;
-
-      ring.innerHTML = `
-        <span style="font-size: 8px; font-weight: bold; color: #fff; font-family: monospace;">${sig.remaining_seconds || 20}</span>
-      `;
+      ring.style.boxShadow = `0 0 10px ${phaseColor}`;
+      ring.innerHTML = `<span style="font-size: 8px; font-weight: bold; color: #fff; font-family: monospace;">${sig.remaining_seconds || 20}</span>`;
       el.appendChild(ring);
 
       const popup = new maplibregl.Popup({ offset: 15, closeButton: false })
@@ -270,7 +341,7 @@ export default function MapComponent({
             <div style="color: #fff; font-weight: bold;">TRAFFIC SIGNAL: ${sig.id}</div>
             <div style="color: #94A3B8; font-size: 9px;">${sig.intersection}</div>
             <div style="color: ${phaseColor}; font-weight: bold; font-size: 10px; margin-top: 2px;">PHASE: ${sig.phase} (${sig.remaining_seconds}s)</div>
-            <div style="color: #E0E0E0; font-size: 9px;">CONGESTION: ${sig.traffic_density}</div>
+            <div style="color: #E0E0E0; font-size: 9px;">DENSITY: ${sig.traffic_density}</div>
           </div>
         `);
 
@@ -281,9 +352,7 @@ export default function MapComponent({
       el.addEventListener('mouseenter', () => {
         if (map.current) popup.setLngLat([sig.lng, sig.lat]).addTo(map.current);
       });
-      el.addEventListener('mouseleave', () => {
-        popup.remove();
-      });
+      el.addEventListener('mouseleave', () => popup.remove());
       el.addEventListener('click', (e) => {
         e.stopPropagation();
         popup.remove();
@@ -295,7 +364,64 @@ export default function MapComponent({
     });
   }, [signals, layerVisibility.signals, onSelectSignal]);
 
-  // Traffic Flow Corridors Layer
+  // 7. Render Timeline Event Markers (Amber Diamond / Event Pulse)
+  useEffect(() => {
+    if (!map.current) return;
+    eventMarkersRef.current.forEach(m => m.remove());
+    eventMarkersRef.current = [];
+
+    if (!layerVisibility.events || timelineEvents.length === 0) return;
+
+    // Map events to locations
+    const locMap = new Map(locations.map(l => [l.id, l]));
+
+    timelineEvents.forEach(ev => {
+      const loc = locMap.get(ev.location_id || '');
+      if (!loc) return;
+
+      const el = document.createElement('div');
+      el.className = 'group relative cursor-pointer z-20';
+      el.dataset.featureType = 'EVENT';
+      el.dataset.featureId = ev.id;
+
+      // Diamond Marker
+      const diamond = document.createElement('div');
+      diamond.className = 'w-4 h-4 bg-purple-500 border-2 border-white rotate-45 flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-150';
+      el.appendChild(diamond);
+
+      const popup = new maplibregl.Popup({ offset: 15, closeButton: false })
+        .setHTML(`
+          <div style="font-family: monospace; font-size: 11px; padding: 6px; background: rgba(3,4,6,0.95); border: 1px solid #A855F7; border-radius: 6px; max-width: 200px;">
+            <div style="color: #A855F7; font-weight: bold;">EVENT: ${ev.type}</div>
+            <div style="color: #fff; font-size: 10px; margin-top: 2px;">${ev.description}</div>
+            <div style="color: #94A3B8; font-size: 9px; margin-top: 2px;">TIME: ${ev.timestamp?.slice(0, 10)}</div>
+          </div>
+        `);
+
+      // Slightly jitter coordinates to prevent exact overlap with location pin
+      const jitterLat = loc.lat + (Math.random() - 0.5) * 0.003;
+      const jitterLng = loc.lng + (Math.random() - 0.5) * 0.003;
+
+      const marker = new maplibregl.Marker({ element: el })
+        .setLngLat([jitterLng, jitterLat])
+        .addTo(map.current!);
+
+      el.addEventListener('mouseenter', () => {
+        if (map.current) popup.setLngLat([jitterLng, jitterLat]).addTo(map.current);
+      });
+      el.addEventListener('mouseleave', () => popup.remove());
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        popup.remove();
+        if (onSelectEvent) onSelectEvent(ev);
+        map.current?.flyTo({ center: [jitterLng, jitterLat], zoom: 14, pitch: 60, speed: 1.2 });
+      });
+
+      eventMarkersRef.current.push(marker);
+    });
+  }, [timelineEvents, locations, layerVisibility.events, onSelectEvent]);
+
+  // 8. Traffic Flow Corridors Layer
   useEffect(() => {
     if (!map.current || !map.current.isStyleLoaded()) return;
 
@@ -331,7 +457,7 @@ export default function MapComponent({
           ['get', 'density'],
           'HIGH', '#FF1744',
           'MEDIUM', '#FFB300',
-          '#4CAF50'
+          '#10B981'
         ],
         'line-width': 4,
         'line-opacity': 0.8,
@@ -344,13 +470,81 @@ export default function MapComponent({
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="w-full h-full bg-crimenet-bg" />
 
+      {/* ── PERSISTENT MAP LEGEND OVERLAY ── */}
+      <div className="absolute bottom-6 left-4 z-20">
+        <div className="glass-panel p-2.5 rounded-xl border border-white/10 shadow-2xl bg-[#060B14]/90 backdrop-blur-md w-60">
+          <div 
+            onClick={() => setIsLegendOpen(!isLegendOpen)}
+            className="flex items-center justify-between cursor-pointer text-xs font-mono font-bold text-white uppercase tracking-wider pb-1"
+          >
+            <span className="flex items-center gap-1.5 text-crimenet-cyan">
+              <Layers className="w-3.5 h-3.5" /> MAP TAXONOMY LEGEND
+            </span>
+            {isLegendOpen ? <ChevronDown className="w-3.5 h-3.5 text-crimenet-muted" /> : <ChevronUp className="w-3.5 h-3.5 text-crimenet-muted" />}
+          </div>
+
+          {isLegendOpen && (
+            <div className="space-y-1.5 pt-2 border-t border-white/10 text-[11px] font-sans">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-emerald-500 border border-white shrink-0"></div>
+                  <span className="text-white/80">Location Hub</span>
+                </div>
+                <span className="text-[10px] font-mono text-emerald-400">{locations.length}</span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3.5 h-3.5 rounded bg-black border border-amber-400 flex items-center justify-center shrink-0">
+                    <Video className="w-2 h-2 text-amber-400" />
+                  </div>
+                  <span className="text-white/80">Urban CCTV Sensor</span>
+                </div>
+                <span className="text-[10px] font-mono text-amber-400">{cameras.length}</span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-crimenet-crimson border border-white shrink-0"></div>
+                  <span className="text-white/80">Traffic Signal Phase</span>
+                </div>
+                <span className="text-[10px] font-mono text-crimenet-crimson">{signals.length}</span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-purple-500 border border-white rotate-45 shrink-0"></div>
+                  <span className="text-white/80">Timeline Incident</span>
+                </div>
+                <span className="text-[10px] font-mono text-purple-400">{timelineEvents.length}</span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5 border-t-2 border-dashed border-emerald-400 shrink-0"></div>
+                  <span className="text-white/80">Traffic Corridor</span>
+                </div>
+                <span className="text-[10px] font-mono text-emerald-400">{trafficCorridors.length}</span>
+              </div>
+
+              {cameraRadius && (
+                <div className="flex items-center gap-2 pt-1 border-t border-white/5 text-[10px] font-mono text-crimenet-cyan">
+                  <span className="w-2 h-2 rounded-full bg-crimenet-cyan animate-pulse"></span>
+                  <span>Camera Coverage: {cameraRadius.radiusM}m Active</span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
       {/* Attribution & Responsible AI Watermark */}
-      <div className="absolute bottom-1.5 left-3 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded border border-white/5 text-[9px] font-mono text-crimenet-muted z-10 flex items-center gap-3 pointer-events-none">
+      <div className="absolute bottom-1.5 right-14 bg-black/70 backdrop-blur-sm px-2.5 py-1 rounded border border-white/5 text-[9px] font-mono text-crimenet-muted z-10 flex items-center gap-3 pointer-events-none">
         <span>TEAM AETHERIUS · SIH26189</span>
         <span className="text-white/40">|</span>
         <span>CBI-INTERPOL PUBLIC RED NOTICES (379)</span>
         <span className="text-white/40">|</span>
-        <span className="text-emerald-400">URBAN CONTEXT ACTIVE</span>
+        <span className="text-emerald-400">URBAN CONTEXT SYNCHRONIZED</span>
       </div>
     </div>
   );

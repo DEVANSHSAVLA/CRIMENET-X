@@ -22,6 +22,7 @@ class DataStore:
         self.traffic_signals = []
         self.traffic_flow = []
         self.evidence = []
+        self.audit_logs = []
 
     def load_data(self):
         try:

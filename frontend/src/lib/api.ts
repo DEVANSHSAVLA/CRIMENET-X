@@ -57,6 +57,14 @@ export const api = {
     const qs = params ? '?' + new URLSearchParams(params).toString() : '';
     return fetchAPI<{ locations: Location[] }>(`/api/v1/locations${qs}`);
   },
+  getLocation: (id: string) => fetchAPI<Location & {
+    associated_cases: any[];
+    associated_persons: any[];
+    associated_events: any[];
+    nearby_cameras: any[];
+    nearby_signals: any[];
+    associated_evidence: any[];
+  }>(`/api/v1/locations/${id}`),
   getSightings: (entityId?: string) => {
     const qs = entityId ? `?entity_id=${entityId}` : '';
     return fetchAPI<{ sightings: any[] }>(`/api/v1/sightings${qs}`);
@@ -83,6 +91,11 @@ export const api = {
     return fetchAPI<{ evidence: EvidenceRecord[]; total: number }>(`/api/v1/evidence${qs}`);
   },
   verifyEvidence: (id: string) => fetchAPI<{ evidence_id: string; verification_status: string; blockchain_anchor: string; sha256_hash: string }>(`/api/v1/evidence/${id}/verify`, { method: 'POST' }),
+  revealEvidenceHash: (id: string, password: string) => fetchAPI<{ evidence_id: string; sha256_hash: string; is_hash_protected: boolean; verification_status: string; audit_entry: any }>(`/api/v1/evidence/${id}/reveal-hash`, {
+    method: 'POST',
+    body: JSON.stringify({ password }),
+  }),
+  getEvidenceAuditLogs: () => fetchAPI<{ audit_logs: any[]; total: number }>('/api/v1/evidence/audit-logs'),
 
   // Timeline
   getTimeline: (caseId: string = 'CBI-INTERPOL-RED-379', params?: Record<string, string>) => {
@@ -101,6 +114,32 @@ export const api = {
     method: 'POST',
     body: JSON.stringify({ question, case_id: caseId, context_entity_id: contextEntityId }),
   }),
+  askAIChat: (messages: { role: string; content: string }[], caseId: string = 'CBI-INTERPOL-RED-379', contextEntityId?: string) => fetchAPI<AIResponse>('/api/v1/ai/chat', {
+    method: 'POST',
+    body: JSON.stringify({ messages, case_id: caseId, context_entity_id: contextEntityId }),
+  }),
+  uploadAIDocument: async (file: File, caseId: string = 'CBI-INTERPOL-RED-379') => {
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('case_id', caseId);
+    const res = await fetch(`${API_BASE}/api/v1/ai/upload-document`, {
+      method: 'POST',
+      body: fd,
+    });
+    if (!res.ok) throw new Error(`Document upload failed: ${res.status}`);
+    return res.json();
+  },
+  uploadAIImage: async (file: File, caseId: string = 'CBI-INTERPOL-RED-379') => {
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('case_id', caseId);
+    const res = await fetch(`${API_BASE}/api/v1/ai/upload-image`, {
+      method: 'POST',
+      body: fd,
+    });
+    if (!res.ok) throw new Error(`Image upload failed: ${res.status}`);
+    return res.json();
+  },
 
   // Voice Command Processing
   sendVoiceCommand: (transcript: string, contextEntityId?: string, language?: string) => fetchAPI<VoiceCommandResult>('/api/v1/voice/command', {

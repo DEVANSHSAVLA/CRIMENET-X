@@ -60,6 +60,25 @@ interface InvestigationContextType {
   compareEntities: [Person | null, Person | null];
   setCompareEntities: (entities: [Person | null, Person | null]) => void;
 
+  // Active Cross-Module Filters
+  activeFilters: {
+    country: string | null;
+    riskLevel: string | null;
+    entityType: string | null;
+  };
+  setFilter: (key: 'country' | 'riskLevel' | 'entityType', value: string | null) => void;
+  clearFilters: () => void;
+
+  // Timeline Synchronization
+  timelineCursor: string | null;
+  setTimelineCursor: (cursor: string | null) => void;
+  isTimelinePlaying: boolean;
+  setIsTimelinePlaying: (playing: boolean) => void;
+
+  // Camera Spatial Radius Overlay
+  cameraRadius: { lat: number; lng: number; radiusM: number } | null;
+  setCameraRadius: (radius: { lat: number; lng: number; radiusM: number } | null) => void;
+
   // AI & Voice Coordination
   pendingAiQuery: string | null;
   setPendingAiQuery: (query: string | null) => void;
@@ -85,10 +104,28 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
   const [drawerData, setDrawerData] = useState<any>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
-  // Filters
+  // Filters & State
   const [mode, setMode] = useState<InvestigationMode>('EXPLORE');
   const [timeYear, setTimeYear] = useState<number>(2026);
   const [riskFilter, setRiskFilter] = useState<string | null>(null);
+  const [activeFilters, setActiveFilters] = useState<{ country: string | null; riskLevel: string | null; entityType: string | null }>({
+    country: null,
+    riskLevel: null,
+    entityType: null,
+  });
+  const [timelineCursor, setTimelineCursor] = useState<string | null>(null);
+  const [isTimelinePlaying, setIsTimelinePlaying] = useState<boolean>(false);
+  const [cameraRadius, setCameraRadius] = useState<{ lat: number; lng: number; radiusM: number } | null>(null);
+
+  const setFilter = useCallback((key: 'country' | 'riskLevel' | 'entityType', value: string | null) => {
+    setActiveFilters((prev) => ({ ...prev, [key]: value }));
+  }, []);
+
+  const clearFilters = useCallback(() => {
+    setActiveFilters({ country: null, riskLevel: null, entityType: null });
+    setRiskFilter(null);
+  }, []);
+
   const [layers, setLayers] = useState({
     locations: true,
     events: true,
@@ -153,6 +190,13 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
   const selectCamera = useCallback((camera: Camera) => {
     currentSelectionSeqRef.current += 1;
     setSelectedCamera(camera);
+    if (camera.lat && camera.lng) {
+      setCameraRadius({
+        lat: camera.lat,
+        lng: camera.lng,
+        radiusM: camera.coverage_radius_m || 300,
+      });
+    }
     openDrawer('CAMERA', camera);
   }, [openDrawer]);
 
@@ -168,10 +212,21 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
     openDrawer('EVIDENCE', evidence);
   }, [openDrawer]);
 
-  const selectLocation = useCallback((location: Location) => {
-    currentSelectionSeqRef.current += 1;
+  const selectLocation = useCallback(async (location: Location) => {
+    const seq = ++currentSelectionSeqRef.current;
     setSelectedLocation(location);
-    openDrawer('LOCATION', location);
+    openDrawer('LOCATION', { ...location, loading: true });
+    try {
+      const detailed = await api.getLocation(location.id);
+      if (currentSelectionSeqRef.current === seq) {
+        setSelectedLocation(detailed);
+        setDrawerData(detailed);
+      }
+    } catch (e) {
+      if (currentSelectionSeqRef.current === seq) {
+        setDrawerData(location);
+      }
+    }
   }, [openDrawer]);
 
   const selectEvent = useCallback((event: TimelineEvent) => {
@@ -297,6 +352,15 @@ export function InvestigationProvider({ children }: { children: React.ReactNode 
         setIsReportOpen,
         compareEntities,
         setCompareEntities,
+        activeFilters,
+        setFilter,
+        clearFilters,
+        timelineCursor,
+        setTimelineCursor,
+        isTimelinePlaying,
+        setIsTimelinePlaying,
+        cameraRadius,
+        setCameraRadius,
         pendingAiQuery,
         setPendingAiQuery,
         dispatchAction,

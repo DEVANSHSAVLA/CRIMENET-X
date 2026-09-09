@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "crimenet-x-secret-key-2026"
     ALGORITHM: str = "HS256"
     CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+    EVIDENCE_HASH_REVEAL_SECRET: str = "CRIMENET_EVID_AUTH_CLEARANCE_KEY_2026"
 
     class Config:
         env_file = ".env"
