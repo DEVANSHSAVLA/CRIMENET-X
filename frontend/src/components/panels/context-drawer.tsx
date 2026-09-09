@@ -8,6 +8,7 @@ import {
   Maximize2, User, Loader2, Lock, Unlock, KeyRound, Copy, Check, ChevronRight, Briefcase
 } from 'lucide-react';
 import { api } from '@/lib/api';
+import { SuspectPhoto } from '@/components/shared/suspect-photo';
 
 interface ContextDrawerProps {
   type: ContextDrawerType;
@@ -182,11 +183,16 @@ export function ContextDrawer({ type, data, isOpen, onClose, onAction }: Context
           <div className="space-y-4">
             {/* Person Photo & Identity */}
             <div className="flex gap-3">
-              <div className="w-20 h-24 rounded border border-white/20 bg-black/60 flex flex-col items-center justify-center text-crimenet-cyan/70 shrink-0 relative overflow-hidden">
-                <User className="w-9 h-9 text-crimenet-muted/60" />
-                <span className="text-[8px] font-mono text-crimenet-muted mt-1 uppercase">BIOMETRIC</span>
-                <div className="absolute inset-0 bg-gradient-to-t from-crimenet-cyan/10 to-transparent pointer-events-none" />
-              </div>
+              <SuspectPhoto
+                entityId={data.id}
+                displayName={data.display_name || data.name}
+                noticeId={data.notice_id}
+                gender={data.gender}
+                riskLevel={data.risk_level}
+                photoUrl={data.photo_thumbnail_url || data.photo_url}
+                physicalDescription={data.physical_description}
+                size="md"
+              />
               <div className="flex-1">
                 <div className="text-base font-bold text-white leading-tight">
                   {data.display_name || data.name}

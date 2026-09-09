@@ -38,6 +38,7 @@ export interface Person {
   primary_city: string;
   source_urls: string[];
   photo_thumbnail_url?: string;
+  photo_url?: string;
   provenance: ProvenanceRecord[];
   confidence: number;
   last_updated: string;

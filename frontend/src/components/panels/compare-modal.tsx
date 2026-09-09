@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { X, ArrowRightLeft, Shield, MapPin, Network, Clock, CheckCircle2 } from 'lucide-react';
 import type { Person } from '@/lib/types';
 import { api } from '@/lib/api';
+import { SuspectPhoto } from '@/components/shared/suspect-photo';
 
 interface CompareModalProps {
   isOpen: boolean;
@@ -114,8 +115,21 @@ export function CompareModal({ isOpen, onClose, entityAId = 'P-001', entityBId =
               
               {/* Person A */}
               <div className="glass-card p-4 rounded-lg border-l-2 border-crimenet-cyan space-y-3">
-                <div className="text-sm font-bold text-white">{personA.display_name}</div>
-                <div className="text-[10px] font-mono text-crimenet-muted">NOTICE: {personA.notice_id}</div>
+                <div className="flex items-center gap-3">
+                  <SuspectPhoto
+                    entityId={personA.id}
+                    displayName={personA.display_name}
+                    noticeId={personA.notice_id}
+                    gender={personA.gender}
+                    riskLevel={personA.risk_level}
+                    photoUrl={personA.photo_thumbnail_url || personA.photo_url}
+                    size="sm"
+                  />
+                  <div>
+                    <div className="text-sm font-bold text-white">{personA.display_name}</div>
+                    <div className="text-[10px] font-mono text-crimenet-muted">NOTICE: {personA.notice_id}</div>
+                  </div>
+                </div>
                 
                 <div className="space-y-2 pt-2 border-t border-white/5">
                   <div className="flex justify-between">
@@ -144,8 +158,21 @@ export function CompareModal({ isOpen, onClose, entityAId = 'P-001', entityBId =
 
               {/* Person B */}
               <div className="glass-card p-4 rounded-lg border-l-2 border-crimenet-amber space-y-3">
-                <div className="text-sm font-bold text-white">{personB.display_name}</div>
-                <div className="text-[10px] font-mono text-crimenet-muted">NOTICE: {personB.notice_id}</div>
+                <div className="flex items-center gap-3">
+                  <SuspectPhoto
+                    entityId={personB.id}
+                    displayName={personB.display_name}
+                    noticeId={personB.notice_id}
+                    gender={personB.gender}
+                    riskLevel={personB.risk_level}
+                    photoUrl={personB.photo_thumbnail_url || personB.photo_url}
+                    size="sm"
+                  />
+                  <div>
+                    <div className="text-sm font-bold text-white">{personB.display_name}</div>
+                    <div className="text-[10px] font-mono text-crimenet-muted">NOTICE: {personB.notice_id}</div>
+                  </div>
+                </div>
                 
                 <div className="space-y-2 pt-2 border-t border-white/5">
                   <div className="flex justify-between">

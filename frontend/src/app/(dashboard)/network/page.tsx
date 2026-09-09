@@ -7,6 +7,7 @@ import type { NetworkData, CentralityRanking } from '@/lib/types';
 import { Search, ZoomIn, ZoomOut, Maximize2, Info } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useInvestigation } from '@/context/investigation-context';
+import { SuspectPhoto } from '@/components/shared/suspect-photo';
 
 export default function NetworkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -489,17 +490,23 @@ export default function NetworkPage() {
             <div className="grid grid-cols-2 gap-2 pt-1">
               <div 
                 onClick={() => selectEntity(selectedEdge.source)}
-                className="p-2.5 rounded-lg bg-black/60 border border-white/10 hover:border-crimenet-cyan/50 cursor-pointer transition-colors"
+                className="p-2.5 rounded-lg bg-black/60 border border-white/10 hover:border-crimenet-cyan/50 cursor-pointer transition-colors flex items-center gap-2"
               >
-                <div className="text-[9px] text-crimenet-muted font-mono uppercase">Node A (Source)</div>
-                <div className="font-bold text-white text-xs mt-0.5">{selectedEdge.source}</div>
+                <SuspectPhoto entityId={selectedEdge.source} size="sm" showLightboxOnClick={false} />
+                <div className="min-w-0 flex-1">
+                  <div className="text-[9px] text-crimenet-muted font-mono uppercase">Node A (Source)</div>
+                  <div className="font-bold text-white text-xs mt-0.5 truncate">{selectedEdge.source}</div>
+                </div>
               </div>
               <div 
                 onClick={() => selectEntity(selectedEdge.target)}
-                className="p-2.5 rounded-lg bg-black/60 border border-white/10 hover:border-crimenet-cyan/50 cursor-pointer transition-colors"
+                className="p-2.5 rounded-lg bg-black/60 border border-white/10 hover:border-crimenet-cyan/50 cursor-pointer transition-colors flex items-center gap-2"
               >
-                <div className="text-[9px] text-crimenet-muted font-mono uppercase">Node B (Target)</div>
-                <div className="font-bold text-white text-xs mt-0.5">{selectedEdge.target}</div>
+                <SuspectPhoto entityId={selectedEdge.target} size="sm" showLightboxOnClick={false} />
+                <div className="min-w-0 flex-1">
+                  <div className="text-[9px] text-crimenet-muted font-mono uppercase">Node B (Target)</div>
+                  <div className="font-bold text-white text-xs mt-0.5 truncate">{selectedEdge.target}</div>
+                </div>
               </div>
             </div>
 

@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, HTTPException
+from fastapi.responses import FileResponse
+from pathlib import Path
 from typing import Optional
 from app.core.database import data_store
 from app.services.graph_service import graph_service
@@ -71,3 +73,26 @@ def get_entity(entity_id: str):
         "location_history": entity_sightings,
         "explanation": explanation,
     }
+
+
+@router.get("/{entity_id}/photo")
+def get_entity_photo(entity_id: str):
+    person = next((p for p in data_store.persons if p["id"] == entity_id), None)
+    if not person:
+        raise HTTPException(status_code=404, detail="Entity not found")
+    
+    gender_dir = "women" if person.get("gender") == "F" else "men"
+    try:
+        idx = int(entity_id.split("-")[1]) % 100
+    except Exception:
+        idx = abs(hash(entity_id)) % 100
+    
+    # Backend portraits directory
+    photo_file = Path(__file__).resolve().parent.parent.parent.parent / "data" / "portraits" / gender_dir / f"{idx}.jpg"
+    if photo_file.exists():
+        return FileResponse(str(photo_file), media_type="image/jpeg")
+    
+    fallback = Path(__file__).resolve().parent.parent.parent.parent / "data" / "portraits" / gender_dir / "0.jpg"
+    if fallback.exists():
+        return FileResponse(str(fallback), media_type="image/jpeg")
+    raise HTTPException(status_code=404, detail="Photo not found")
